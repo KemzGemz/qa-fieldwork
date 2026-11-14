@@ -1,0 +1,18 @@
+{
+  "id": "run-20261115-001540",
+  "target": "hiredesk",
+  "mode": "default",
+  "status": "closed",
+  "started": "2026-11-15T00:15:40+08:00",
+  "ended": "2026-11-15T00:27:42+08:00",
+  "environment": "local",
+  "base_url": "http://127.0.0.1:8791/",
+  "role": "clerk",
+  "role_verified_by": "signed out ('You have signed out.', sign-in form), then header: 'Signed in as Tom Riley (Clerk)'; no Settings link in navigation",
+  "app_version": "1.4.2",
+  "budget": 110,
+  "budget_source": "supplied",
+  "report_reserve": 0.15,
+  "focus": "blind acceptance check of the workflow: rules, cross-module effects, roles, lifecycle",
+  "scope_note": ""
+}

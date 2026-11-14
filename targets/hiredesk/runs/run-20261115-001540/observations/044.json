@@ -1,0 +1,171 @@
+{
+  "n": 44,
+  "t": "2026-11-15T00:20:41+08:00",
+  "run": "run-20261115-001540",
+  "role": "manager",
+  "environment": "local",
+  "app_version": "1.4.2",
+  "test": "T-007",
+  "label": "click-link \"Settings\"",
+  "url": "http://127.0.0.1:8791/settings",
+  "title": "Settings - Tallyard HireDesk",
+  "headings": [
+    "Settings"
+  ],
+  "alerts": [],
+  "dialog": null,
+  "modal": false,
+  "page_chrome": [
+    "Tallyard HireDesk Dashboard Bookings Inventory Customers Settings Signed in as Maria Okafor (Manager) Sign out",
+    "Tallyard HireDesk version 1.4.2"
+  ],
+  "fields": [
+    {
+      "label": "Deposit rate (%)",
+      "label_source": "label",
+      "type": "number",
+      "value": "20",
+      "required": false,
+      "disabled": false,
+      "readonly": false,
+      "min": "0",
+      "max": "100",
+      "step": null,
+      "minlength": null,
+      "maxlength": null,
+      "pattern": null,
+      "options": [],
+      "invalid": false,
+      "validation": "",
+      "in_dialog": false
+    },
+    {
+      "label": "Maximum hire length (days)",
+      "label_source": "label",
+      "type": "number",
+      "value": "28",
+      "required": false,
+      "disabled": false,
+      "readonly": false,
+      "min": "1",
+      "max": "365",
+      "step": null,
+      "minlength": null,
+      "maxlength": null,
+      "pattern": null,
+      "options": [],
+      "invalid": false,
+      "validation": "",
+      "in_dialog": false
+    }
+  ],
+  "tables": [],
+  "elements": [
+    {
+      "ref": "e1",
+      "role": "link",
+      "name": "Dashboard",
+      "nth": 0,
+      "nth_role": 0,
+      "attrs": [],
+      "context": "banner > navigation Main",
+      "in_dialog": false,
+      "href": "/"
+    },
+    {
+      "ref": "e2",
+      "role": "link",
+      "name": "Bookings",
+      "nth": 0,
+      "nth_role": 1,
+      "attrs": [],
+      "context": "banner > navigation Main",
+      "in_dialog": false,
+      "href": "/bookings"
+    },
+    {
+      "ref": "e3",
+      "role": "link",
+      "name": "Inventory",
+      "nth": 0,
+      "nth_role": 2,
+      "attrs": [],
+      "context": "banner > navigation Main",
+      "in_dialog": false,
+      "href": "/inventory"
+    },
+    {
+      "ref": "e4",
+      "role": "link",
+      "name": "Customers",
+      "nth": 0,
+      "nth_role": 3,
+      "attrs": [],
+      "context": "banner > navigation Main",
+      "in_dialog": false,
+      "href": "/customers"
+    },
+    {
+      "ref": "e5",
+      "role": "link",
+      "name": "Settings",
+      "nth": 0,
+      "nth_role": 4,
+      "attrs": [],
+      "context": "banner > navigation Main",
+      "in_dialog": false,
+      "href": "/settings"
+    },
+    {
+      "ref": "e6",
+      "role": "button",
+      "name": "Sign out",
+      "nth": 0,
+      "nth_role": 0,
+      "attrs": [],
+      "context": "banner",
+      "in_dialog": false
+    },
+    {
+      "ref": "e7",
+      "role": "spinbutton",
+      "name": "Deposit rate (%)",
+      "nth": 0,
+      "nth_role": 0,
+      "attrs": [],
+      "context": "main",
+      "in_dialog": false,
+      "value": "20"
+    },
+    {
+      "ref": "e8",
+      "role": "spinbutton",
+      "name": "Maximum hire length (days)",
+      "nth": 0,
+      "nth_role": 1,
+      "attrs": [],
+      "context": "main",
+      "in_dialog": false,
+      "value": "28"
+    },
+    {
+      "ref": "e9",
+      "role": "button",
+      "name": "Save settings",
+      "nth": 0,
+      "nth_role": 1,
+      "attrs": [],
+      "context": "main",
+      "in_dialog": false
+    }
+  ],
+  "main_text": "Settings\nDeposit rate (%)\nMaximum hire length (days)\nSave settings",
+  "busy_indicators": 0,
+  "ready_state": "complete",
+  "native_dialogs": [],
+  "console_errors": [],
+  "http_errors": [],
+  "popups": [],
+  "screenshot": null,
+  "aria_snapshot": "- banner:\n  - text: Tallyard HireDesk\n  - navigation \"Main\":\n    - list:\n      - listitem:\n        - link \"Dashboard\":\n          - /url: /\n      - listitem:\n        - link \"Bookings\":\n          - /url: /bookings\n      - listitem:\n        - link \"Inventory\":\n          - /url: /inventory\n      - listitem:\n        - link \"Customers\":\n          - /url: /customers\n      - listitem:\n        - link \"Settings\":\n          - /url: /settings\n  - text: Signed in as\n  - strong: Maria Okafor\n  - text: (Manager)\n  - button \"Sign out\"\n- main:\n  - heading \"Settings\" [level=1]\n  - text: Deposit rate (%)\n  - spinbutton \"Deposit rate (%)\": \"20\"\n  - text: Maximum hire length (days)\n  - spinbutton \"Maximum hire length (days)\": \"28\"\n  - button \"Save settings\"\n- contentinfo:\n  - paragraph: Tallyard HireDesk version 1.4.2"
+}

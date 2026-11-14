@@ -1,0 +1,133 @@
+{
+  "n": 9,
+  "t": "2026-11-15T00:31:38+08:00",
+  "run": "run-20261115-003018",
+  "role": "manager",
+  "environment": "local",
+  "app_version": "1.4.2",
+  "test": "T-013",
+  "label": "t013-b1005-after-rate",
+  "url": "http://127.0.0.1:8791/bookings/B-1005",
+  "title": "Booking B-1005 - Tallyard HireDesk",
+  "headings": [
+    "Booking B-1005",
+    "History"
+  ],
+  "alerts": [],
+  "dialog": null,
+  "modal": false,
+  "page_chrome": [
+    "Tallyard HireDesk Dashboard Bookings Inventory Customers Settings Signed in as Maria Okafor (Manager) Sign out",
+    "Tallyard HireDesk version 1.4.2"
+  ],
+  "fields": [],
+  "tables": [],
+  "elements": [
+    {
+      "ref": "e1",
+      "role": "link",
+      "name": "Dashboard",
+      "nth": 0,
+      "nth_role": 0,
+      "attrs": [],
+      "context": "banner > navigation Main",
+      "in_dialog": false,
+      "href": "/"
+    },
+    {
+      "ref": "e2",
+      "role": "link",
+      "name": "Bookings",
+      "nth": 0,
+      "nth_role": 1,
+      "attrs": [],
+      "context": "banner > navigation Main",
+      "in_dialog": false,
+      "href": "/bookings"
+    },
+    {
+      "ref": "e3",
+      "role": "link",
+      "name": "Inventory",
+      "nth": 0,
+      "nth_role": 2,
+      "attrs": [],
+      "context": "banner > navigation Main",
+      "in_dialog": false,
+      "href": "/inventory"
+    },
+    {
+      "ref": "e4",
+      "role": "link",
+      "name": "Customers",
+      "nth": 0,
+      "nth_role": 3,
+      "attrs": [],
+      "context": "banner > navigation Main",
+      "in_dialog": false,
+      "href": "/customers"
+    },
+    {
+      "ref": "e5",
+      "role": "link",
+      "name": "Settings",
+      "nth": 0,
+      "nth_role": 4,
+      "attrs": [],
+      "context": "banner > navigation Main",
+      "in_dialog": false,
+      "href": "/settings"
+    },
+    {
+      "ref": "e6",
+      "role": "button",
+      "name": "Sign out",
+      "nth": 0,
+      "nth_role": 0,
+      "attrs": [],
+      "context": "banner",
+      "in_dialog": false
+    },
+    {
+      "ref": "e7",
+      "role": "link",
+      "name": "Review and confirm",
+      "nth": 0,
+      "nth_role": 5,
+      "attrs": [],
+      "context": "main",
+      "in_dialog": false,
+      "href": "/bookings/B-1005/review"
+    },
+    {
+      "ref": "e8",
+      "role": "button",
+      "name": "Cancel booking",
+      "nth": 0,
+      "nth_role": 1,
+      "attrs": [],
+      "context": "main",
+      "in_dialog": false
+    },
+    {
+      "ref": "e9",
+      "role": "link",
+      "name": "Back to bookings",
+      "nth": 0,
+      "nth_role": 6,
+      "attrs": [],
+      "context": "main",
+      "in_dialog": false,
+      "href": "/bookings"
+    }
+  ],
+  "main_text": "Booking B-1005\nReference\nB-1005\nStatus\nDraft\nCustomer\nSutton & Daughters Roofing\nEquipment\nMini digger 1.5t\nQuantity\n1\nStart date\n2026-11-21\nEnd date\n2026-11-24\nChargeable days\n3\nDaily rate (per unit)\n£120.00\nGross hire\n£360.00\nWeekly discount\nNone\nHire charge\n£360.00\nDeposit (20%, estimate)\n£72.00\nCreated by\nPriya Nair\nNotes\nCustomer to confirm site access\nReview and confirm\nCancel booking\nBack to bookings\nHistory\nCreated as Draft by Priya Nair",
+  "busy_indicators": 0,
+  "ready_state": "complete",
+  "native_dialogs": [],
+  "console_errors": [],
+  "http_errors": [],
+  "popups": [],
+  "screenshot": "runs/run-20261115-003018/evidence/009-t013-b1005-after-rate.png",
+  "aria_snapshot": "- banner:\n  - text: Tallyard HireDesk\n  - navigation \"Main\":\n    - list:\n      - listitem:\n        - link \"Dashboard\":\n          - /url: /\n      - listitem:\n        - link \"Bookings\":\n          - /url: /bookings\n      - listitem:\n        - link \"Inventory\":\n          - /url: /inventory\n      - listitem:\n        - link \"Customers\":\n          - /url: /customers\n      - listitem:\n        - link \"Settings\":\n          - /url: /settings\n  - text: Signed in as\n  - strong: Maria Okafor\n  - text: (Manager)\n  - button \"Sign out\"\n- main:\n  - heading \"Booking B-1005\" [level=1]\n  - term: Reference\n  - definition: B-1005\n  - term: Status\n  - definition: Draft\n  - term: Customer\n  - definition: Sutton & Daughters Roofing\n  - term: Equipment\n  - definition: Mini digger 1.5t\n  - term: Quantity\n  - definition: \"1\"\n  - term: Start date\n  - definition: 2026-11-21\n  - term: End date\n  - definition: 2026-11-24\n  - term: Chargeable days\n  - definition: \"3\"\n  - term: Daily rate (per unit)\n  - definition: £120.00\n  - term: Gross hire\n  - definition: £360.00\n  - term: Weekly discount\n  - definition: None\n  - term: Hire charge\n  - definition: £360.00\n  - term: Deposit (20%, estimate)\n  - definition: £72.00\n  - term: Created by\n  - definition: Priya Nair\n  - term: Notes\n  - definition: Customer to confirm site access\n  - link \"Review and confirm\":\n    - /url: /bookings/B-1005/review\n  - button \"Cancel booking\"\n  - link \"Back to bookings\":\n    - /url: /bookings\n  - heading \"History\" [level=2]\n  - list:\n    - listitem: Created as Draft by Priya Nair\n- contentinfo:\n  - paragraph: Tallyard HireDesk version 1.4.2"
+}

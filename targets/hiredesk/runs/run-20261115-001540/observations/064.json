@@ -1,0 +1,106 @@
+{
+  "n": 64,
+  "t": "2026-11-15T00:22:37+08:00",
+  "run": "run-20261115-001540",
+  "role": "manager",
+  "environment": "local",
+  "app_version": "1.4.2",
+  "test": null,
+  "label": "signed-out",
+  "url": "http://127.0.0.1:8791/login",
+  "title": "Sign in - Tallyard HireDesk",
+  "headings": [
+    "Sign in"
+  ],
+  "alerts": [
+    "You have signed out."
+  ],
+  "dialog": null,
+  "modal": false,
+  "page_chrome": [
+    "Tallyard HireDesk",
+    "Tallyard HireDesk version 1.4.2"
+  ],
+  "fields": [
+    {
+      "label": "Username",
+      "label_source": "label",
+      "type": "text",
+      "value": "",
+      "required": true,
+      "disabled": false,
+      "readonly": false,
+      "min": null,
+      "max": null,
+      "step": null,
+      "minlength": null,
+      "maxlength": null,
+      "pattern": null,
+      "options": [],
+      "invalid": false,
+      "validation": "Please fill out this field.",
+      "in_dialog": false
+    },
+    {
+      "label": "Password",
+      "label_source": "label",
+      "type": "password",
+      "value": "",
+      "required": true,
+      "disabled": false,
+      "readonly": false,
+      "min": null,
+      "max": null,
+      "step": null,
+      "minlength": null,
+      "maxlength": null,
+      "pattern": null,
+      "options": [],
+      "invalid": false,
+      "validation": "Please fill out this field.",
+      "in_dialog": false
+    }
+  ],
+  "tables": [],
+  "elements": [
+    {
+      "ref": "e1",
+      "role": "textbox",
+      "name": "Username",
+      "nth": 0,
+      "nth_role": 0,
+      "attrs": [],
+      "context": "main",
+      "in_dialog": false
+    },
+    {
+      "ref": "e2",
+      "role": "textbox",
+      "name": "Password",
+      "nth": 0,
+      "nth_role": 1,
+      "attrs": [],
+      "context": "main",
+      "in_dialog": false
+    },
+    {
+      "ref": "e3",
+      "role": "button",
+      "name": "Sign in",
+      "nth": 0,
+      "nth_role": 0,
+      "attrs": [],
+      "context": "main",
+      "in_dialog": false
+    }
+  ],
+  "main_text": "Sign in\nYou have signed out.\nUsername\nPassword\nSign in",
+  "busy_indicators": 0,
+  "ready_state": "complete",
+  "native_dialogs": [],
+  "console_errors": [],
+  "http_errors": [],
+  "popups": [],
+  "screenshot": "runs/run-20261115-001540/evidence/064-signed-out.png",
+  "aria_snapshot": "- banner: Tallyard HireDesk\n- main:\n  - heading \"Sign in\" [level=1]\n  - status: You have signed out.\n  - text: Username\n  - textbox \"Username\"\n  - text: Password\n  - textbox \"Password\"\n  - button \"Sign in\"\n- contentinfo:\n  - paragraph: Tallyard HireDesk version 1.4.2"
+}

@@ -1,0 +1,200 @@
+{
+  "T-013": {
+    "id": "T-013",
+    "title": "Rate change leaves existing Draft B-1005 at its creation rate",
+    "area": "Inventory: rate change vs existing and new bookings",
+    "priority": 1,
+    "why": "BR-04 / objective 2: a quoted price must not change afterwards; relationship 15 in the model is documented but never observed",
+    "requirements": [
+      "BR-04"
+    ],
+    "role": "manager",
+    "preconditions": "Re-seeded data; Mini digger rate 120.00; Draft B-1005 hire charge GBP 360.00",
+    "data": "Mini digger daily rate 120.00 -> 130.00",
+    "retest_of": null,
+    "planned": "2026-11-15T00:31:06+08:00",
+    "expectation": {
+      "text": "Inventory accepts the new rate with a status message and shows Mini digger at 130.00. Draft B-1005 (created before the change) still shows daily rate GBP 120.00 and hire charge GBP 360.00 on its detail/review.",
+      "basis_type": "requirement",
+      "basis": "FSD BR-04: rate used is the line's rate at the moment the booking is created; a later change applies only to bookings created after it. FSD 5.4/section 5: every successful action is confirmed with a status message.",
+      "uncertainty": "",
+      "recorded": "2026-11-15T00:31:06+08:00"
+    },
+    "expectation_history": [],
+    "started": {
+      "t": "2026-11-15T00:31:07+08:00",
+      "action_index": 4,
+      "role": "manager"
+    },
+    "result": {
+      "status": "pass",
+      "actual": "Inventory showed 'Daily rate for Mini digger 1.5t updated.' and Mini digger at GBP 130.00 (was 120.00 in obs 005). Afterwards Draft B-1005 still shows hire charge GBP 360.00 on the Bookings list and, on its detail, Daily rate (per unit) GBP 120.00, gross GBP 360.00, hire charge GBP 360.00, deposit (20%, estimate) GBP 72.00.",
+      "steps": [
+        "Inventory: Mini digger rate 120.00 -> 130.00, Update rate",
+        "Bookings: B-1005 row",
+        "Open B-1005 detail"
+      ],
+      "evidence": [
+        "runs/run-20261115-003018/evidence/005-t013-inventory-before.png",
+        "runs/run-20261115-003018/evidence/007-t013-rate-updated.png",
+        "runs/run-20261115-003018/evidence/008-t013-bookings-after-rate.png",
+        "runs/run-20261115-003018/evidence/009-t013-b1005-after-rate.png"
+      ],
+      "downstream": "Bookings list and detail agree; Review page of B-1005 not opened (budget)",
+      "uncertainty": "",
+      "role": "manager",
+      "environment": "local",
+      "app_version": "1.4.2",
+      "logged_actions": 5,
+      "recorded": "2026-11-15T00:31:49+08:00"
+    }
+  },
+  "T-014": {
+    "id": "T-014",
+    "title": "New booking of 29 chargeable days is refused (maximum hire length 28)",
+    "area": "Booking form validation",
+    "priority": 2,
+    "why": "BR-07 upper boundary, never run; coverage area Booking form validation is not-covered",
+    "requirements": [
+      "BR-07",
+      "5.1"
+    ],
+    "role": "manager",
+    "preconditions": "Settings maximum hire length 28 days (seed; previous run obs 008)",
+    "data": "active customer, Mini digger, qty 1, start 2026-12-01, end 2026-12-30 (29 days)",
+    "retest_of": null,
+    "planned": "2026-11-15T00:31:06+08:00",
+    "expectation": {
+      "text": "The form is redisplayed with an error message saying the hire exceeds the maximum hire length (28 days), the entered values are kept, and no booking is saved (no new reference issued).",
+      "basis_type": "requirement",
+      "basis": "FSD BR-07 (chargeable days may not exceed the maximum hire length in Settings) and 5.1 step 2 (form redisplayed with error and entered values; nothing saved)",
+      "uncertainty": "Maximum is assumed to be the seed value 28; not re-read from Settings this run to save budget. Nothing-saved is judged from no reference being issued here and from the Bookings list seen later in the run.",
+      "recorded": "2026-11-15T00:31:06+08:00"
+    },
+    "expectation_history": [],
+    "started": {
+      "t": "2026-11-15T00:31:49+08:00",
+      "action_index": 9,
+      "role": "manager"
+    },
+    "result": {
+      "status": "pass",
+      "actual": "Submitting 2026-12-01 to 2026-12-30 (29 days) redisplayed the New booking form (HTTP 400) with the alert 'The hire is longer than the maximum of 28 days.'; customer, equipment, quantity and both dates were kept; no reference was issued and the page stayed on the New booking form.",
+      "steps": [
+        "Bookings > New booking",
+        "Hartley Builders Ltd, Mini digger, qty 1, 2026-12-01 to 2026-12-30",
+        "Continue to review"
+      ],
+      "evidence": [
+        "runs/run-20261115-003018/evidence/011-t014-new-booking-form.png",
+        "runs/run-20261115-003018/evidence/016-t014-29-days.png"
+      ],
+      "downstream": "",
+      "uncertainty": "Nothing-saved is further checked by the reference issued to the next saved booking (expected B-1007) in T-016.",
+      "role": "manager",
+      "environment": "local",
+      "app_version": "1.4.2",
+      "logged_actions": 7,
+      "recorded": "2026-11-15T00:32:14+08:00"
+    }
+  },
+  "T-015": {
+    "id": "T-015",
+    "title": "New booking with end date before start date is refused",
+    "area": "Booking form validation",
+    "priority": 2,
+    "why": "BR-01 validation, never run",
+    "requirements": [
+      "BR-01",
+      "5.1"
+    ],
+    "role": "manager",
+    "preconditions": "",
+    "data": "same form, start 2026-12-01, end 2026-11-30",
+    "retest_of": null,
+    "planned": "2026-11-15T00:31:06+08:00",
+    "expectation": {
+      "text": "The form is redisplayed with an error message that the end date may not be before the start date, entered values kept, nothing saved.",
+      "basis_type": "requirement",
+      "basis": "FSD BR-01 (end date may not be before start date) and 5.1 step 2",
+      "uncertainty": "",
+      "recorded": "2026-11-15T00:31:06+08:00"
+    },
+    "expectation_history": [],
+    "started": {
+      "t": "2026-11-15T00:32:14+08:00",
+      "action_index": 16,
+      "role": "manager"
+    },
+    "result": {
+      "status": "pass",
+      "actual": "With start 2026-12-01 and end 2026-11-30 the form was redisplayed (HTTP 400) with the alert 'The end date cannot be before the start date.'; all entered values kept; no reference issued.",
+      "steps": [
+        "Same form: End date 2026-11-30",
+        "Continue to review"
+      ],
+      "evidence": [
+        "runs/run-20261115-003018/evidence/018-t015-end-before-start.png"
+      ],
+      "downstream": "",
+      "uncertainty": "",
+      "role": "manager",
+      "environment": "local",
+      "app_version": "1.4.2",
+      "logged_actions": 2,
+      "recorded": "2026-11-15T00:32:24+08:00"
+    }
+  },
+  "T-016": {
+    "id": "T-016",
+    "title": "New booking of exactly 28 days after the rate change is accepted and priced at the new rate",
+    "area": "Inventory: rate change vs existing and new bookings",
+    "priority": 1,
+    "why": "BR-07 boundary on the allowed side plus the second half of BR-04: bookings created after a rate change use the new rate",
+    "requirements": [
+      "BR-04",
+      "BR-07",
+      "BR-02",
+      "BR-03",
+      "BR-05"
+    ],
+    "role": "manager",
+    "preconditions": "Mini digger rate changed to 130.00 in the first test of this run; deposit rate 20% (dashboard obs 004)",
+    "data": "active customer, Mini digger, qty 1, start 2026-12-01, end 2026-12-29 (28 days)",
+    "retest_of": null,
+    "planned": "2026-11-15T00:31:06+08:00",
+    "expectation": {
+      "text": "Draft saved with a new reference and the Review shown: chargeable days 28, daily rate GBP 130.00, gross GBP 3,640.00, weekly discount 10% GBP 364.00, hire charge GBP 3,276.00, deposit estimate (20%) GBP 655.20.",
+      "basis_type": "requirement",
+      "basis": "FSD BR-04 (new rate for bookings created after the change), BR-07 (28 does not exceed 28), BR-02, BR-03, BR-05, 5.1 step 3",
+      "uncertainty": "",
+      "recorded": "2026-11-15T00:31:06+08:00"
+    },
+    "expectation_history": [],
+    "started": {
+      "t": "2026-11-15T00:32:24+08:00",
+      "action_index": 18,
+      "role": "manager"
+    },
+    "result": {
+      "status": "pass",
+      "actual": "Draft B-1007 saved ('Draft booking B-1007 saved.') and Review shown: chargeable days 28, daily rate GBP 130.00, gross GBP 3,640.00, weekly discount -GBP 364.00, hire charge GBP 3,276.00, deposit (20%, estimate) GBP 655.20 - all as expected.",
+      "steps": [
+        "Same form: End date 2026-12-29",
+        "Continue to review",
+        "Bookings list"
+      ],
+      "evidence": [
+        "runs/run-20261115-003018/evidence/020-t016-28-days-review.png",
+        "runs/run-20261115-003018/evidence/021-t016-bookings-after.png"
+      ],
+      "downstream": "Bookings list has 7 rows: the six seed bookings plus B-1007 (GBP 3,276.00 Draft); B-1005 still GBP 360.00. The two refused submissions (T-014, T-015) saved nothing: the next reference issued was B-1007 and no other row appeared.",
+      "uncertainty": "",
+      "role": "manager",
+      "environment": "local",
+      "app_version": "1.4.2",
+      "logged_actions": 3,
+      "recorded": "2026-11-15T00:32:45+08:00"
+    }
+  }
+}

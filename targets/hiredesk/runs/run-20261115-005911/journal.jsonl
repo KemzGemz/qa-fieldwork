@@ -1,0 +1,4 @@
+{"t":"2026-11-15T00:59:43+08:00","kind":"role","text":"acting as manager; identity verified by: header: 'Signed in as Maria Okafor (Manager)'"}
+{"t":"2026-11-15T00:59:45+08:00","kind":"version","text":"application version 1.4.2 seen at: page footer"}
+{"t":"2026-11-15T01:01:28+08:00","kind":"data-change","text":"Deposit rate left at 30%; B-1006 cancelled; Draft B-1007 created (Hartley, Cement mixer, 7 days); Kestrel hold released by clerk (below).","role":"manager","test":null}
+{"t":"2026-11-15T01:01:45+08:00","kind":"role","text":"acting as clerk; identity verified by: signed out ('You have signed out.'), then header: 'Signed in as Tom Riley (Clerk)'"}

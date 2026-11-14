@@ -1,0 +1,133 @@
+{
+  "n": 35,
+  "t": "2026-11-15T00:19:05+08:00",
+  "run": "run-20261115-001540",
+  "role": "manager",
+  "environment": "local",
+  "app_version": "1.4.2",
+  "test": "T-004",
+  "label": "t004-review",
+  "url": "http://127.0.0.1:8791/bookings/B-1009/review",
+  "title": "Review booking B-1009 - Tallyard HireDesk",
+  "headings": [
+    "Review booking B-1009"
+  ],
+  "alerts": [
+    "Draft booking B-1009 saved."
+  ],
+  "dialog": null,
+  "modal": false,
+  "page_chrome": [
+    "Tallyard HireDesk Dashboard Bookings Inventory Customers Settings Signed in as Maria Okafor (Manager) Sign out",
+    "Tallyard HireDesk version 1.4.2"
+  ],
+  "fields": [],
+  "tables": [],
+  "elements": [
+    {
+      "ref": "e1",
+      "role": "link",
+      "name": "Dashboard",
+      "nth": 0,
+      "nth_role": 0,
+      "attrs": [],
+      "context": "banner > navigation Main",
+      "in_dialog": false,
+      "href": "/"
+    },
+    {
+      "ref": "e2",
+      "role": "link",
+      "name": "Bookings",
+      "nth": 0,
+      "nth_role": 1,
+      "attrs": [],
+      "context": "banner > navigation Main",
+      "in_dialog": false,
+      "href": "/bookings"
+    },
+    {
+      "ref": "e3",
+      "role": "link",
+      "name": "Inventory",
+      "nth": 0,
+      "nth_role": 2,
+      "attrs": [],
+      "context": "banner > navigation Main",
+      "in_dialog": false,
+      "href": "/inventory"
+    },
+    {
+      "ref": "e4",
+      "role": "link",
+      "name": "Customers",
+      "nth": 0,
+      "nth_role": 3,
+      "attrs": [],
+      "context": "banner > navigation Main",
+      "in_dialog": false,
+      "href": "/customers"
+    },
+    {
+      "ref": "e5",
+      "role": "link",
+      "name": "Settings",
+      "nth": 0,
+      "nth_role": 4,
+      "attrs": [],
+      "context": "banner > navigation Main",
+      "in_dialog": false,
+      "href": "/settings"
+    },
+    {
+      "ref": "e6",
+      "role": "button",
+      "name": "Sign out",
+      "nth": 0,
+      "nth_role": 0,
+      "attrs": [],
+      "context": "banner",
+      "in_dialog": false
+    },
+    {
+      "ref": "e7",
+      "role": "button",
+      "name": "Confirm reservation",
+      "nth": 0,
+      "nth_role": 1,
+      "attrs": [],
+      "context": "main",
+      "in_dialog": false
+    },
+    {
+      "ref": "e8",
+      "role": "button",
+      "name": "Cancel booking",
+      "nth": 0,
+      "nth_role": 2,
+      "attrs": [],
+      "context": "main",
+      "in_dialog": false
+    },
+    {
+      "ref": "e9",
+      "role": "link",
+      "name": "Back to bookings",
+      "nth": 0,
+      "nth_role": 5,
+      "attrs": [],
+      "context": "main",
+      "in_dialog": false,
+      "href": "/bookings"
+    }
+  ],
+  "main_text": "Review booking B-1009\nDraft booking B-1009 saved.\nCheck the details below with the customer. The booking is saved as a Draft until the reservation is confirmed.\nReference\nB-1009\nStatus\nDraft\nCustomer\nHartley Builders Ltd\nEquipment\nFloor sander\nQuantity\n2\nStart date\n2026-12-01\nEnd date\n2026-12-01\nChargeable days\n1\nDaily rate (per unit)\n£36.00\nGross hire\n£72.00\nWeekly discount\nNone\nHire charge\n£72.00\nDeposit (20%, estimate)\n£14.40\nCreated by\nMaria Okafor\nNotes\n-\nCurrently available: 1 of 2 unit(s) of Floor sander.\nConfirm reservation\nCancel booking\nBack to bookings",
+  "busy_indicators": 0,
+  "ready_state": "complete",
+  "native_dialogs": [],
+  "console_errors": [],
+  "http_errors": [],
+  "popups": [],
+  "screenshot": "runs/run-20261115-001540/evidence/035-t004-review.png",
+  "aria_snapshot": "- banner:\n  - text: Tallyard HireDesk\n  - navigation \"Main\":\n    - list:\n      - listitem:\n        - link \"Dashboard\":\n          - /url: /\n      - listitem:\n        - link \"Bookings\":\n          - /url: /bookings\n      - listitem:\n        - link \"Inventory\":\n          - /url: /inventory\n      - listitem:\n        - link \"Customers\":\n          - /url: /customers\n      - listitem:\n        - link \"Settings\":\n          - /url: /settings\n  - text: Signed in as\n  - strong: Maria Okafor\n  - text: (Manager)\n  - button \"Sign out\"\n- main:\n  - heading \"Review booking B-1009\" [level=1]\n  - status: Draft booking B-1009 saved.\n  - paragraph: Check the details below with the customer. The booking is saved as a Draft until the reservation is confirmed.\n  - term: Reference\n  - definition: B-1009\n  - term: Status\n  - definition: Draft\n  - term: Customer\n  - definition: Hartley Builders Ltd\n  - term: Equipment\n  - definition: Floor sander\n  - term: Quantity\n  - definition: \"2\"\n  - term: Start date\n  - definition: 2026-12-01\n  - term: End date\n  - definition: 2026-12-01\n  - term: Chargeable days\n  - definition: \"1\"\n  - term: Daily rate (per unit)\n  - definition: £36.00\n  - term: Gross hire\n  - definition: £72.00\n  - term: Weekly discount\n  - definition: None\n  - term: Hire charge\n  - definition: £72.00\n  - term: Deposit (20%, estimate)\n  - definition: £14.40\n  - term: Created by\n  - definition: Maria Okafor\n  - term: Notes\n  - definition: \"-\"\n  - paragraph: \"Currently available: 1 of 2 unit(s) of Floor sander.\"\n  - button \"Confirm reservation\"\n  - button \"Cancel booking\"\n  - link \"Back to bookings\":\n    - /url: /bookings\n- contentinfo:\n  - paragraph: Tallyard HireDesk version 1.4.2"
+}

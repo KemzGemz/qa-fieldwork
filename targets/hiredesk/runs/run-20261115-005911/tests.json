@@ -1,0 +1,234 @@
+{
+  "T-017": {
+    "id": "T-017",
+    "title": "Retest F-003: dashboard booked hire value on seed data",
+    "area": "",
+    "priority": 2,
+    "why": "Retest of an open finding",
+    "requirements": [
+      "BR-16"
+    ],
+    "role": null,
+    "preconditions": "",
+    "data": "",
+    "retest_of": "F-003",
+    "planned": "2026-11-15T00:59:24+08:00",
+    "expectation": {
+      "text": "Booked hire value = £1,010.00 on seed data (Reserved 44.00 + 72.00, On Hire 810.00, Returned 84.00); Cancelled B-1004 (132.00) excluded",
+      "basis_type": "requirement",
+      "basis": "FSD BR-16",
+      "uncertainty": "",
+      "recorded": "2026-11-15T00:59:24+08:00"
+    },
+    "expectation_history": [],
+    "started": {
+      "t": "2026-11-15T00:59:26+08:00",
+      "action_index": 3,
+      "role": null
+    },
+    "result": {
+      "status": "fail",
+      "actual": "Dashboard still shows Booked hire value £1,142.00 on seed data (expected £1,010.00).",
+      "steps": [
+        "Sign in as manager; read the dashboard"
+      ],
+      "evidence": [
+        "runs/run-20261115-005911/evidence/004-t017-dashboard-seed.png"
+      ],
+      "downstream": "",
+      "uncertainty": "",
+      "role": "manager",
+      "environment": "local",
+      "app_version": "1.4.2",
+      "logged_actions": 1,
+      "recorded": "2026-11-15T00:59:46+08:00"
+    }
+  },
+  "T-018": {
+    "id": "T-018",
+    "title": "Retest F-004: Reserved booking keeps its deposit after a deposit-rate change",
+    "area": "",
+    "priority": 2,
+    "why": "Retest of an open finding",
+    "requirements": [
+      "BR-05"
+    ],
+    "role": "manager",
+    "preconditions": "",
+    "data": "B-1006 (Reserved, charge £44.00); deposit rate 20 -> 30",
+    "retest_of": "F-004",
+    "planned": "2026-11-15T00:59:50+08:00",
+    "expectation": {
+      "text": "B-1006 shows Deposit (20%) £8.80 before and after the deposit rate is saved as 30",
+      "basis_type": "requirement",
+      "basis": "FSD BR-05",
+      "uncertainty": "",
+      "recorded": "2026-11-15T00:59:50+08:00"
+    },
+    "expectation_history": [],
+    "started": {
+      "t": "2026-11-15T00:59:51+08:00",
+      "action_index": 4,
+      "role": "manager"
+    },
+    "result": {
+      "status": "fail",
+      "actual": "B-1006 changed from Deposit (20%) £8.80 to Deposit (30%) £13.20 after the rate was saved as 30.",
+      "steps": [
+        "Bookings > B-1006",
+        "Settings: deposit rate 30, Save",
+        "Bookings > B-1006"
+      ],
+      "evidence": [
+        "runs/run-20261115-005911/evidence/006-t018-b1006-before.png",
+        "runs/run-20261115-005911/evidence/011-t018-b1006-after.png"
+      ],
+      "downstream": "",
+      "uncertainty": "",
+      "role": "manager",
+      "environment": "local",
+      "app_version": "1.4.2",
+      "logged_actions": 7,
+      "recorded": "2026-11-15T01:00:31+08:00"
+    }
+  },
+  "T-019": {
+    "id": "T-019",
+    "title": "Retest F-002: cancelling a Reserved booking releases its stock",
+    "area": "",
+    "priority": 2,
+    "why": "Retest of a confirmed finding",
+    "requirements": [
+      "BR-11"
+    ],
+    "role": "manager",
+    "preconditions": "",
+    "data": "B-1006 (Reserved, Pressure washer x1; seed Inventory: reserved 1, available 4)",
+    "retest_of": "F-002",
+    "planned": "2026-11-15T01:00:35+08:00",
+    "expectation": {
+      "text": "After cancelling B-1006, Inventory shows Pressure washer reserved 0, available 5",
+      "basis_type": "requirement",
+      "basis": "FSD BR-11, BR-09; before-value from seed observation of run-20261115-001540 obs 006",
+      "uncertainty": "",
+      "recorded": "2026-11-15T01:00:35+08:00"
+    },
+    "expectation_history": [],
+    "started": {
+      "t": "2026-11-15T01:00:36+08:00",
+      "action_index": 11,
+      "role": "manager"
+    },
+    "result": {
+      "status": "fail",
+      "actual": "B-1006 cancelled, but Inventory still shows Pressure washer reserved 1 / available 4.",
+      "steps": [
+        "On Reserved B-1006: Cancel booking",
+        "Open Inventory"
+      ],
+      "evidence": [
+        "runs/run-20261115-005911/evidence/012-t019-cancelled.png",
+        "runs/run-20261115-005911/evidence/013-t019-inventory.png"
+      ],
+      "downstream": "",
+      "uncertainty": "",
+      "role": "manager",
+      "environment": "local",
+      "app_version": "1.4.2",
+      "logged_actions": 2,
+      "recorded": "2026-11-15T01:00:45+08:00"
+    }
+  },
+  "T-020": {
+    "id": "T-020",
+    "title": "Retest F-001: weekly discount at exactly 7 chargeable days",
+    "area": "",
+    "priority": 2,
+    "why": "Retest of an open finding",
+    "requirements": [
+      "BR-03"
+    ],
+    "role": "manager",
+    "preconditions": "",
+    "data": "Hartley Builders Ltd, Cement mixer 140L x1, 2026-12-01 to 2026-12-08",
+    "retest_of": "F-001",
+    "planned": "2026-11-15T01:00:49+08:00",
+    "expectation": {
+      "text": "Review: 7 chargeable days, gross £196.00, weekly discount -£19.60, hire charge £176.40",
+      "basis_type": "requirement",
+      "basis": "FSD BR-01..03",
+      "uncertainty": "",
+      "recorded": "2026-11-15T01:00:49+08:00"
+    },
+    "expectation_history": [],
+    "started": {
+      "t": "2026-11-15T01:00:51+08:00",
+      "action_index": 13,
+      "role": "manager"
+    },
+    "result": {
+      "status": "fail",
+      "actual": "7 chargeable days: Weekly discount 'None', hire charge £196.00 (expected -£19.60 and £176.40).",
+      "steps": [
+        "New booking: Hartley, Cement mixer x1, 2026-12-01 to 2026-12-08; Continue to review"
+      ],
+      "evidence": [
+        "runs/run-20261115-005911/evidence/020-t020-review-7-days.png"
+      ],
+      "downstream": "",
+      "uncertainty": "",
+      "role": "manager",
+      "environment": "local",
+      "app_version": "1.4.2",
+      "logged_actions": 7,
+      "recorded": "2026-11-15T01:01:24+08:00"
+    }
+  },
+  "T-021": {
+    "id": "T-021",
+    "title": "Retest F-006: a clerk cannot release a customer hold",
+    "area": "",
+    "priority": 2,
+    "why": "Retest of an open finding",
+    "requirements": [
+      "BR-13"
+    ],
+    "role": "clerk",
+    "preconditions": "",
+    "data": "Clerk Tom Riley; Kestrel Property Services (On hold in seed data)",
+    "retest_of": "F-006",
+    "planned": "2026-11-15T01:01:30+08:00",
+    "expectation": {
+      "text": "The clerk is not offered Release hold, or the attempt is refused with access denied and Kestrel stays On hold",
+      "basis_type": "requirement",
+      "basis": "FSD BR-13, section 2",
+      "uncertainty": "",
+      "recorded": "2026-11-15T01:01:30+08:00"
+    },
+    "expectation_history": [],
+    "started": {
+      "t": "2026-11-15T01:01:47+08:00",
+      "action_index": 24,
+      "role": "clerk"
+    },
+    "result": {
+      "status": "fail",
+      "actual": "The clerk is offered 'Release hold on Kestrel Property Services'; clicking it answered 'Hold released for Kestrel Property Services.' and the account became Active.",
+      "steps": [
+        "Sign out; sign in as tom (Clerk)",
+        "Customers: Release hold on Kestrel Property Services"
+      ],
+      "evidence": [
+        "runs/run-20261115-005911/evidence/025-t021-clerk-customers.png",
+        "runs/run-20261115-005911/evidence/026-t021-clerk-release.png"
+      ],
+      "downstream": "",
+      "uncertainty": "",
+      "role": "clerk",
+      "environment": "local",
+      "app_version": "1.4.2",
+      "logged_actions": 2,
+      "recorded": "2026-11-15T01:02:13+08:00"
+    }
+  }
+}

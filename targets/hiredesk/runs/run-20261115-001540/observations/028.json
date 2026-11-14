@@ -1,0 +1,343 @@
+{
+  "n": 28,
+  "t": "2026-11-15T00:18:54+08:00",
+  "run": "run-20261115-001540",
+  "role": "manager",
+  "environment": "local",
+  "app_version": "1.4.2",
+  "test": "T-004",
+  "label": "click-link \"Back to bookings\"",
+  "url": "http://127.0.0.1:8791/bookings",
+  "title": "Bookings - Tallyard HireDesk",
+  "headings": [
+    "Bookings"
+  ],
+  "alerts": [],
+  "dialog": null,
+  "modal": false,
+  "page_chrome": [
+    "Tallyard HireDesk Dashboard Bookings Inventory Customers Settings Signed in as Maria Okafor (Manager) Sign out",
+    "Tallyard HireDesk version 1.4.2"
+  ],
+  "fields": [
+    {
+      "label": "Status",
+      "label_source": "label",
+      "type": "select-one",
+      "value": "All",
+      "required": false,
+      "disabled": false,
+      "readonly": false,
+      "min": null,
+      "max": null,
+      "step": null,
+      "minlength": null,
+      "maxlength": null,
+      "pattern": null,
+      "options": [
+        "All",
+        "Draft",
+        "Reserved",
+        "On Hire",
+        "Returned",
+        "Cancelled"
+      ],
+      "invalid": false,
+      "validation": "",
+      "in_dialog": false
+    }
+  ],
+  "tables": [
+    {
+      "name": "Bookings",
+      "columns": [
+        "Reference",
+        "Customer",
+        "Equipment",
+        "Qty",
+        "Start",
+        "End",
+        "Hire charge",
+        "Status"
+      ],
+      "row_count": 8,
+      "rows": [
+        [
+          "B-1008",
+          "Mrs J. Whitcombe",
+          "Cement mixer 140L",
+          "1",
+          "2026-12-01",
+          "2026-12-09",
+          "£201.60",
+          "Draft"
+        ],
+        [
+          "B-1007",
+          "Hartley Builders Ltd",
+          "Generator 3kVA",
+          "2",
+          "2026-12-01",
+          "2026-12-08",
+          "£448.00",
+          "Reserved"
+        ],
+        [
+          "B-1006",
+          "Greenway Landscapes",
+          "Pressure washer",
+          "1",
+          "2026-11-17",
+          "2026-11-19",
+          "£44.00",
+          "Reserved"
+        ],
+        [
+          "B-1005",
+          "Sutton & Daughters Roofing",
+          "Mini digger 1.5t",
+          "1",
+          "2026-11-21",
+          "2026-11-24",
+          "£360.00",
+          "Draft"
+        ],
+        [
+          "B-1004",
+          "Hartley Builders Ltd",
+          "Pressure washer",
+          "2",
+          "2026-11-16",
+          "2026-11-19",
+          "£132.00",
+          "Cancelled"
+        ],
+        [
+          "B-1003",
+          "Mrs J. Whitcombe",
+          "Floor sander",
+          "1",
+          "2026-11-18",
+          "2026-11-20",
+          "£72.00",
+          "Reserved"
+        ],
+        [
+          "B-1002",
+          "Greenway Landscapes",
+          "Scaffold tower 5m",
+          "2",
+          "2026-11-13",
+          "2026-11-23",
+          "£810.00",
+          "On Hire"
+        ],
+        [
+          "B-1001",
+          "Hartley Builders Ltd",
+          "Cement mixer 140L",
+          "1",
+          "2026-11-03",
+          "2026-11-06",
+          "£84.00",
+          "Returned"
+        ]
+      ]
+    }
+  ],
+  "elements": [
+    {
+      "ref": "e1",
+      "role": "link",
+      "name": "Dashboard",
+      "nth": 0,
+      "nth_role": 0,
+      "attrs": [],
+      "context": "banner > navigation Main",
+      "in_dialog": false,
+      "href": "/"
+    },
+    {
+      "ref": "e2",
+      "role": "link",
+      "name": "Bookings",
+      "nth": 0,
+      "nth_role": 1,
+      "attrs": [],
+      "context": "banner > navigation Main",
+      "in_dialog": false,
+      "href": "/bookings"
+    },
+    {
+      "ref": "e3",
+      "role": "link",
+      "name": "Inventory",
+      "nth": 0,
+      "nth_role": 2,
+      "attrs": [],
+      "context": "banner > navigation Main",
+      "in_dialog": false,
+      "href": "/inventory"
+    },
+    {
+      "ref": "e4",
+      "role": "link",
+      "name": "Customers",
+      "nth": 0,
+      "nth_role": 3,
+      "attrs": [],
+      "context": "banner > navigation Main",
+      "in_dialog": false,
+      "href": "/customers"
+    },
+    {
+      "ref": "e5",
+      "role": "link",
+      "name": "Settings",
+      "nth": 0,
+      "nth_role": 4,
+      "attrs": [],
+      "context": "banner > navigation Main",
+      "in_dialog": false,
+      "href": "/settings"
+    },
+    {
+      "ref": "e6",
+      "role": "button",
+      "name": "Sign out",
+      "nth": 0,
+      "nth_role": 0,
+      "attrs": [],
+      "context": "banner",
+      "in_dialog": false
+    },
+    {
+      "ref": "e7",
+      "role": "link",
+      "name": "New booking",
+      "nth": 0,
+      "nth_role": 5,
+      "attrs": [],
+      "context": "main",
+      "in_dialog": false,
+      "href": "/bookings/new"
+    },
+    {
+      "ref": "e8",
+      "role": "combobox",
+      "name": "Status",
+      "nth": 0,
+      "nth_role": 0,
+      "attrs": [],
+      "context": "main",
+      "in_dialog": false
+    },
+    {
+      "ref": "e9",
+      "role": "button",
+      "name": "Filter",
+      "nth": 0,
+      "nth_role": 1,
+      "attrs": [],
+      "context": "main",
+      "in_dialog": false
+    },
+    {
+      "ref": "e10",
+      "role": "link",
+      "name": "B-1008",
+      "nth": 0,
+      "nth_role": 6,
+      "attrs": [],
+      "context": "main > table Bookings",
+      "in_dialog": false,
+      "href": "/bookings/B-1008"
+    },
+    {
+      "ref": "e11",
+      "role": "link",
+      "name": "B-1007",
+      "nth": 0,
+      "nth_role": 7,
+      "attrs": [],
+      "context": "main > table Bookings",
+      "in_dialog": false,
+      "href": "/bookings/B-1007"
+    },
+    {
+      "ref": "e12",
+      "role": "link",
+      "name": "B-1006",
+      "nth": 0,
+      "nth_role": 8,
+      "attrs": [],
+      "context": "main > table Bookings",
+      "in_dialog": false,
+      "href": "/bookings/B-1006"
+    },
+    {
+      "ref": "e13",
+      "role": "link",
+      "name": "B-1005",
+      "nth": 0,
+      "nth_role": 9,
+      "attrs": [],
+      "context": "main > table Bookings",
+      "in_dialog": false,
+      "href": "/bookings/B-1005"
+    },
+    {
+      "ref": "e14",
+      "role": "link",
+      "name": "B-1004",
+      "nth": 0,
+      "nth_role": 10,
+      "attrs": [],
+      "context": "main > table Bookings",
+      "in_dialog": false,
+      "href": "/bookings/B-1004"
+    },
+    {
+      "ref": "e15",
+      "role": "link",
+      "name": "B-1003",
+      "nth": 0,
+      "nth_role": 11,
+      "attrs": [],
+      "context": "main > table Bookings",
+      "in_dialog": false,
+      "href": "/bookings/B-1003"
+    },
+    {
+      "ref": "e16",
+      "role": "link",
+      "name": "B-1002",
+      "nth": 0,
+      "nth_role": 12,
+      "attrs": [],
+      "context": "main > table Bookings",
+      "in_dialog": false,
+      "href": "/bookings/B-1002"
+    },
+    {
+      "ref": "e17",
+      "role": "link",
+      "name": "B-1001",
+      "nth": 0,
+      "nth_role": 13,
+      "attrs": [],
+      "context": "main > table Bookings",
+      "in_dialog": false,
+      "href": "/bookings/B-1001"
+    }
+  ],
+  "main_text": "Bookings\nNew booking\nStatus \nAll\nDraft\nReserved\nOn Hire\nReturned\nCancelled\n Filter\nReference Customer Equipment Qty Start End Hire charge Status\nB-1008 Mrs J. Whitcombe Cement mixer 140L 1 2026-12-01 2026-12-09 £201.60 Draft\nB-1007 Hartley Builders Ltd Generator 3kVA 2 2026-12-01 2026-12-08 £448.00 Reserved\nB-1006 Greenway Landscapes Pressure washer 1 2026-11-17 2026-11-19 £44.00 Reserved\nB-1005 Sutton & Daughters Roofing Mini digger 1.5t 1 2026-11-21 2026-11-24 £360.00 Draft\nB-1004 Hartley Builders Ltd Pressure washer 2 2026-11-16 2026-11-19 £132.00 Cancelled\nB-1003 Mrs J. Whitcombe Floor sander 1 2026-11-18 2026-11-20 £72.00 Reserved\nB-1002 Greenway Landscapes Scaffold tower 5m 2 2026-11-13 2026-11-23 £810.00 On Hire\nB-1001 Hartley Builders Ltd Cement mixer 140L 1 2026-11-03 2026-11-06 £84.00 Returned",
+  "busy_indicators": 0,
+  "ready_state": "complete",
+  "native_dialogs": [],
+  "console_errors": [],
+  "http_errors": [],
+  "popups": [],
+  "screenshot": null,
+  "aria_snapshot": "- banner:\n  - text: Tallyard HireDesk\n  - navigation \"Main\":\n    - list:\n      - listitem:\n        - link \"Dashboard\":\n          - /url: /\n      - listitem:\n        - link \"Bookings\":\n          - /url: /bookings\n      - listitem:\n        - link \"Inventory\":\n          - /url: /inventory\n      - listitem:\n        - link \"Customers\":\n          - /url: /customers\n      - listitem:\n        - link \"Settings\":\n          - /url: /settings\n  - text: Signed in as\n  - strong: Maria Okafor\n  - text: (Manager)\n  - button \"Sign out\"\n- main:\n  - heading \"Bookings\" [level=1]\n  - link \"New booking\":\n    - /url: /bookings/new\n  - text: Status\n  - combobox \"Status\":\n    - option \"All\" [selected]\n    - option \"Draft\"\n    - option \"Reserved\"\n    - option \"On Hire\"\n    - option \"Returned\"\n    - option \"Cancelled\"\n  - button \"Filter\"\n  - table \"Bookings\":\n    - rowgroup:\n      - row \"Reference Customer Equipment Qty Start End Hire charge Status\":\n        - columnheader \"Reference\"\n        - columnheader \"Customer\"\n        - columnheader \"Equipment\"\n        - columnheader \"Qty\"\n        - columnheader \"Start\"\n        - columnheader \"End\"\n        - columnheader \"Hire charge\"\n        - columnheader \"Status\"\n    - rowgroup:\n      - row \"B-1008 Mrs J. Whitcombe Cement mixer 140L 1 2026-12-01 2026-12-09 £201.60 Draft\":\n        - cell \"B-1008\":\n          - link \"B-1008\":\n            - /url: /bookings/B-1008\n        - cell \"Mrs J. Whitcombe\"\n        - cell \"Cement mixer 140L\"\n        - cell \"1\"\n        - cell \"2026-12-01\"\n        - cell \"2026-12-09\"\n        - cell \"£201.60\"\n        - cell \"Draft\"\n      - row \"B-1007 Hartley Builders Ltd Generator 3kVA 2 2026-12-01 2026-12-08 £448.00 Reserved\":\n        - cell \"B-1007\":\n          - link \"B-1007\":\n            - /url: /bookings/B-1007\n        - cell \"Hartley Builders Ltd\"\n        - cell \"Generator 3kVA\"\n        - cell \"2\"\n        - cell \"2026-12-01\"\n        - cell \"2026-12-08\"\n        - cell \"£448.00\"\n        - cell \"Reserved\"\n      - row \"B-1006 Greenway Landscapes Pressure washer 1 2026-11-17 2026-11-19 £44.00 Reserved\":\n        - cell \"B-1006\":\n          - link \"B-1006\":\n            - /url: /bookings/B-1006\n        - cell \"Greenway Landscapes\"\n        - cell \"Pressure washer\"\n        - cell \"1\"\n        - cell \"2026-11-17\"\n        - cell \"2026-11-19\"\n        - cell \"£44.00\"\n        - cell \"Reserved\"\n      - row \"B-1005 Sutton & Daughters Roofing Mini digger 1.5t 1 2026-11-21 2026-11-24 £360.00 Draft\":\n        - cell \"B-1005\":\n          - link \"B-1005\":\n            - /url: /bookings/B-1005\n        - cell \"Sutton & Daughters Roofing\"\n        - cell \"Mini digger 1.5t\"\n        - cell \"1\"\n        - cell \"2026-11-21\"\n        - cell \"2026-11-24\"\n        - cell \"£360.00\"\n        - cell \"Draft\"\n      - row \"B-1004 Hartley Builders Ltd Pressure washer 2 2026-11-16 2026-11-19 £132.00 Cancelled\":\n        - cell \"B-1004\":\n          - link \"B-1004\":\n            - /url: /bookings/B-1004\n        - cell \"Hartley Builders Ltd\"\n        - cell \"Pressure washer\"\n        - cell \"2\"\n        - cell \"2026-11-16\"\n        - cell \"2026-11-19\"\n        - cell \"£132.00\"\n        - cell \"Cancelled\"\n      - row \"B-1003 Mrs J. Whitcombe Floor sander 1 2026-11-18 2026-11-20 £72.00 Reserved\":\n        - cell \"B-1003\":\n          - link \"B-1003\":\n            - /url: /bookings/B-1003\n        - cell \"Mrs J. Whitcombe\"\n        - cell \"Floor sander\"\n        - cell \"1\"\n        - cell \"2026-11-18\"\n        - cell \"2026-11-20\"\n        - cell \"£72.00\"\n        - cell \"Reserved\"\n      - row \"B-1002 Greenway Landscapes Scaffold tower 5m 2 2026-11-13 2026-11-23 £810.00 On Hire\":\n        - cell \"B-1002\":\n          - link \"B-1002\":\n            - /url: /bookings/B-1002\n        - cell \"Greenway Landscapes\"\n        - cell \"Scaffold tower 5m\"\n        - cell \"2\"\n        - cell \"2026-11-13\"\n        - cell \"2026-11-23\"\n        - cell \"£810.00\"\n        - cell \"On Hire\"\n      - row \"B-1001 Hartley Builders Ltd Cement mixer 140L 1 2026-11-03 2026-11-06 £84.00 Returned\":\n        - cell \"B-1001\":\n          - link \"B-1001\":\n            - /url: /bookings/B-1001\n        - cell \"Hartley Builders Ltd\"\n        - cell \"Cement mixer 140L\"\n        - cell \"1\"\n        - cell \"2026-11-03\"\n        - cell \"2026-11-06\"\n        - cell \"£84.00\"\n        - cell \"Returned\"\n- contentinfo:\n  - paragraph: Tallyard HireDesk version 1.4.2"
+}

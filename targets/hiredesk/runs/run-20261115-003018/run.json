@@ -1,0 +1,18 @@
+{
+  "id": "run-20261115-003018",
+  "target": "hiredesk",
+  "mode": "resume",
+  "status": "closed",
+  "started": "2026-11-15T00:30:18+08:00",
+  "ended": "2026-11-15T00:33:21+08:00",
+  "environment": "local",
+  "base_url": "http://127.0.0.1:8791/",
+  "role": "manager",
+  "role_verified_by": "header: 'Signed in as Maria Okafor (Manager)'; Settings link present",
+  "app_version": "1.4.2",
+  "budget": 25,
+  "budget_source": "supplied",
+  "report_reserve": 0.15,
+  "focus": "Resume: recorded next action - BR-04 rate change vs Draft B-1005 and a new booking; booking form validation BR-01/BR-07 incl. 28/29-day boundary",
+  "scope_note": ""
+}

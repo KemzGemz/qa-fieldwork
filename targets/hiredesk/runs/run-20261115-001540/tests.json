@@ -1,0 +1,597 @@
+{
+  "T-001": {
+    "id": "T-001",
+    "title": "Dashboard booked hire value equals sum of Reserved+On Hire+Returned charges (seed data)",
+    "area": "Dashboard: booked hire value",
+    "priority": 1,
+    "why": "Objective 4: dashboard must be a reliable summary; cheap cross-module check of Bookings against Dashboard",
+    "requirements": [
+      "BR-16"
+    ],
+    "role": "manager",
+    "preconditions": "",
+    "data": "",
+    "retest_of": null,
+    "planned": "2026-11-15T00:17:14+08:00",
+    "expectation": {
+      "text": "Booked hire value = £1,010.00 (B-1006 44.00 + B-1003 72.00 + B-1002 810.00 + B-1001 84.00, taken from the Bookings list); Draft B-1005 (360.00) and Cancelled B-1004 (132.00) excluded",
+      "basis_type": "requirement",
+      "basis": "FSD BR-16; charges read from Bookings list obs 005",
+      "uncertainty": "",
+      "recorded": "2026-11-15T00:17:14+08:00"
+    },
+    "expectation_history": [],
+    "started": {
+      "t": "2026-11-15T00:17:15+08:00",
+      "action_index": 8,
+      "role": "manager"
+    },
+    "result": {
+      "status": "fail",
+      "actual": "Dashboard shows Booked hire value £1,142.00, which is £132.00 more than the £1,010.00 expected. £132.00 is exactly the hire charge of the Cancelled booking B-1004. Same value on two separate loads (obs 004, obs 009).",
+      "steps": [
+        "Sign in as manager",
+        "Read hire charge and status of all six bookings on Bookings (obs 005)",
+        "Open Dashboard and read Booked hire value"
+      ],
+      "evidence": [
+        "runs/run-20261115-001540/evidence/009-t001-dashboard-seed.png",
+        "runs/run-20261115-001540/evidence/005-bookings-list-seed.png",
+        "runs/run-20261115-001540/observations/009.json"
+      ],
+      "downstream": "",
+      "uncertainty": "Cause inferred from the arithmetic; to be narrowed by cancelling another booking (T-005)",
+      "role": "manager",
+      "environment": "local",
+      "app_version": "1.4.2",
+      "logged_actions": 1,
+      "recorded": "2026-11-15T00:17:27+08:00"
+    }
+  },
+  "T-002": {
+    "id": "T-002",
+    "title": "Take a booking end to end: 7-day hire gets weekly discount, confirm reserves stock everywhere",
+    "area": "Bookings: create-review-confirm",
+    "priority": 1,
+    "why": "Core workflow across New booking, Review, Detail; feeds Inventory, Customers, Dashboard",
+    "requirements": [
+      "BR-01",
+      "BR-02",
+      "BR-03",
+      "BR-05",
+      "BR-09",
+      "BR-10",
+      "BR-15",
+      "BR-17"
+    ],
+    "role": "manager",
+    "preconditions": "",
+    "data": "Hartley Builders Ltd, Generator 3kVA x2, 2026-12-01 to 2026-12-08",
+    "retest_of": null,
+    "planned": "2026-11-15T00:17:14+08:00",
+    "expectation": {
+      "text": "Review: 7 chargeable days, rate £32.00, gross £448.00, weekly discount £44.80, hire charge £403.20, estimated deposit £80.64 (20%), availability 6. After Confirm: status Reserved, deposit £80.64. Inventory Generator: reserved 2, available 4. Dashboard: Reserved count 3, units held 6, booked value up by exactly £403.20. Customers: Hartley open bookings 1",
+      "basis_type": "requirement",
+      "basis": "FSD BR-01..03, BR-05, BR-09, BR-15..17 and section 6; figures computed by hand before execution",
+      "uncertainty": "",
+      "recorded": "2026-11-15T00:17:14+08:00"
+    },
+    "expectation_history": [],
+    "started": {
+      "t": "2026-11-15T00:17:28+08:00",
+      "action_index": 9,
+      "role": "manager"
+    },
+    "result": {
+      "status": "fail",
+      "actual": "Workflow completed (New booking -> Review -> Confirm -> detail, B-1007 Reserved, history shows both steps). Pricing wrong: 7 chargeable days shown with Weekly discount 'None', hire charge £448.00 (expected discount £44.80, charge £403.20) and deposit £89.60 (expected £80.64). Everything else as expected: availability 6 of 6 on Review; Inventory Generator reserved 2 / available 4; Customers Hartley open bookings 1; Dashboard Reserved 3, units held 6, booked value rose by the booking's own charge (1,142.00 -> 1,590.00).",
+      "steps": [
+        "Bookings > New booking: Hartley Builders Ltd, Generator 3kVA, qty 2, 2026-12-01 to 2026-12-08",
+        "Continue to review: read breakdown",
+        "Confirm reservation: read detail",
+        "Read Inventory, Customers, Dashboard"
+      ],
+      "evidence": [
+        "runs/run-20261115-001540/evidence/016-t002-review.png",
+        "runs/run-20261115-001540/evidence/017-t002-confirmed.png",
+        "runs/run-20261115-001540/evidence/018-t002-inventory.png",
+        "runs/run-20261115-001540/evidence/019-t002-customers.png",
+        "runs/run-20261115-001540/evidence/020-t002-dashboard.png"
+      ],
+      "downstream": "Inventory, Customers and Dashboard counts consistent with the new Reserved booking; dashboard value carries the undiscounted charge",
+      "uncertainty": "",
+      "role": "manager",
+      "environment": "local",
+      "app_version": "1.4.2",
+      "logged_actions": 11,
+      "recorded": "2026-11-15T00:18:24+08:00"
+    }
+  },
+  "T-003": {
+    "id": "T-003",
+    "title": "6-day hire gets no weekly discount (boundary below 7)",
+    "area": "Bookings: pricing",
+    "priority": 2,
+    "why": "Boundary of BR-03; discount errors change every long hire price",
+    "requirements": [
+      "BR-03"
+    ],
+    "role": "manager",
+    "preconditions": "",
+    "data": "Hartley, Cement mixer 140L x1, 2026-12-01 to 2026-12-07",
+    "retest_of": null,
+    "planned": "2026-11-15T00:17:14+08:00",
+    "expectation": {
+      "text": "Review: 6 chargeable days, gross £168.00, weekly discount £0.00, hire charge £168.00, estimated deposit £33.60",
+      "basis_type": "requirement",
+      "basis": "FSD BR-01, BR-03, BR-05",
+      "uncertainty": "",
+      "recorded": "2026-11-15T00:17:14+08:00"
+    },
+    "expectation_history": [],
+    "started": null,
+    "result": {
+      "status": "not-run",
+      "actual": "Replaced by T-005: after T-002 showed no discount at exactly 7 days, an 8-day hire narrows the boundary better than a 6-day one within the budget.",
+      "steps": [],
+      "evidence": [],
+      "downstream": "",
+      "uncertainty": "",
+      "role": "manager",
+      "environment": "local",
+      "app_version": "1.4.2",
+      "logged_actions": 0,
+      "recorded": "2026-11-15T00:18:24+08:00"
+    }
+  },
+  "T-004": {
+    "id": "T-004",
+    "title": "Confirm refused when quantity exceeds availability",
+    "area": "Bookings: availability check",
+    "priority": 1,
+    "why": "Objective 1 (no double-booking) rests on this check",
+    "requirements": [
+      "BR-10",
+      "BR-09"
+    ],
+    "role": "manager",
+    "preconditions": "",
+    "data": "Hartley, Floor sander x2 (available 1), 2026-12-01 to 2026-12-02",
+    "retest_of": null,
+    "planned": "2026-11-15T00:17:15+08:00",
+    "expectation": {
+      "text": "Draft is created; Confirm reservation is refused with a message saying 1 unit is available; booking stays Draft; Inventory Floor sander still reserved 1 / available 1",
+      "basis_type": "requirement",
+      "basis": "FSD BR-10",
+      "uncertainty": "",
+      "recorded": "2026-11-15T00:17:15+08:00"
+    },
+    "expectation_history": [],
+    "started": {
+      "t": "2026-11-15T00:18:53+08:00",
+      "action_index": 27,
+      "role": "manager"
+    },
+    "result": {
+      "status": "pass",
+      "actual": "Draft B-1009 created for qty 2 with Review showing 'Currently available: 1 of 2'. Confirm reservation refused: 'Only 1 unit(s) of Floor sander are available; the booking remains a Draft.' Status stayed Draft; availability text unchanged. Also seen: same-day hire charged as 1 day (BR-01 minimum).",
+      "steps": [
+        "New booking: Hartley, Floor sander x2, 2026-12-01 to 2026-12-01; Continue to review; Confirm reservation"
+      ],
+      "evidence": [
+        "runs/run-20261115-001540/evidence/035-t004-review.png",
+        "runs/run-20261115-001540/evidence/036-t004-confirm-over-availability.png"
+      ],
+      "downstream": "Inventory page not re-read; Review still reports 1 of 2 available",
+      "uncertainty": "",
+      "role": "manager",
+      "environment": "local",
+      "app_version": "1.4.2",
+      "logged_actions": 9,
+      "recorded": "2026-11-15T00:19:43+08:00"
+    }
+  },
+  "T-005": {
+    "id": "T-005",
+    "title": "8-day hire gets the 10% weekly discount (narrowing the 7-day result)",
+    "area": "Bookings: pricing",
+    "priority": 1,
+    "why": "T-002 showed no discount at 7 days while seed booking B-1002 (10 days) has one: find where the discount starts",
+    "requirements": [
+      "BR-03"
+    ],
+    "role": "manager",
+    "preconditions": "",
+    "data": "Mrs J. Whitcombe, Cement mixer 140L x1, 2026-12-01 to 2026-12-09",
+    "retest_of": null,
+    "planned": "2026-11-15T00:18:24+08:00",
+    "expectation": {
+      "text": "Review: 8 chargeable days, gross £224.00, weekly discount £22.40, hire charge £201.60, estimated deposit £40.32 (20%)",
+      "basis_type": "requirement",
+      "basis": "FSD BR-01..03, BR-05",
+      "uncertainty": "",
+      "recorded": "2026-11-15T00:18:24+08:00"
+    },
+    "expectation_history": [],
+    "started": {
+      "t": "2026-11-15T00:18:24+08:00",
+      "action_index": 20,
+      "role": "manager"
+    },
+    "result": {
+      "status": "pass",
+      "actual": "8 chargeable days: gross £224.00, weekly discount -£22.40, hire charge £201.60, deposit estimate £40.32. All as expected. Together with T-002 this places the fault at exactly 7 days.",
+      "steps": [
+        "New booking: Mrs J. Whitcombe, Cement mixer x1, 2026-12-01 to 2026-12-09; Continue to review"
+      ],
+      "evidence": [
+        "runs/run-20261115-001540/evidence/027-t005-review-8-days.png"
+      ],
+      "downstream": "",
+      "uncertainty": "",
+      "role": "manager",
+      "environment": "local",
+      "app_version": "1.4.2",
+      "logged_actions": 7,
+      "recorded": "2026-11-15T00:18:53+08:00"
+    }
+  },
+  "T-006": {
+    "id": "T-006",
+    "title": "Manager cancels a Reserved booking: stock and dashboard released everywhere",
+    "area": "Bookings: cancel Reserved (reversal)",
+    "priority": 1,
+    "why": "Reversal path feeding Inventory and Dashboard; also narrows the T-001 dashboard discrepancy",
+    "requirements": [
+      "BR-11",
+      "BR-12",
+      "BR-09",
+      "BR-15",
+      "BR-16",
+      "BR-17"
+    ],
+    "role": "manager",
+    "preconditions": "",
+    "data": "B-1007 (Reserved, Generator x2, charge £448.00 as priced by the app)",
+    "retest_of": null,
+    "planned": "2026-11-15T00:19:43+08:00",
+    "expectation": {
+      "text": "B-1007 becomes Cancelled with a status message and history entry; no further actions offered. Inventory Generator: reserved 0, available 6. Dashboard: Reserved 2, Cancelled 2, units held 4, booked hire value falls by £448.00 from £1,590.00 to £1,142.00 (a cancelled booking is excluded)",
+      "basis_type": "requirement",
+      "basis": "FSD BR-11, BR-16, BR-17, section 5.3; before-values from obs 018 and 020",
+      "uncertainty": "",
+      "recorded": "2026-11-15T00:19:43+08:00"
+    },
+    "expectation_history": [],
+    "started": {
+      "t": "2026-11-15T00:19:43+08:00",
+      "action_index": 36,
+      "role": "manager"
+    },
+    "result": {
+      "status": "fail",
+      "actual": "B-1007 became Cancelled (status message, history 'Cancelled by Maria Okafor', no actions offered, deposit 'Not applicable') and the status counts moved (Reserved 2, Cancelled 2). But the stock was not released: Inventory Generator still shows reserved 2 / available 4 (expected 0 / 6) and Dashboard units held still 6 (expected 4). Booked hire value stayed £1,590.00 (expected £1,142.00).",
+      "steps": [
+        "Bookings > B-1007 (Reserved) > Cancel booking, accept confirmation",
+        "Open Inventory: Generator 3kVA row",
+        "Open Dashboard"
+      ],
+      "evidence": [
+        "runs/run-20261115-001540/evidence/039-t006-cancelled.png",
+        "runs/run-20261115-001540/evidence/040-t006-inventory.png",
+        "runs/run-20261115-001540/evidence/041-t006-dashboard.png",
+        "runs/run-20261115-001540/evidence/018-t002-inventory.png"
+      ],
+      "downstream": "Inventory and Dashboard both still count the cancelled booking's 2 units; no Reserved or On Hire booking for Generator exists in the Bookings list",
+      "uncertainty": "",
+      "role": "manager",
+      "environment": "local",
+      "app_version": "1.4.2",
+      "logged_actions": 5,
+      "recorded": "2026-11-15T00:20:22+08:00"
+    }
+  },
+  "T-007": {
+    "id": "T-007",
+    "title": "Deposit rate change: Reserved booking keeps its deposit, Draft estimate follows the new rate",
+    "area": "Settings: deposit rate vs existing bookings",
+    "priority": 1,
+    "why": "Configuration change against existing records; objective 2 says a quoted price does not change",
+    "requirements": [
+      "BR-05",
+      "BR-18"
+    ],
+    "role": "manager",
+    "preconditions": "",
+    "data": "B-1006 (Reserved, charge £44.00), B-1008 (Draft, charge £201.60); deposit rate 20 -> 30",
+    "retest_of": null,
+    "planned": "2026-11-15T00:20:35+08:00",
+    "expectation": {
+      "text": "Before: B-1006 deposit £8.80 at 20%. After saving deposit rate 30 (status message, dashboard shows 30%): B-1006 still shows deposit £8.80 at 20%; Draft B-1008 Review shows estimate £60.48 at 30%",
+      "basis_type": "requirement",
+      "basis": "FSD BR-05",
+      "uncertainty": "",
+      "recorded": "2026-11-15T00:20:35+08:00"
+    },
+    "expectation_history": [],
+    "started": {
+      "t": "2026-11-15T00:20:36+08:00",
+      "action_index": 41,
+      "role": "manager"
+    },
+    "result": {
+      "status": "fail",
+      "actual": "Settings saved (status message). Draft B-1008 estimate moved to £60.48 at 30% as expected. But Reserved booking B-1006 changed from 'Deposit (20%) £8.80' to 'Deposit (30%) £13.20': the deposit was not fixed at confirmation.",
+      "steps": [
+        "Bookings > B-1006: Deposit (20%) £8.80",
+        "Settings: Deposit rate 30, Save settings",
+        "Bookings > B-1006: Deposit (30%) £13.20",
+        "Bookings > B-1008 (Draft): Deposit (30%, estimate) £60.48"
+      ],
+      "evidence": [
+        "runs/run-20261115-001540/evidence/043-t007-b1006-before.png",
+        "runs/run-20261115-001540/evidence/046-t007-settings-saved.png",
+        "runs/run-20261115-001540/evidence/048-t007-b1006-after.png",
+        "runs/run-20261115-001540/evidence/050-t007-b1008-draft-after.png"
+      ],
+      "downstream": "",
+      "uncertainty": "On Hire and Returned bookings not yet looked at; B-1003 will be read during the return test",
+      "role": "manager",
+      "environment": "local",
+      "app_version": "1.4.2",
+      "logged_actions": 9,
+      "recorded": "2026-11-15T00:21:15+08:00"
+    }
+  },
+  "T-008": {
+    "id": "T-008",
+    "title": "Draft of a customer placed on hold afterwards: can it still be confirmed? (requirements silent)",
+    "area": "Customers: hold vs existing Draft",
+    "priority": 2,
+    "why": "BR-08 only covers creating a booking; objective 3 is to stop new business with held customers. Ambiguity A1",
+    "requirements": [
+      "BR-08",
+      "BR-13"
+    ],
+    "role": "manager",
+    "preconditions": "",
+    "data": "Mrs J. Whitcombe (Active, Draft B-1008); place hold, then confirm B-1008",
+    "retest_of": null,
+    "planned": "2026-11-15T00:21:15+08:00",
+    "expectation": {
+      "text": "Place hold succeeds with a status message and the customer shows On hold. Confirming Draft B-1008 is refused with an explanation and it stays Draft, because confirming turns a Draft into committed new business",
+      "basis_type": "hypothesis",
+      "basis": "Reasoned from FSD objective 3 (stop new business with customers in dispute) and the definition of Draft as not yet committed; BR-08 read literally would allow the confirmation",
+      "uncertainty": "Product owner must say whether hold blocks confirmation of existing Drafts (question Q1)",
+      "recorded": "2026-11-15T00:21:15+08:00"
+    },
+    "expectation_history": [],
+    "started": {
+      "t": "2026-11-15T00:21:15+08:00",
+      "action_index": 50,
+      "role": "manager"
+    },
+    "result": {
+      "status": "suspected",
+      "actual": "Hold placed ('Mrs J. Whitcombe is now on hold', row shows On hold). Confirming her existing Draft B-1008 was accepted: 'Booking B-1008 is now Reserved', deposit fixed, stock taken. No warning about the hold.",
+      "steps": [
+        "Customers: Place hold on Mrs J. Whitcombe",
+        "Bookings > B-1008 > Review and confirm > Confirm reservation"
+      ],
+      "evidence": [
+        "runs/run-20261115-001540/evidence/052-t008-hold-placed.png",
+        "runs/run-20261115-001540/evidence/056-t008-confirm-held-customer.png"
+      ],
+      "downstream": "",
+      "uncertainty": "Allowed under a literal reading of BR-08; needs the product owner's decision (Q1)",
+      "role": "manager",
+      "environment": "local",
+      "app_version": "1.4.2",
+      "logged_actions": 6,
+      "recorded": "2026-11-15T00:21:45+08:00"
+    }
+  },
+  "T-009": {
+    "id": "T-009",
+    "title": "Second cancellation of a Reserved booking on another line (reproduce F-002)",
+    "area": "Bookings: cancel Reserved (reversal)",
+    "priority": 1,
+    "why": "F-002 is critical and was seen once; a second line shows whether it is general",
+    "requirements": [
+      "BR-11"
+    ],
+    "role": "manager",
+    "preconditions": "",
+    "data": "B-1008 (Reserved, Cement mixer x1). Before: Cement mixer reserved should be 1 / available 3",
+    "retest_of": null,
+    "planned": "2026-11-15T00:21:45+08:00",
+    "expectation": {
+      "text": "After cancelling B-1008, Inventory shows Cement mixer 140L reserved 0, available 4",
+      "basis_type": "requirement",
+      "basis": "FSD BR-11, BR-09",
+      "uncertainty": "",
+      "recorded": "2026-11-15T00:21:45+08:00"
+    },
+    "expectation_history": [],
+    "started": {
+      "t": "2026-11-15T00:21:45+08:00",
+      "action_index": 56,
+      "role": "manager"
+    },
+    "result": {
+      "status": "fail",
+      "actual": "B-1008 cancelled ('Booking B-1008 has been cancelled.'), yet Inventory shows Cement mixer 140L reserved 1 / available 3 (expected 0 / 4). Generator still 2 / 4 from the earlier cancellation.",
+      "steps": [
+        "On Reserved B-1008: Cancel booking, accept",
+        "Open Inventory"
+      ],
+      "evidence": [
+        "runs/run-20261115-001540/evidence/057-t009-b1008-cancelled.png",
+        "runs/run-20261115-001540/evidence/058-t009-inventory.png"
+      ],
+      "downstream": "",
+      "uncertainty": "",
+      "role": "manager",
+      "environment": "local",
+      "app_version": "1.4.2",
+      "logged_actions": 2,
+      "recorded": "2026-11-15T00:22:01+08:00"
+    }
+  },
+  "T-010": {
+    "id": "T-010",
+    "title": "Check out and return: lifecycle controls and stock release on return",
+    "area": "Bookings: check out and return",
+    "priority": 1,
+    "why": "Second release path (BR-11) and the lifecycle restrictions on On Hire and Returned",
+    "requirements": [
+      "BR-11",
+      "BR-09",
+      "BR-05"
+    ],
+    "role": "manager",
+    "preconditions": "",
+    "data": "B-1003 (Reserved, Floor sander x1, charge £72.00). Floor sander before: reserved 1, available 1",
+    "retest_of": null,
+    "planned": "2026-11-15T00:21:45+08:00",
+    "expectation": {
+      "text": "Check out: status On Hire, no Cancel booking control, only Record return. Record return: status Returned, no action controls, history lists each step with the user. Inventory Floor sander: reserved 0, available 2. Deposit stays the amount fixed at confirmation (£14.40 at 20%) in both states",
+      "basis_type": "requirement",
+      "basis": "FSD section 3.1, 5.2, BR-11, BR-05",
+      "uncertainty": "",
+      "recorded": "2026-11-15T00:21:45+08:00"
+    },
+    "expectation_history": [],
+    "started": {
+      "t": "2026-11-15T00:22:01+08:00",
+      "action_index": 58,
+      "role": "manager"
+    },
+    "result": {
+      "status": "pass",
+      "actual": "Check out: 'Booking B-1003 checked out. Equipment is On Hire.'; only Record return offered (no Cancel booking). Record return: 'Return recorded for booking B-1003.'; no action controls; history lists Draft, Reserved, Checked out, Returned with user names. Inventory Floor sander: reserved 0 / available 2. Deposit shown as (20%) £14.40 in On Hire and Returned. Note for F-004: while still Reserved, the same booking showed Deposit (30%) £21.60.",
+      "steps": [
+        "Bookings > B-1003 (Reserved)",
+        "Check out",
+        "Record return",
+        "Inventory"
+      ],
+      "evidence": [
+        "runs/run-20261115-001540/evidence/060-t010-b1003-reserved.png",
+        "runs/run-20261115-001540/evidence/061-t010-on-hire.png",
+        "runs/run-20261115-001540/evidence/062-t010-returned.png",
+        "runs/run-20261115-001540/evidence/063-t010-inventory.png"
+      ],
+      "downstream": "Inventory released the unit on return",
+      "uncertainty": "",
+      "role": "manager",
+      "environment": "local",
+      "app_version": "1.4.2",
+      "logged_actions": 5,
+      "recorded": "2026-11-15T00:22:34+08:00"
+    }
+  },
+  "T-011": {
+    "id": "T-011",
+    "title": "Clerk permissions: Settings, rate change, customer hold, cancel Reserved are refused; cancel Draft is allowed",
+    "area": "Roles: clerk restrictions",
+    "priority": 1,
+    "why": "Role differences on the controls that change money, credit control and stock",
+    "requirements": [
+      "BR-12",
+      "BR-13",
+      "BR-14"
+    ],
+    "role": "clerk",
+    "preconditions": "",
+    "data": "Clerk Tom Riley; Reserved B-1006; Draft B-1009",
+    "retest_of": null,
+    "planned": "2026-11-15T00:22:35+08:00",
+    "expectation": {
+      "text": "As clerk: no Settings link, and opening /settings directly gives an access denied message without the form. Inventory offers no rate change (or refuses it with access denied, rate unchanged). Customers offers no hold/release (or refuses, status unchanged). Reserved B-1006 offers no Cancel booking (or refuses, stays Reserved). Draft B-1009 can be cancelled by the clerk",
+      "basis_type": "requirement",
+      "basis": "FSD section 2 table and paragraph on refusal, BR-12, BR-13, BR-14, section 5.3",
+      "uncertainty": "",
+      "recorded": "2026-11-15T00:22:35+08:00"
+    },
+    "expectation_history": [],
+    "started": {
+      "t": "2026-11-15T00:22:51+08:00",
+      "action_index": 67,
+      "role": "clerk"
+    },
+    "result": {
+      "status": "fail",
+      "actual": "Correct: no Settings link and /settings answers 'Access denied - You do not have permission to do that.' (HTTP 403, no form); Inventory shows no rate-change controls; Customers offers no 'Place hold'; Reserved B-1006 offers Check out but no Cancel booking; Draft B-1009 cancelled by the clerk ('Cancelled by Tom Riley'). Wrong: Customers offers the clerk 'Release hold' buttons, and clicking one worked: 'Hold released for Kestrel Property Services.', status now Active.",
+      "steps": [
+        "Sign out, sign in as tom (Clerk)",
+        "Open /settings by address",
+        "Inventory; Customers; Bookings > B-1006",
+        "Customers: Release hold on Kestrel Property Services",
+        "Bookings > B-1009 > Cancel booking"
+      ],
+      "evidence": [
+        "runs/run-20261115-001540/evidence/070-t011-clerk-settings-direct.png",
+        "runs/run-20261115-001540/evidence/071-t011-clerk-inventory.png",
+        "runs/run-20261115-001540/evidence/072-t011-clerk-customers.png",
+        "runs/run-20261115-001540/evidence/075-t011-clerk-release-hold.png",
+        "runs/run-20261115-001540/evidence/077-t011-clerk-b1006-reserved.png",
+        "runs/run-20261115-001540/evidence/080-t011-clerk-cancel-draft.png"
+      ],
+      "downstream": "",
+      "uncertainty": "Where a control is hidden (rate change, place hold, cancel Reserved) the server-side refusal could not be exercised through the interface",
+      "role": "clerk",
+      "environment": "local",
+      "app_version": "1.4.2",
+      "logged_actions": 18,
+      "recorded": "2026-11-15T00:25:18+08:00"
+    }
+  },
+  "T-012": {
+    "id": "T-012",
+    "title": "New booking refused for a customer On hold",
+    "area": "Customers: hold blocks new bookings",
+    "priority": 1,
+    "why": "Core of objective 3; also checks that a refused form keeps the entered values (workflow 5.1 step 2)",
+    "requirements": [
+      "BR-08"
+    ],
+    "role": "clerk",
+    "preconditions": "",
+    "data": "Mrs J. Whitcombe (On hold since T-008), Pressure washer x1, 2026-12-02 to 2026-12-03",
+    "retest_of": null,
+    "planned": "2026-11-15T00:25:18+08:00",
+    "expectation": {
+      "text": "Continue to review is refused with an error message naming the hold; the form is redisplayed with the entered values; no new booking appears (next reference stays B-1010 unused; Whitcombe open bookings stays 0)",
+      "basis_type": "requirement",
+      "basis": "FSD BR-08, section 5.1 step 2",
+      "uncertainty": "",
+      "recorded": "2026-11-15T00:25:18+08:00"
+    },
+    "expectation_history": [],
+    "started": {
+      "t": "2026-11-15T00:25:19+08:00",
+      "action_index": 85,
+      "role": "clerk"
+    },
+    "result": {
+      "status": "pass",
+      "actual": "Refused: 'Mrs J. Whitcombe is on hold. New bookings cannot be created for this customer.' The form was redisplayed with customer, equipment, quantity and both dates kept. Bookings list still has 9 rows, newest B-1009; no B-1010.",
+      "steps": [
+        "As clerk: Bookings > New booking: Mrs J. Whitcombe (on hold), Pressure washer x1, 2026-12-02 to 2026-12-03; Continue to review",
+        "Back to bookings: read list"
+      ],
+      "evidence": [
+        "runs/run-20261115-001540/evidence/087-t012-held-customer-refused.png",
+        "runs/run-20261115-001540/evidence/088-t012-bookings-after.png"
+      ],
+      "downstream": "",
+      "uncertainty": "",
+      "role": "clerk",
+      "environment": "local",
+      "app_version": "1.4.2",
+      "logged_actions": 8,
+      "recorded": "2026-11-15T00:25:56+08:00"
+    }
+  }
+}

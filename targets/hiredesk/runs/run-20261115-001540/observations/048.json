@@ -1,0 +1,132 @@
+{
+  "n": 48,
+  "t": "2026-11-15T00:20:47+08:00",
+  "run": "run-20261115-001540",
+  "role": "manager",
+  "environment": "local",
+  "app_version": "1.4.2",
+  "test": "T-007",
+  "label": "t007-b1006-after",
+  "url": "http://127.0.0.1:8791/bookings/B-1006",
+  "title": "Booking B-1006 - Tallyard HireDesk",
+  "headings": [
+    "Booking B-1006",
+    "History"
+  ],
+  "alerts": [],
+  "dialog": null,
+  "modal": false,
+  "page_chrome": [
+    "Tallyard HireDesk Dashboard Bookings Inventory Customers Settings Signed in as Maria Okafor (Manager) Sign out",
+    "Tallyard HireDesk version 1.4.2"
+  ],
+  "fields": [],
+  "tables": [],
+  "elements": [
+    {
+      "ref": "e1",
+      "role": "link",
+      "name": "Dashboard",
+      "nth": 0,
+      "nth_role": 0,
+      "attrs": [],
+      "context": "banner > navigation Main",
+      "in_dialog": false,
+      "href": "/"
+    },
+    {
+      "ref": "e2",
+      "role": "link",
+      "name": "Bookings",
+      "nth": 0,
+      "nth_role": 1,
+      "attrs": [],
+      "context": "banner > navigation Main",
+      "in_dialog": false,
+      "href": "/bookings"
+    },
+    {
+      "ref": "e3",
+      "role": "link",
+      "name": "Inventory",
+      "nth": 0,
+      "nth_role": 2,
+      "attrs": [],
+      "context": "banner > navigation Main",
+      "in_dialog": false,
+      "href": "/inventory"
+    },
+    {
+      "ref": "e4",
+      "role": "link",
+      "name": "Customers",
+      "nth": 0,
+      "nth_role": 3,
+      "attrs": [],
+      "context": "banner > navigation Main",
+      "in_dialog": false,
+      "href": "/customers"
+    },
+    {
+      "ref": "e5",
+      "role": "link",
+      "name": "Settings",
+      "nth": 0,
+      "nth_role": 4,
+      "attrs": [],
+      "context": "banner > navigation Main",
+      "in_dialog": false,
+      "href": "/settings"
+    },
+    {
+      "ref": "e6",
+      "role": "button",
+      "name": "Sign out",
+      "nth": 0,
+      "nth_role": 0,
+      "attrs": [],
+      "context": "banner",
+      "in_dialog": false
+    },
+    {
+      "ref": "e7",
+      "role": "button",
+      "name": "Check out",
+      "nth": 0,
+      "nth_role": 1,
+      "attrs": [],
+      "context": "main",
+      "in_dialog": false
+    },
+    {
+      "ref": "e8",
+      "role": "button",
+      "name": "Cancel booking",
+      "nth": 0,
+      "nth_role": 2,
+      "attrs": [],
+      "context": "main",
+      "in_dialog": false
+    },
+    {
+      "ref": "e9",
+      "role": "link",
+      "name": "Back to bookings",
+      "nth": 0,
+      "nth_role": 5,
+      "attrs": [],
+      "context": "main",
+      "in_dialog": false,
+      "href": "/bookings"
+    }
+  ],
+  "main_text": "Booking B-1006\nReference\nB-1006\nStatus\nReserved\nCustomer\nGreenway Landscapes\nEquipment\nPressure washer\nQuantity\n1\nStart date\n2026-11-17\nEnd date\n2026-11-19\nChargeable days\n2\nDaily rate (per unit)\n£22.00\nGross hire\n£44.00\nWeekly discount\nNone\nHire charge\n£44.00\nDeposit (30%)\n£13.20\nCreated by\nTom Riley\nNotes\n-\nCheck out\nCancel booking\nBack to bookings\nHistory\nCreated as Draft by Tom Riley\nReserved by Maria Okafor",
+  "busy_indicators": 0,
+  "ready_state": "complete",
+  "native_dialogs": [],
+  "console_errors": [],
+  "http_errors": [],
+  "popups": [],
+  "screenshot": "runs/run-20261115-001540/evidence/048-t007-b1006-after.png",
+  "aria_snapshot": "- banner:\n  - text: Tallyard HireDesk\n  - navigation \"Main\":\n    - list:\n      - listitem:\n        - link \"Dashboard\":\n          - /url: /\n      - listitem:\n        - link \"Bookings\":\n          - /url: /bookings\n      - listitem:\n        - link \"Inventory\":\n          - /url: /inventory\n      - listitem:\n        - link \"Customers\":\n          - /url: /customers\n      - listitem:\n        - link \"Settings\":\n          - /url: /settings\n  - text: Signed in as\n  - strong: Maria Okafor\n  - text: (Manager)\n  - button \"Sign out\"\n- main:\n  - heading \"Booking B-1006\" [level=1]\n  - term: Reference\n  - definition: B-1006\n  - term: Status\n  - definition: Reserved\n  - term: Customer\n  - definition: Greenway Landscapes\n  - term: Equipment\n  - definition: Pressure washer\n  - term: Quantity\n  - definition: \"1\"\n  - term: Start date\n  - definition: 2026-11-17\n  - term: End date\n  - definition: 2026-11-19\n  - term: Chargeable days\n  - definition: \"2\"\n  - term: Daily rate (per unit)\n  - definition: £22.00\n  - term: Gross hire\n  - definition: £44.00\n  - term: Weekly discount\n  - definition: None\n  - term: Hire charge\n  - definition: £44.00\n  - term: Deposit (30%)\n  - definition: £13.20\n  - term: Created by\n  - definition: Tom Riley\n  - term: Notes\n  - definition: \"-\"\n  - button \"Check out\"\n  - button \"Cancel booking\"\n  - link \"Back to bookings\":\n    - /url: /bookings\n  - heading \"History\" [level=2]\n  - list:\n    - listitem: Created as Draft by Tom Riley\n    - listitem: Reserved by Maria Okafor\n- contentinfo:\n  - paragraph: Tallyard HireDesk version 1.4.2"
+}

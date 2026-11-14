@@ -1,0 +1,200 @@
+{
+  "n": 7,
+  "t": "2026-11-15T00:16:41+08:00",
+  "run": "run-20261115-001540",
+  "role": "manager",
+  "environment": "local",
+  "app_version": "1.4.2",
+  "test": null,
+  "label": "customers-seed",
+  "url": "http://127.0.0.1:8791/customers",
+  "title": "Customers - Tallyard HireDesk",
+  "headings": [
+    "Customers"
+  ],
+  "alerts": [],
+  "dialog": null,
+  "modal": false,
+  "page_chrome": [
+    "Tallyard HireDesk Dashboard Bookings Inventory Customers Settings Signed in as Maria Okafor (Manager) Sign out",
+    "Tallyard HireDesk version 1.4.2"
+  ],
+  "fields": [],
+  "tables": [
+    {
+      "name": "Customers",
+      "columns": [
+        "Customer",
+        "Phone",
+        "Account status",
+        "Open bookings",
+        "Actions",
+        "Hartley Builders Ltd"
+      ],
+      "row_count": 5,
+      "rows": [
+        [
+          "Hartley Builders Ltd",
+          "01632 960101",
+          "Active",
+          "0",
+          "Place hold on Hartley Builders Ltd"
+        ],
+        [
+          "Greenway Landscapes",
+          "01632 960144",
+          "Active",
+          "2",
+          "Place hold on Greenway Landscapes"
+        ],
+        [
+          "Mrs J. Whitcombe",
+          "01632 960172",
+          "Active",
+          "1",
+          "Place hold on Mrs J. Whitcombe"
+        ],
+        [
+          "Sutton & Daughters Roofing",
+          "01632 960190",
+          "Active",
+          "1",
+          "Place hold on Sutton & Daughters Roofing"
+        ],
+        [
+          "Kestrel Property Services",
+          "01632 960123",
+          "On hold",
+          "0",
+          "Release hold on Kestrel Property Services"
+        ]
+      ]
+    }
+  ],
+  "elements": [
+    {
+      "ref": "e1",
+      "role": "link",
+      "name": "Dashboard",
+      "nth": 0,
+      "nth_role": 0,
+      "attrs": [],
+      "context": "banner > navigation Main",
+      "in_dialog": false,
+      "href": "/"
+    },
+    {
+      "ref": "e2",
+      "role": "link",
+      "name": "Bookings",
+      "nth": 0,
+      "nth_role": 1,
+      "attrs": [],
+      "context": "banner > navigation Main",
+      "in_dialog": false,
+      "href": "/bookings"
+    },
+    {
+      "ref": "e3",
+      "role": "link",
+      "name": "Inventory",
+      "nth": 0,
+      "nth_role": 2,
+      "attrs": [],
+      "context": "banner > navigation Main",
+      "in_dialog": false,
+      "href": "/inventory"
+    },
+    {
+      "ref": "e4",
+      "role": "link",
+      "name": "Customers",
+      "nth": 0,
+      "nth_role": 3,
+      "attrs": [],
+      "context": "banner > navigation Main",
+      "in_dialog": false,
+      "href": "/customers"
+    },
+    {
+      "ref": "e5",
+      "role": "link",
+      "name": "Settings",
+      "nth": 0,
+      "nth_role": 4,
+      "attrs": [],
+      "context": "banner > navigation Main",
+      "in_dialog": false,
+      "href": "/settings"
+    },
+    {
+      "ref": "e6",
+      "role": "button",
+      "name": "Sign out",
+      "nth": 0,
+      "nth_role": 0,
+      "attrs": [],
+      "context": "banner",
+      "in_dialog": false
+    },
+    {
+      "ref": "e7",
+      "role": "button",
+      "name": "Place hold on Hartley Builders Ltd",
+      "nth": 0,
+      "nth_role": 1,
+      "attrs": [],
+      "context": "main > table Customers",
+      "in_dialog": false
+    },
+    {
+      "ref": "e8",
+      "role": "button",
+      "name": "Place hold on Greenway Landscapes",
+      "nth": 0,
+      "nth_role": 2,
+      "attrs": [],
+      "context": "main > table Customers",
+      "in_dialog": false
+    },
+    {
+      "ref": "e9",
+      "role": "button",
+      "name": "Place hold on Mrs J. Whitcombe",
+      "nth": 0,
+      "nth_role": 3,
+      "attrs": [],
+      "context": "main > table Customers",
+      "in_dialog": false
+    },
+    {
+      "ref": "e10",
+      "role": "button",
+      "name": "Place hold on Sutton & Daughters Roofing",
+      "nth": 0,
+      "nth_role": 4,
+      "attrs": [],
+      "context": "main > table Customers",
+      "in_dialog": false
+    },
+    {
+      "ref": "e11",
+      "role": "button",
+      "name": "Release hold on Kestrel Property Services",
+      "nth": 0,
+      "nth_role": 5,
+      "attrs": [],
+      "context": "main > table Customers",
+      "in_dialog": false
+    }
+  ],
+  "main_text": "Customers\nCustomer Phone Account status Open bookings Actions\nHartley Builders Ltd 01632 960101 Active 0 Place hold on Hartley Builders Ltd\nGreenway Landscapes 01632 960144 Active 2 Place hold on Greenway Landscapes\nMrs J. Whitcombe 01632 960172 Active 1 Place hold on Mrs J. Whitcombe\nSutton & Daughters Roofing 01632 960190 Active 1 Place hold on Sutton & Daughters Roofing\nKestrel Property Services 01632 960123 On hold 0 Release hold on Kestrel Property Services",
+  "busy_indicators": 0,
+  "ready_state": "complete",
+  "native_dialogs": [],
+  "console_errors": [],
+  "http_errors": [],
+  "popups": [],
+  "screenshot": "runs/run-20261115-001540/evidence/007-customers-seed.png",
+  "aria_snapshot": "- banner:\n  - text: Tallyard HireDesk\n  - navigation \"Main\":\n    - list:\n      - listitem:\n        - link \"Dashboard\":\n          - /url: /\n      - listitem:\n        - link \"Bookings\":\n          - /url: /bookings\n      - listitem:\n        - link \"Inventory\":\n          - /url: /inventory\n      - listitem:\n        - link \"Customers\":\n          - /url: /customers\n      - listitem:\n        - link \"Settings\":\n          - /url: /settings\n  - text: Signed in as\n  - strong: Maria Okafor\n  - text: (Manager)\n  - button \"Sign out\"\n- main:\n  - heading \"Customers\" [level=1]\n  - table \"Customers\":\n    - rowgroup:\n      - row \"Customer Phone Account status Open bookings Actions\":\n        - columnheader \"Customer\"\n        - columnheader \"Phone\"\n        - columnheader \"Account status\"\n        - columnheader \"Open bookings\"\n        - columnheader \"Actions\"\n    - rowgroup:\n      - row \"Hartley Builders Ltd 01632 960101 Active 0 Place hold on Hartley Builders Ltd\":\n        - rowheader \"Hartley Builders Ltd\"\n        - cell \"01632 960101\"\n        - cell \"Active\"\n        - cell \"0\"\n        - cell \"Place hold on Hartley Builders Ltd\":\n          - button \"Place hold on Hartley Builders Ltd\"\n      - row \"Greenway Landscapes 01632 960144 Active 2 Place hold on Greenway Landscapes\":\n        - rowheader \"Greenway Landscapes\"\n        - cell \"01632 960144\"\n        - cell \"Active\"\n        - cell \"2\"\n        - cell \"Place hold on Greenway Landscapes\":\n          - button \"Place hold on Greenway Landscapes\"\n      - row \"Mrs J. Whitcombe 01632 960172 Active 1 Place hold on Mrs J. Whitcombe\":\n        - rowheader \"Mrs J. Whitcombe\"\n        - cell \"01632 960172\"\n        - cell \"Active\"\n        - cell \"1\"\n        - cell \"Place hold on Mrs J. Whitcombe\":\n          - button \"Place hold on Mrs J. Whitcombe\"\n      - row \"Sutton & Daughters Roofing 01632 960190 Active 1 Place hold on Sutton & Daughters Roofing\":\n        - rowheader \"Sutton & Daughters Roofing\"\n        - cell \"01632 960190\"\n        - cell \"Active\"\n        - cell \"1\"\n        - cell \"Place hold on Sutton & Daughters Roofing\":\n          - button \"Place hold on Sutton & Daughters Roofing\"\n      - row \"Kestrel Property Services 01632 960123 On hold 0 Release hold on Kestrel Property Services\":\n        - rowheader \"Kestrel Property Services\"\n        - cell \"01632 960123\"\n        - cell \"On hold\"\n        - cell \"0\"\n        - cell \"Release hold on Kestrel Property Services\":\n          - button \"Release hold on Kestrel Property Services\"\n- contentinfo:\n  - paragraph: Tallyard HireDesk version 1.4.2"
+}

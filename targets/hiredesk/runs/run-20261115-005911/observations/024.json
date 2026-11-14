@@ -1,0 +1,136 @@
+{
+  "n": 24,
+  "t": "2026-11-15T01:01:44+08:00",
+  "run": "run-20261115-005911",
+  "role": "manager",
+  "environment": "local",
+  "app_version": "1.4.2",
+  "test": null,
+  "label": "signed-in-clerk",
+  "url": "http://127.0.0.1:8791/",
+  "title": "Dashboard - Tallyard HireDesk",
+  "headings": [
+    "Dashboard",
+    "Bookings by status",
+    "Key figures"
+  ],
+  "alerts": [
+    "Welcome, Tom Riley."
+  ],
+  "dialog": null,
+  "modal": false,
+  "page_chrome": [
+    "Tallyard HireDesk Dashboard Bookings Inventory Customers Signed in as Tom Riley (Clerk) Sign out",
+    "Tallyard HireDesk version 1.4.2"
+  ],
+  "fields": [],
+  "tables": [
+    {
+      "name": "Bookings by status",
+      "columns": [
+        "Status",
+        "Bookings"
+      ],
+      "row_count": 5,
+      "rows": [
+        [
+          "Draft",
+          "2"
+        ],
+        [
+          "Reserved",
+          "1"
+        ],
+        [
+          "On Hire",
+          "1"
+        ],
+        [
+          "Returned",
+          "1"
+        ],
+        [
+          "Cancelled",
+          "2"
+        ]
+      ]
+    }
+  ],
+  "elements": [
+    {
+      "ref": "e1",
+      "role": "link",
+      "name": "Dashboard",
+      "nth": 0,
+      "nth_role": 0,
+      "attrs": [],
+      "context": "banner > navigation Main",
+      "in_dialog": false,
+      "href": "/"
+    },
+    {
+      "ref": "e2",
+      "role": "link",
+      "name": "Bookings",
+      "nth": 0,
+      "nth_role": 1,
+      "attrs": [],
+      "context": "banner > navigation Main",
+      "in_dialog": false,
+      "href": "/bookings"
+    },
+    {
+      "ref": "e3",
+      "role": "link",
+      "name": "Inventory",
+      "nth": 0,
+      "nth_role": 2,
+      "attrs": [],
+      "context": "banner > navigation Main",
+      "in_dialog": false,
+      "href": "/inventory"
+    },
+    {
+      "ref": "e4",
+      "role": "link",
+      "name": "Customers",
+      "nth": 0,
+      "nth_role": 3,
+      "attrs": [],
+      "context": "banner > navigation Main",
+      "in_dialog": false,
+      "href": "/customers"
+    },
+    {
+      "ref": "e5",
+      "role": "button",
+      "name": "Sign out",
+      "nth": 0,
+      "nth_role": 0,
+      "attrs": [],
+      "context": "banner",
+      "in_dialog": false
+    },
+    {
+      "ref": "e6",
+      "role": "link",
+      "name": "New booking",
+      "nth": 0,
+      "nth_role": 4,
+      "attrs": [],
+      "context": "main",
+      "in_dialog": false,
+      "href": "/bookings/new"
+    }
+  ],
+  "main_text": "Dashboard\nWelcome, Tom Riley.\nBookings by status\nStatus Bookings\nDraft 2\nReserved 1\nOn Hire 1\nReturned 1\nCancelled 2\nKey figures\nBooked hire value\n£1,142.00\nUnits reserved or on hire\n4\nCurrent deposit rate\n30%\nNew booking",
+  "busy_indicators": 0,
+  "ready_state": "complete",
+  "native_dialogs": [],
+  "console_errors": [],
+  "http_errors": [],
+  "popups": [],
+  "screenshot": "runs/run-20261115-005911/evidence/024-signed-in-clerk.png",
+  "aria_snapshot": "- banner:\n  - text: Tallyard HireDesk\n  - navigation \"Main\":\n    - list:\n      - listitem:\n        - link \"Dashboard\":\n          - /url: /\n      - listitem:\n        - link \"Bookings\":\n          - /url: /bookings\n      - listitem:\n        - link \"Inventory\":\n          - /url: /inventory\n      - listitem:\n        - link \"Customers\":\n          - /url: /customers\n  - text: Signed in as\n  - strong: Tom Riley\n  - text: (Clerk)\n  - button \"Sign out\"\n- main:\n  - heading \"Dashboard\" [level=1]\n  - status: Welcome, Tom Riley.\n  - heading \"Bookings by status\" [level=2]\n  - table \"Bookings by status\":\n    - rowgroup:\n      - row \"Status Bookings\":\n        - columnheader \"Status\"\n        - columnheader \"Bookings\"\n    - rowgroup:\n      - row \"Draft 2\":\n        - rowheader \"Draft\"\n        - cell \"2\"\n      - row \"Reserved 1\":\n        - rowheader \"Reserved\"\n        - cell \"1\"\n      - row \"On Hire 1\":\n        - rowheader \"On Hire\"\n        - cell \"1\"\n      - row \"Returned 1\":\n        - rowheader \"Returned\"\n        - cell \"1\"\n      - row \"Cancelled 2\":\n        - rowheader \"Cancelled\"\n        - cell \"2\"\n  - heading \"Key figures\" [level=2]\n  - term: Booked hire value\n  - definition: £1,142.00\n  - term: Units reserved or on hire\n  - definition: \"4\"\n  - term: Current deposit rate\n  - definition: 30%\n  - link \"New booking\":\n    - /url: /bookings/new\n- contentinfo:\n  - paragraph: Tallyard HireDesk version 1.4.2",
+  "path": "runs/run-20261115-005911/observations/024.json"
+}

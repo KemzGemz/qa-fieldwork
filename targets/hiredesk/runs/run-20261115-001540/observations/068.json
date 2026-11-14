@@ -1,0 +1,31 @@
+{
+  "n": 68,
+  "t": "2026-11-15T00:23:43+08:00",
+  "run": "run-20261115-001540",
+  "role": "clerk",
+  "environment": "local",
+  "app_version": "1.4.2",
+  "test": "T-011",
+  "label": "t011-state-after-stall",
+  "url": "chrome-error://chromewebdata/",
+  "title": "file:///C:/Program%20Files/Git/settings",
+  "headings": [
+    "Your file couldn’t be accessed"
+  ],
+  "alerts": [],
+  "dialog": null,
+  "modal": false,
+  "page_chrome": [],
+  "fields": [],
+  "tables": [],
+  "elements": [],
+  "main_text": "Your file couldn’t be accessed\nIt may have been moved, edited, or deleted.\nERR_FILE_NOT_FOUND",
+  "busy_indicators": 0,
+  "ready_state": "complete",
+  "native_dialogs": [],
+  "console_errors": [],
+  "http_errors": [],
+  "popups": [],
+  "screenshot": "runs/run-20261115-001540/evidence/068-t011-state-after-stall.png",
+  "aria_snapshot": "- heading \"Your file couldn’t be accessed\" [level=1]\n- paragraph: It may have been moved, edited, or deleted.\n- text: ERR_FILE_NOT_FOUND"
+}

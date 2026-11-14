@@ -1,0 +1,133 @@
+{
+  "n": 54,
+  "t": "2026-11-15T00:21:21+08:00",
+  "run": "run-20261115-001540",
+  "role": "manager",
+  "environment": "local",
+  "app_version": "1.4.2",
+  "test": "T-008",
+  "label": "click-link \"B-1008\"",
+  "url": "http://127.0.0.1:8791/bookings/B-1008",
+  "title": "Booking B-1008 - Tallyard HireDesk",
+  "headings": [
+    "Booking B-1008",
+    "History"
+  ],
+  "alerts": [],
+  "dialog": null,
+  "modal": false,
+  "page_chrome": [
+    "Tallyard HireDesk Dashboard Bookings Inventory Customers Settings Signed in as Maria Okafor (Manager) Sign out",
+    "Tallyard HireDesk version 1.4.2"
+  ],
+  "fields": [],
+  "tables": [],
+  "elements": [
+    {
+      "ref": "e1",
+      "role": "link",
+      "name": "Dashboard",
+      "nth": 0,
+      "nth_role": 0,
+      "attrs": [],
+      "context": "banner > navigation Main",
+      "in_dialog": false,
+      "href": "/"
+    },
+    {
+      "ref": "e2",
+      "role": "link",
+      "name": "Bookings",
+      "nth": 0,
+      "nth_role": 1,
+      "attrs": [],
+      "context": "banner > navigation Main",
+      "in_dialog": false,
+      "href": "/bookings"
+    },
+    {
+      "ref": "e3",
+      "role": "link",
+      "name": "Inventory",
+      "nth": 0,
+      "nth_role": 2,
+      "attrs": [],
+      "context": "banner > navigation Main",
+      "in_dialog": false,
+      "href": "/inventory"
+    },
+    {
+      "ref": "e4",
+      "role": "link",
+      "name": "Customers",
+      "nth": 0,
+      "nth_role": 3,
+      "attrs": [],
+      "context": "banner > navigation Main",
+      "in_dialog": false,
+      "href": "/customers"
+    },
+    {
+      "ref": "e5",
+      "role": "link",
+      "name": "Settings",
+      "nth": 0,
+      "nth_role": 4,
+      "attrs": [],
+      "context": "banner > navigation Main",
+      "in_dialog": false,
+      "href": "/settings"
+    },
+    {
+      "ref": "e6",
+      "role": "button",
+      "name": "Sign out",
+      "nth": 0,
+      "nth_role": 0,
+      "attrs": [],
+      "context": "banner",
+      "in_dialog": false
+    },
+    {
+      "ref": "e7",
+      "role": "link",
+      "name": "Review and confirm",
+      "nth": 0,
+      "nth_role": 5,
+      "attrs": [],
+      "context": "main",
+      "in_dialog": false,
+      "href": "/bookings/B-1008/review"
+    },
+    {
+      "ref": "e8",
+      "role": "button",
+      "name": "Cancel booking",
+      "nth": 0,
+      "nth_role": 1,
+      "attrs": [],
+      "context": "main",
+      "in_dialog": false
+    },
+    {
+      "ref": "e9",
+      "role": "link",
+      "name": "Back to bookings",
+      "nth": 0,
+      "nth_role": 6,
+      "attrs": [],
+      "context": "main",
+      "in_dialog": false,
+      "href": "/bookings"
+    }
+  ],
+  "main_text": "Booking B-1008\nReference\nB-1008\nStatus\nDraft\nCustomer\nMrs J. Whitcombe\nEquipment\nCement mixer 140L\nQuantity\n1\nStart date\n2026-12-01\nEnd date\n2026-12-09\nChargeable days\n8\nDaily rate (per unit)\n£28.00\nGross hire\n£224.00\nWeekly discount\n-£22.40\nHire charge\n£201.60\nDeposit (30%, estimate)\n£60.48\nCreated by\nMaria Okafor\nNotes\n-\nReview and confirm\nCancel booking\nBack to bookings\nHistory\nCreated as Draft by Maria Okafor",
+  "busy_indicators": 0,
+  "ready_state": "complete",
+  "native_dialogs": [],
+  "console_errors": [],
+  "http_errors": [],
+  "popups": [],
+  "screenshot": null,
+  "aria_snapshot": "- banner:\n  - text: Tallyard HireDesk\n  - navigation \"Main\":\n    - list:\n      - listitem:\n        - link \"Dashboard\":\n          - /url: /\n      - listitem:\n        - link \"Bookings\":\n          - /url: /bookings\n      - listitem:\n        - link \"Inventory\":\n          - /url: /inventory\n      - listitem:\n        - link \"Customers\":\n          - /url: /customers\n      - listitem:\n        - link \"Settings\":\n          - /url: /settings\n  - text: Signed in as\n  - strong: Maria Okafor\n  - text: (Manager)\n  - button \"Sign out\"\n- main:\n  - heading \"Booking B-1008\" [level=1]\n  - term: Reference\n  - definition: B-1008\n  - term: Status\n  - definition: Draft\n  - term: Customer\n  - definition: Mrs J. Whitcombe\n  - term: Equipment\n  - definition: Cement mixer 140L\n  - term: Quantity\n  - definition: \"1\"\n  - term: Start date\n  - definition: 2026-12-01\n  - term: End date\n  - definition: 2026-12-09\n  - term: Chargeable days\n  - definition: \"8\"\n  - term: Daily rate (per unit)\n  - definition: £28.00\n  - term: Gross hire\n  - definition: £224.00\n  - term: Weekly discount\n  - definition: \"-£22.40\"\n  - term: Hire charge\n  - definition: £201.60\n  - term: Deposit (30%, estimate)\n  - definition: £60.48\n  - term: Created by\n  - definition: Maria Okafor\n  - term: Notes\n  - definition: \"-\"\n  - link \"Review and confirm\":\n    - /url: /bookings/B-1008/review\n  - button \"Cancel booking\"\n  - link \"Back to bookings\":\n    - /url: /bookings\n  - heading \"History\" [level=2]\n  - list:\n    - listitem: Created as Draft by Maria Okafor\n- contentinfo:\n  - paragraph: Tallyard HireDesk version 1.4.2"
+}

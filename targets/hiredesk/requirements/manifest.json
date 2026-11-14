@@ -1,0 +1,10 @@
+{
+  "files": [
+    {
+      "name": "FSD.md",
+      "sha256": "5fae2db984c9ce61b601c95867acac7693a786f34053cb0cea88ffdd1af90d5b",
+      "added": "2026-11-15T00:15:40+08:00",
+      "origin": "fixtures\\acceptance-app\\docs\\FSD.md"
+    }
+  ]
+}

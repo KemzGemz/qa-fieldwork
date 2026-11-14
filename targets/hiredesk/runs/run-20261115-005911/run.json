@@ -1,0 +1,18 @@
+{
+  "id": "run-20261115-005911",
+  "target": "hiredesk",
+  "mode": "retest",
+  "status": "closed",
+  "started": "2026-11-15T00:59:11+08:00",
+  "ended": "2026-11-15T01:02:18+08:00",
+  "environment": "local",
+  "base_url": "http://127.0.0.1:8791/",
+  "role": "clerk",
+  "role_verified_by": "signed out ('You have signed out.'), then header: 'Signed in as Tom Riley (Clerk)'",
+  "app_version": "1.4.2",
+  "budget": 36,
+  "budget_source": "supplied",
+  "report_reserve": 0.15,
+  "focus": "Retest F-001, F-002, F-003, F-004, F-006 after the tools and the fixture were ported to TypeScript (application re-seeded)",
+  "scope_note": ""
+}

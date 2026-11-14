@@ -1,0 +1,146 @@
+{
+  "n": 71,
+  "t": "2026-11-15T00:24:11+08:00",
+  "run": "run-20261115-001540",
+  "role": "clerk",
+  "environment": "local",
+  "app_version": "1.4.2",
+  "test": "T-011",
+  "label": "t011-clerk-inventory",
+  "url": "http://127.0.0.1:8791/inventory",
+  "title": "Inventory - Tallyard HireDesk",
+  "headings": [
+    "Inventory"
+  ],
+  "alerts": [],
+  "dialog": null,
+  "modal": false,
+  "page_chrome": [
+    "Tallyard HireDesk Dashboard Bookings Inventory Customers Signed in as Tom Riley (Clerk) Sign out",
+    "Tallyard HireDesk version 1.4.2"
+  ],
+  "fields": [],
+  "tables": [
+    {
+      "name": "Equipment",
+      "columns": [
+        "Equipment",
+        "Daily rate",
+        "Total stock",
+        "Reserved / on hire",
+        "Available",
+        "Cement mixer 140L"
+      ],
+      "row_count": 6,
+      "rows": [
+        [
+          "Cement mixer 140L",
+          "£28.00",
+          "4",
+          "1",
+          "3"
+        ],
+        [
+          "Scaffold tower 5m",
+          "£45.00",
+          "3",
+          "2",
+          "1"
+        ],
+        [
+          "Floor sander",
+          "£36.00",
+          "2",
+          "0",
+          "2"
+        ],
+        [
+          "Pressure washer",
+          "£22.00",
+          "5",
+          "1",
+          "4"
+        ],
+        [
+          "Mini digger 1.5t",
+          "£120.00",
+          "1",
+          "0",
+          "1"
+        ],
+        [
+          "Generator 3kVA",
+          "£32.00",
+          "6",
+          "2",
+          "4"
+        ]
+      ]
+    }
+  ],
+  "elements": [
+    {
+      "ref": "e1",
+      "role": "link",
+      "name": "Dashboard",
+      "nth": 0,
+      "nth_role": 0,
+      "attrs": [],
+      "context": "banner > navigation Main",
+      "in_dialog": false,
+      "href": "/"
+    },
+    {
+      "ref": "e2",
+      "role": "link",
+      "name": "Bookings",
+      "nth": 0,
+      "nth_role": 1,
+      "attrs": [],
+      "context": "banner > navigation Main",
+      "in_dialog": false,
+      "href": "/bookings"
+    },
+    {
+      "ref": "e3",
+      "role": "link",
+      "name": "Inventory",
+      "nth": 0,
+      "nth_role": 2,
+      "attrs": [],
+      "context": "banner > navigation Main",
+      "in_dialog": false,
+      "href": "/inventory"
+    },
+    {
+      "ref": "e4",
+      "role": "link",
+      "name": "Customers",
+      "nth": 0,
+      "nth_role": 3,
+      "attrs": [],
+      "context": "banner > navigation Main",
+      "in_dialog": false,
+      "href": "/customers"
+    },
+    {
+      "ref": "e5",
+      "role": "button",
+      "name": "Sign out",
+      "nth": 0,
+      "nth_role": 0,
+      "attrs": [],
+      "context": "banner",
+      "in_dialog": false
+    }
+  ],
+  "main_text": "Inventory\nEquipment Daily rate Total stock Reserved / on hire Available\nCement mixer 140L £28.00 4 1 3\nScaffold tower 5m £45.00 3 2 1\nFloor sander £36.00 2 0 2\nPressure washer £22.00 5 1 4\nMini digger 1.5t £120.00 1 0 1\nGenerator 3kVA £32.00 6 2 4",
+  "busy_indicators": 0,
+  "ready_state": "complete",
+  "native_dialogs": [],
+  "console_errors": [],
+  "http_errors": [],
+  "popups": [],
+  "screenshot": "runs/run-20261115-001540/evidence/071-t011-clerk-inventory.png",
+  "aria_snapshot": "- banner:\n  - text: Tallyard HireDesk\n  - navigation \"Main\":\n    - list:\n      - listitem:\n        - link \"Dashboard\":\n          - /url: /\n      - listitem:\n        - link \"Bookings\":\n          - /url: /bookings\n      - listitem:\n        - link \"Inventory\":\n          - /url: /inventory\n      - listitem:\n        - link \"Customers\":\n          - /url: /customers\n  - text: Signed in as\n  - strong: Tom Riley\n  - text: (Clerk)\n  - button \"Sign out\"\n- main:\n  - heading \"Inventory\" [level=1]\n  - table \"Equipment\":\n    - rowgroup:\n      - row \"Equipment Daily rate Total stock Reserved / on hire Available\":\n        - columnheader \"Equipment\"\n        - columnheader \"Daily rate\"\n        - columnheader \"Total stock\"\n        - columnheader \"Reserved / on hire\"\n        - columnheader \"Available\"\n    - rowgroup:\n      - row \"Cement mixer 140L £28.00 4 1 3\":\n        - rowheader \"Cement mixer 140L\"\n        - cell \"£28.00\"\n        - cell \"4\"\n        - cell \"1\"\n        - cell \"3\"\n      - row \"Scaffold tower 5m £45.00 3 2 1\":\n        - rowheader \"Scaffold tower 5m\"\n        - cell \"£45.00\"\n        - cell \"3\"\n        - cell \"2\"\n        - cell \"1\"\n      - row \"Floor sander £36.00 2 0 2\":\n        - rowheader \"Floor sander\"\n        - cell \"£36.00\"\n        - cell \"2\"\n        - cell \"0\"\n        - cell \"2\"\n      - row \"Pressure washer £22.00 5 1 4\":\n        - rowheader \"Pressure washer\"\n        - cell \"£22.00\"\n        - cell \"5\"\n        - cell \"1\"\n        - cell \"4\"\n      - row \"Mini digger 1.5t £120.00 1 0 1\":\n        - rowheader \"Mini digger 1.5t\"\n        - cell \"£120.00\"\n        - cell \"1\"\n        - cell \"0\"\n        - cell \"1\"\n      - row \"Generator 3kVA £32.00 6 2 4\":\n        - rowheader \"Generator 3kVA\"\n        - cell \"£32.00\"\n        - cell \"6\"\n        - cell \"2\"\n        - cell \"4\"\n- contentinfo:\n  - paragraph: Tallyard HireDesk version 1.4.2"
+}

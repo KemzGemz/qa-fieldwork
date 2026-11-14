@@ -1,0 +1,151 @@
+{
+  "n": 75,
+  "t": "2026-11-15T00:24:34+08:00",
+  "run": "run-20261115-001540",
+  "role": "clerk",
+  "environment": "local",
+  "app_version": "1.4.2",
+  "test": "T-011",
+  "label": "t011-clerk-release-hold",
+  "url": "http://127.0.0.1:8791/customers",
+  "title": "Customers - Tallyard HireDesk",
+  "headings": [
+    "Customers"
+  ],
+  "alerts": [
+    "Hold released for Kestrel Property Services."
+  ],
+  "dialog": null,
+  "modal": false,
+  "page_chrome": [
+    "Tallyard HireDesk Dashboard Bookings Inventory Customers Signed in as Tom Riley (Clerk) Sign out",
+    "Tallyard HireDesk version 1.4.2"
+  ],
+  "fields": [],
+  "tables": [
+    {
+      "name": "Customers",
+      "columns": [
+        "Customer",
+        "Phone",
+        "Account status",
+        "Open bookings",
+        "Actions",
+        "Hartley Builders Ltd"
+      ],
+      "row_count": 5,
+      "rows": [
+        [
+          "Hartley Builders Ltd",
+          "01632 960101",
+          "Active",
+          "1",
+          ""
+        ],
+        [
+          "Greenway Landscapes",
+          "01632 960144",
+          "Active",
+          "2",
+          ""
+        ],
+        [
+          "Mrs J. Whitcombe",
+          "01632 960172",
+          "On hold",
+          "0",
+          "Release hold on Mrs J. Whitcombe"
+        ],
+        [
+          "Sutton & Daughters Roofing",
+          "01632 960190",
+          "Active",
+          "1",
+          ""
+        ],
+        [
+          "Kestrel Property Services",
+          "01632 960123",
+          "Active",
+          "0",
+          ""
+        ]
+      ]
+    }
+  ],
+  "elements": [
+    {
+      "ref": "e1",
+      "role": "link",
+      "name": "Dashboard",
+      "nth": 0,
+      "nth_role": 0,
+      "attrs": [],
+      "context": "banner > navigation Main",
+      "in_dialog": false,
+      "href": "/"
+    },
+    {
+      "ref": "e2",
+      "role": "link",
+      "name": "Bookings",
+      "nth": 0,
+      "nth_role": 1,
+      "attrs": [],
+      "context": "banner > navigation Main",
+      "in_dialog": false,
+      "href": "/bookings"
+    },
+    {
+      "ref": "e3",
+      "role": "link",
+      "name": "Inventory",
+      "nth": 0,
+      "nth_role": 2,
+      "attrs": [],
+      "context": "banner > navigation Main",
+      "in_dialog": false,
+      "href": "/inventory"
+    },
+    {
+      "ref": "e4",
+      "role": "link",
+      "name": "Customers",
+      "nth": 0,
+      "nth_role": 3,
+      "attrs": [],
+      "context": "banner > navigation Main",
+      "in_dialog": false,
+      "href": "/customers"
+    },
+    {
+      "ref": "e5",
+      "role": "button",
+      "name": "Sign out",
+      "nth": 0,
+      "nth_role": 0,
+      "attrs": [],
+      "context": "banner",
+      "in_dialog": false
+    },
+    {
+      "ref": "e6",
+      "role": "button",
+      "name": "Release hold on Mrs J. Whitcombe",
+      "nth": 0,
+      "nth_role": 1,
+      "attrs": [],
+      "context": "main > table Customers",
+      "in_dialog": false
+    }
+  ],
+  "main_text": "Customers\nHold released for Kestrel Property Services.\nCustomer Phone Account status Open bookings Actions\nHartley Builders Ltd 01632 960101 Active 1 \nGreenway Landscapes 01632 960144 Active 2 \nMrs J. Whitcombe 01632 960172 On hold 0 Release hold on Mrs J. Whitcombe\nSutton & Daughters Roofing 01632 960190 Active 1 \nKestrel Property Services 01632 960123 Active 0",
+  "busy_indicators": 0,
+  "ready_state": "complete",
+  "native_dialogs": [],
+  "console_errors": [],
+  "http_errors": [],
+  "popups": [],
+  "screenshot": "runs/run-20261115-001540/evidence/075-t011-clerk-release-hold.png",
+  "aria_snapshot": "- banner:\n  - text: Tallyard HireDesk\n  - navigation \"Main\":\n    - list:\n      - listitem:\n        - link \"Dashboard\":\n          - /url: /\n      - listitem:\n        - link \"Bookings\":\n          - /url: /bookings\n      - listitem:\n        - link \"Inventory\":\n          - /url: /inventory\n      - listitem:\n        - link \"Customers\":\n          - /url: /customers\n  - text: Signed in as\n  - strong: Tom Riley\n  - text: (Clerk)\n  - button \"Sign out\"\n- main:\n  - heading \"Customers\" [level=1]\n  - status: Hold released for Kestrel Property Services.\n  - table \"Customers\":\n    - rowgroup:\n      - row \"Customer Phone Account status Open bookings Actions\":\n        - columnheader \"Customer\"\n        - columnheader \"Phone\"\n        - columnheader \"Account status\"\n        - columnheader \"Open bookings\"\n        - columnheader \"Actions\"\n    - rowgroup:\n      - row \"Hartley Builders Ltd 01632 960101 Active 1\":\n        - rowheader \"Hartley Builders Ltd\"\n        - cell \"01632 960101\"\n        - cell \"Active\"\n        - cell \"1\"\n        - cell\n      - row \"Greenway Landscapes 01632 960144 Active 2\":\n        - rowheader \"Greenway Landscapes\"\n        - cell \"01632 960144\"\n        - cell \"Active\"\n        - cell \"2\"\n        - cell\n      - row \"Mrs J. Whitcombe 01632 960172 On hold 0 Release hold on Mrs J. Whitcombe\":\n        - rowheader \"Mrs J. Whitcombe\"\n        - cell \"01632 960172\"\n        - cell \"On hold\"\n        - cell \"0\"\n        - cell \"Release hold on Mrs J. Whitcombe\":\n          - button \"Release hold on Mrs J. Whitcombe\"\n      - row \"Sutton & Daughters Roofing 01632 960190 Active 1\":\n        - rowheader \"Sutton & Daughters Roofing\"\n        - cell \"01632 960190\"\n        - cell \"Active\"\n        - cell \"1\"\n        - cell\n      - row \"Kestrel Property Services 01632 960123 Active 0\":\n        - rowheader \"Kestrel Property Services\"\n        - cell \"01632 960123\"\n        - cell \"Active\"\n        - cell \"0\"\n        - cell\n- contentinfo:\n  - paragraph: Tallyard HireDesk version 1.4.2"
+}

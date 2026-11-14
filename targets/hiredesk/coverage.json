@@ -1,0 +1,285 @@
+{
+  "bookings-create-review-confirm-workflow": {
+    "area": "Bookings: create-review-confirm workflow",
+    "status": "covered",
+    "note": "Happy path, over-availability refusal, same-day minimum seen. Mandatory-field and end-before-start validation not run",
+    "tests": [
+      "T-002",
+      "T-004",
+      "T-005"
+    ],
+    "requirements": [
+      "BR-01",
+      "BR-02",
+      "BR-10"
+    ],
+    "run": "run-20261115-001540",
+    "updated": "2026-11-15T00:20:23+08:00",
+    "history": []
+  },
+  "pricing-weekly-discount": {
+    "area": "Pricing: weekly discount",
+    "status": "covered",
+    "note": "7 days fails (F-001), 8 passes, 6 not run",
+    "tests": [
+      "T-002",
+      "T-005"
+    ],
+    "requirements": [
+      "BR-03"
+    ],
+    "run": "run-20261115-001540",
+    "updated": "2026-11-15T00:20:23+08:00",
+    "history": []
+  },
+  "dashboard-figures": {
+    "area": "Dashboard figures",
+    "status": "covered",
+    "note": "Counts correct; value includes Cancelled (F-003); units follow Inventory (so inherit F-002)",
+    "tests": [
+      "T-001",
+      "T-002",
+      "T-006"
+    ],
+    "requirements": [
+      "BR-15",
+      "BR-16",
+      "BR-17"
+    ],
+    "run": "run-20261115-001540",
+    "updated": "2026-11-15T00:20:23+08:00",
+    "history": []
+  },
+  "bookings-cancel-reserved-reversal": {
+    "area": "Bookings: cancel Reserved (reversal)",
+    "status": "covered",
+    "note": "Stock not released (F-002), 2/2 lines",
+    "tests": [
+      "T-006",
+      "T-009"
+    ],
+    "requirements": [
+      "BR-11",
+      "BR-12"
+    ],
+    "run": "run-20261115-001540",
+    "updated": "2026-11-15T00:22:34+08:00",
+    "history": []
+  },
+  "bookings-check-out-and-return": {
+    "area": "Bookings: check out and return",
+    "status": "covered",
+    "note": "Passes; On Hire offers no cancel; Returned offers nothing",
+    "tests": [
+      "T-010"
+    ],
+    "requirements": [
+      "BR-11"
+    ],
+    "run": "run-20261115-001540",
+    "updated": "2026-11-15T00:22:34+08:00",
+    "history": []
+  },
+  "settings-deposit-rate-vs-existing-bookings": {
+    "area": "Settings: deposit rate vs existing bookings",
+    "status": "covered",
+    "note": "Reserved bookings recalculated (F-004); On Hire/Returned keep fixed deposit; Draft follows estimate",
+    "tests": [
+      "T-007",
+      "T-010"
+    ],
+    "requirements": [
+      "BR-05"
+    ],
+    "run": "run-20261115-001540",
+    "updated": "2026-11-15T00:22:34+08:00",
+    "history": []
+  },
+  "customers-hold-vs-existing-draft": {
+    "area": "Customers: hold vs existing Draft",
+    "status": "covered",
+    "note": "Confirmation allowed (F-005, suspected; Q1)",
+    "tests": [
+      "T-008"
+    ],
+    "requirements": [
+      "BR-08"
+    ],
+    "run": "run-20261115-001540",
+    "updated": "2026-11-15T00:22:34+08:00",
+    "history": []
+  },
+  "roles-clerk-restrictions": {
+    "area": "Roles: clerk restrictions",
+    "status": "covered",
+    "note": "Settings refused (403); rate change, place hold, cancel Reserved not offered; cancel Draft allowed; release hold wrongly allowed (F-006). Server-side refusal of hidden controls not testable through the UI",
+    "tests": [
+      "T-011"
+    ],
+    "requirements": [
+      "BR-12",
+      "BR-13",
+      "BR-14"
+    ],
+    "run": "run-20261115-001540",
+    "updated": "2026-11-15T00:25:57+08:00",
+    "history": []
+  },
+  "customers-hold-blocks-new-bookings": {
+    "area": "Customers: hold blocks new bookings",
+    "status": "covered",
+    "note": "Refused with message, form values kept, nothing saved",
+    "tests": [
+      "T-012"
+    ],
+    "requirements": [
+      "BR-08"
+    ],
+    "run": "run-20261115-001540",
+    "updated": "2026-11-15T00:25:57+08:00",
+    "history": []
+  },
+  "bookings-availability-check": {
+    "area": "Bookings: availability check",
+    "status": "covered",
+    "note": "Over-availability confirm refused with count",
+    "tests": [
+      "T-004"
+    ],
+    "requirements": [
+      "BR-10"
+    ],
+    "run": "run-20261115-001540",
+    "updated": "2026-11-15T00:25:57+08:00",
+    "history": []
+  },
+  "inventory-rate-change-vs-existing-and-new-bookings": {
+    "area": "Inventory: rate change vs existing and new bookings",
+    "status": "partial",
+    "note": "BR-04 holds for a Draft created before the change (T-013: B-1005 kept GBP 120.00 / 360.00) and a booking created after uses the new rate (T-016: B-1007 at GBP 130.00). Not run: Reserved/On Hire bookings after a rate change, and invalid rates zero/negative/non-numeric (A5, Q4).",
+    "tests": [],
+    "requirements": [],
+    "run": "run-20261115-003018",
+    "updated": "2026-11-15T00:32:56+08:00",
+    "history": [
+      {
+        "status": "not-covered",
+        "note": "BR-04 not run (budget). Next: change a rate as manager, check Draft B-1005 keeps £120.00 and a new booking uses the new rate; also try zero/negative/non-numeric rate (ambiguity A5)",
+        "tests": [],
+        "run": "run-20261115-001540",
+        "updated": "2026-11-15T00:25:57+08:00"
+      }
+    ]
+  },
+  "booking-form-validation": {
+    "area": "Booking form validation",
+    "status": "partial",
+    "note": "BR-07: 29 days refused with message, 28 accepted (T-014, T-016). BR-01: end before start refused (T-015). Form kept values and saved nothing in both refusals. Not run: BR-06 empty customer/equipment/dates, quantity 0 / fraction / blank, past start date (Q3).",
+    "tests": [],
+    "requirements": [],
+    "run": "run-20261115-003018",
+    "updated": "2026-11-15T00:32:56+08:00",
+    "history": [
+      {
+        "status": "not-covered",
+        "note": "BR-01 end-before-start, BR-06 mandatory fields and quantity 0/fraction, BR-07 maximum hire length (incl. boundary 28/29 days) not run; same-day = 1 day seen in T-004",
+        "tests": [],
+        "run": "run-20261115-001540",
+        "updated": "2026-11-15T00:25:57+08:00"
+      }
+    ]
+  },
+  "settings-validation": {
+    "area": "Settings validation",
+    "status": "not-covered",
+    "note": "BR-18 ranges not run; the form has HTML min/max so server-side enforcement may not be reachable through the UI",
+    "tests": [],
+    "requirements": [
+      "BR-18"
+    ],
+    "run": "run-20261115-001540",
+    "updated": "2026-11-15T00:25:57+08:00",
+    "history": []
+  },
+  "pricing-6-day-boundary-and-rounding": {
+    "area": "Pricing: 6-day boundary and rounding",
+    "status": "not-covered",
+    "note": "T-003 not run; 6 days no discount and pence rounding (A3) untested",
+    "tests": [
+      "T-003"
+    ],
+    "requirements": [
+      "BR-03"
+    ],
+    "run": "run-20261115-001540",
+    "updated": "2026-11-15T00:25:57+08:00",
+    "history": []
+  },
+  "max-hire-length-reduced-with-longer-draft-existing": {
+    "area": "Max hire length reduced with longer Draft existing",
+    "status": "not-covered",
+    "note": "Ambiguity A2 / Q2",
+    "tests": [],
+    "requirements": [
+      "BR-07"
+    ],
+    "run": "run-20261115-001540",
+    "updated": "2026-11-15T00:25:57+08:00",
+    "history": []
+  },
+  "clerk-workflow-parity": {
+    "area": "Clerk workflow parity",
+    "status": "partial",
+    "note": "Clerk cancelled a Draft and was refused a held-customer booking; clerk create/confirm/check out/return not run end to end (manager path was)",
+    "tests": [
+      "T-011",
+      "T-012"
+    ],
+    "requirements": [],
+    "run": "run-20261115-001540",
+    "updated": "2026-11-15T00:25:58+08:00",
+    "history": []
+  },
+  "sign-in-and-session": {
+    "area": "Sign-in and session",
+    "status": "partial",
+    "note": "Sign in/out and identity shown for both roles; wrong password, signed-out access to pages and Back after sign-out not run",
+    "tests": [],
+    "requirements": [],
+    "run": "run-20261115-001540",
+    "updated": "2026-11-15T00:25:58+08:00",
+    "history": []
+  },
+  "double-submit-back-and-reload-after-actions": {
+    "area": "Double submit, Back and reload after actions",
+    "status": "not-covered",
+    "note": "Not run (budget)",
+    "tests": [],
+    "requirements": [],
+    "run": "run-20261115-001540",
+    "updated": "2026-11-15T00:25:58+08:00",
+    "history": []
+  },
+  "concurrency-two-users-on-the-same-booking-or-last-unit": {
+    "area": "Concurrency: two users on the same booking or last unit",
+    "status": "deferred",
+    "note": "Concurrent scenarios are deferred in this version of the workspace; relevant to objective 1 (two clerks confirming the last unit)",
+    "tests": [],
+    "requirements": [],
+    "run": "run-20261115-001540",
+    "updated": "2026-11-15T00:25:58+08:00",
+    "history": []
+  },
+  "draft-reopen-from-list-to-review": {
+    "area": "Draft reopen from list to Review",
+    "status": "covered",
+    "note": "Seen in T-008 (B-1008 > Review and confirm)",
+    "tests": [
+      "T-008"
+    ],
+    "requirements": [],
+    "run": "run-20261115-001540",
+    "updated": "2026-11-15T00:25:58+08:00",
+    "history": []
+  }
+}

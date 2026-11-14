@@ -1,0 +1,106 @@
+{
+  "n": 70,
+  "t": "2026-11-15T00:24:09+08:00",
+  "run": "run-20261115-001540",
+  "role": "clerk",
+  "environment": "local",
+  "app_version": "1.4.2",
+  "test": "T-011",
+  "label": "t011-clerk-settings-direct",
+  "url": "http://127.0.0.1:8791/settings",
+  "title": "Access denied - Tallyard HireDesk",
+  "headings": [
+    "Access denied"
+  ],
+  "alerts": [
+    "You do not have permission to do that."
+  ],
+  "dialog": null,
+  "modal": false,
+  "page_chrome": [
+    "Tallyard HireDesk Dashboard Bookings Inventory Customers Signed in as Tom Riley (Clerk) Sign out",
+    "Tallyard HireDesk version 1.4.2"
+  ],
+  "fields": [],
+  "tables": [],
+  "elements": [
+    {
+      "ref": "e1",
+      "role": "link",
+      "name": "Dashboard",
+      "nth": 0,
+      "nth_role": 0,
+      "attrs": [],
+      "context": "banner > navigation Main",
+      "in_dialog": false,
+      "href": "/"
+    },
+    {
+      "ref": "e2",
+      "role": "link",
+      "name": "Bookings",
+      "nth": 0,
+      "nth_role": 1,
+      "attrs": [],
+      "context": "banner > navigation Main",
+      "in_dialog": false,
+      "href": "/bookings"
+    },
+    {
+      "ref": "e3",
+      "role": "link",
+      "name": "Inventory",
+      "nth": 0,
+      "nth_role": 2,
+      "attrs": [],
+      "context": "banner > navigation Main",
+      "in_dialog": false,
+      "href": "/inventory"
+    },
+    {
+      "ref": "e4",
+      "role": "link",
+      "name": "Customers",
+      "nth": 0,
+      "nth_role": 3,
+      "attrs": [],
+      "context": "banner > navigation Main",
+      "in_dialog": false,
+      "href": "/customers"
+    },
+    {
+      "ref": "e5",
+      "role": "button",
+      "name": "Sign out",
+      "nth": 0,
+      "nth_role": 0,
+      "attrs": [],
+      "context": "banner",
+      "in_dialog": false
+    },
+    {
+      "ref": "e6",
+      "role": "link",
+      "name": "Return to the dashboard",
+      "nth": 0,
+      "nth_role": 4,
+      "attrs": [],
+      "context": "main",
+      "in_dialog": false,
+      "href": "/"
+    }
+  ],
+  "main_text": "Access denied\nYou do not have permission to do that.\nReturn to the dashboard",
+  "busy_indicators": 0,
+  "ready_state": "complete",
+  "native_dialogs": [],
+  "console_errors": [
+    "Failed to load resource: the server responded with a status of 403 (Forbidden) [http://127.0.0.1:8791/settings]"
+  ],
+  "http_errors": [
+    "403 GET http://127.0.0.1:8791/settings"
+  ],
+  "popups": [],
+  "screenshot": "runs/run-20261115-001540/evidence/070-t011-clerk-settings-direct.png",
+  "aria_snapshot": "- banner:\n  - text: Tallyard HireDesk\n  - navigation \"Main\":\n    - list:\n      - listitem:\n        - link \"Dashboard\":\n          - /url: /\n      - listitem:\n        - link \"Bookings\":\n          - /url: /bookings\n      - listitem:\n        - link \"Inventory\":\n          - /url: /inventory\n      - listitem:\n        - link \"Customers\":\n          - /url: /customers\n  - text: Signed in as\n  - strong: Tom Riley\n  - text: (Clerk)\n  - button \"Sign out\"\n- main:\n  - heading \"Access denied\" [level=1]\n  - alert: You do not have permission to do that.\n  - paragraph:\n    - link \"Return to the dashboard\":\n      - /url: /\n- contentinfo:\n  - paragraph: Tallyard HireDesk version 1.4.2"
+}

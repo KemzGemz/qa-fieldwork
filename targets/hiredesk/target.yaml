@@ -1,0 +1,35 @@
+# Configuration of one application under test. Created 2026-11-15T00:15:40+08:00.
+# Anything not set here falls back to tools/defaults.yaml.
+id: hiredesk
+name: "Tallyard HireDesk"
+base_url: "http://127.0.0.1:8791/"          # the start URL; its origin defines what belongs to this target
+allowed_origins: []               # other origins that are part of the same application (e.g. an SSO host)
+environment: local      # local | test | staging | production
+
+version_hint: "page footer"                  # where the application shows its version/build (e.g. "footer"), if anywhere
+
+roles:
+  manager:
+    description: "all clerk capabilities plus cancel Reserved, change rates, hold/release customers, Settings"
+    sign_in: "form at /login; .local/accounts.yaml manager.username / manager.password"
+    identity_shown: "header: Signed in as <name> (Manager)"
+  clerk:
+    description: "bookings, check out, returns, cancel Draft; no Settings, rates, holds, cancel Reserved"
+    sign_in: "form at /login; .local/accounts.yaml clerk.* (second clerk: clerk2.*)"
+    identity_shown: "header: Signed in as <name> (Clerk)"
+#  manager:
+#    description: "approves requests, edits settings"
+#    sign_in: "sign-in form; credentials in .local/accounts.yaml as manager.username / manager.password"
+#    identity_shown: "header shows the user name and role"
+
+scope:
+  include: []                     # areas in scope, in words (empty = everything reachable)
+  exclude: []                     # regular expressions on URLs that must not be visited
+
+permissions:                      # what a run may do on this target
+  change_data: true
+  destructive: false              # deletes, resets, anything irreversible or affecting shared data
+  create_accounts: false
+
+# budget: {actions: 120, report_reserve: 0.15}
+# browser: {headless: false, dialogs: dismiss, direct_navigation: start-only}
