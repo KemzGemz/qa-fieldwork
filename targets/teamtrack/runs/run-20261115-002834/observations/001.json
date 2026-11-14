@@ -1,0 +1,137 @@
+{
+  "n": 1,
+  "t": "2026-11-15T00:28:37+08:00",
+  "run": "run-20261115-002834",
+  "role": null,
+  "environment": "local",
+  "app_version": null,
+  "test": null,
+  "label": "open",
+  "url": "http://127.0.0.1:8767/",
+  "title": "Dashboard · TeamTrack",
+  "headings": [
+    "Dashboard",
+    "Active projects",
+    "Due this year"
+  ],
+  "alerts": [],
+  "dialog": null,
+  "modal": false,
+  "page_chrome": [
+    "TeamTrack DashboardProjectsReportsSettings Signed in as Alex (Project manager) · Switch account · Log out"
+  ],
+  "fields": [],
+  "tables": [],
+  "elements": [
+    {
+      "ref": "e1",
+      "role": "link",
+      "name": "Dashboard",
+      "nth": 0,
+      "nth_role": 0,
+      "attrs": [],
+      "context": "banner > navigation Main",
+      "in_dialog": false,
+      "href": "/"
+    },
+    {
+      "ref": "e2",
+      "role": "link",
+      "name": "Projects",
+      "nth": 0,
+      "nth_role": 1,
+      "attrs": [],
+      "context": "banner > navigation Main",
+      "in_dialog": false,
+      "href": "/projects"
+    },
+    {
+      "ref": "e3",
+      "role": "link",
+      "name": "Reports",
+      "nth": 0,
+      "nth_role": 2,
+      "attrs": [],
+      "context": "banner > navigation Main",
+      "in_dialog": false,
+      "href": "/reports"
+    },
+    {
+      "ref": "e4",
+      "role": "link",
+      "name": "Settings",
+      "nth": 0,
+      "nth_role": 3,
+      "attrs": [],
+      "context": "banner > navigation Main",
+      "in_dialog": false,
+      "href": "/settings"
+    },
+    {
+      "ref": "e5",
+      "role": "link",
+      "name": "Switch account",
+      "nth": 0,
+      "nth_role": 4,
+      "attrs": [],
+      "context": "banner",
+      "in_dialog": false,
+      "href": "/login"
+    },
+    {
+      "ref": "e6",
+      "role": "link",
+      "name": "Log out",
+      "nth": 0,
+      "nth_role": 5,
+      "attrs": [],
+      "context": "banner",
+      "in_dialog": false,
+      "href": "/logout"
+    },
+    {
+      "ref": "e7",
+      "role": "link",
+      "name": "View all projects",
+      "nth": 0,
+      "nth_role": 6,
+      "attrs": [],
+      "context": "main > region Active projects",
+      "in_dialog": false,
+      "href": "/projects"
+    },
+    {
+      "ref": "e8",
+      "role": "link",
+      "name": "Website Redesign",
+      "nth": 0,
+      "nth_role": 7,
+      "attrs": [],
+      "context": "main > region Due this year",
+      "in_dialog": false,
+      "href": "/projects/1"
+    },
+    {
+      "ref": "e9",
+      "role": "link",
+      "name": "Data Warehouse Migration",
+      "nth": 0,
+      "nth_role": 8,
+      "attrs": [],
+      "context": "main > region Due this year",
+      "in_dialog": false,
+      "href": "/projects/3"
+    }
+  ],
+  "main_text": "Dashboard\nActive projects\n2\nView all projects\nDue this year\nWebsite Redesign — 2026-12-15\nData Warehouse Migration — 2026-11-30",
+  "busy_indicators": 0,
+  "ready_state": "complete",
+  "native_dialogs": [],
+  "console_errors": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found) [http://127.0.0.1:8767/favicon.ico]"
+  ],
+  "http_errors": [],
+  "popups": [],
+  "screenshot": "runs/run-20261115-002834/evidence/001-open.png",
+  "aria_snapshot": "- banner:\n  - strong: TeamTrack\n  - navigation \"Main\":\n    - link \"Dashboard\":\n      - /url: /\n    - link \"Projects\":\n      - /url: /projects\n    - link \"Reports\":\n      - /url: /reports\n    - link \"Settings\":\n      - /url: /settings\n  - text: Signed in as Alex (Project manager) ·\n  - link \"Switch account\":\n    - /url: /login\n  - text: ·\n  - link \"Log out\":\n    - /url: /logout\n- main:\n  - heading \"Dashboard\" [level=1]\n  - region \"Active projects\":\n    - heading \"Active projects\" [level=2]\n    - paragraph: \"2\"\n    - link \"View all projects\":\n      - /url: /projects\n  - region \"Due this year\":\n    - heading \"Due this year\" [level=2]\n    - list:\n      - listitem:\n        - link \"Website Redesign\":\n          - /url: /projects/1\n        - text: — 2026-12-15\n      - listitem:\n        - link \"Data Warehouse Migration\":\n          - /url: /projects/3\n        - text: — 2026-11-30"
+}

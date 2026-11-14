@@ -1,0 +1,2 @@
+{"t": "2026-11-15T00:28:37+08:00", "kind": "role", "text": "acting as project manager; identity verified by: header: 'Signed in as Alex (Project manager)' (demo signs in by default)"}
+{"t": "2026-11-15T00:29:01+08:00", "kind": "data-change", "text": "Created project 'website redesign' (id 4).", "role": "project manager", "test": null}

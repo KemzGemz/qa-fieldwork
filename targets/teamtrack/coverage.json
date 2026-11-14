@@ -1,0 +1,16 @@
+{
+  "projects-create-r1-r3": {
+    "area": "Projects: create (R1-R3)",
+    "status": "partial",
+    "note": "Only R2 duplicate tested; R1, R3, edit, delete, roles, reports, settings not covered",
+    "tests": [
+      "T-001"
+    ],
+    "requirements": [
+      "R2"
+    ],
+    "run": "run-20261115-002834",
+    "updated": "2026-11-15T00:29:01+08:00",
+    "history": []
+  }
+}

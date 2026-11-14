@@ -1,0 +1,18 @@
+{
+  "id": "run-20261115-002834",
+  "target": "teamtrack",
+  "mode": "default",
+  "status": "closed",
+  "started": "2026-11-15T00:28:34+08:00",
+  "ended": "2026-11-15T00:29:02+08:00",
+  "environment": "local",
+  "base_url": "http://127.0.0.1:8767/",
+  "role": "project manager",
+  "role_verified_by": "header: 'Signed in as Alex (Project manager)' (demo signs in by default)",
+  "app_version": null,
+  "budget": 15,
+  "budget_source": "supplied",
+  "report_reserve": 0.15,
+  "focus": "isolation check: one rule-based test",
+  "scope_note": ""
+}

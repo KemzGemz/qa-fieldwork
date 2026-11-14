@@ -1,0 +1,289 @@
+{
+  "n": 4,
+  "t": "2026-11-15T00:28:42+08:00",
+  "run": "run-20261115-002834",
+  "role": "project manager",
+  "environment": "local",
+  "app_version": null,
+  "test": "T-001",
+  "label": "fill-field \"Project name\"",
+  "url": "http://127.0.0.1:8767/projects",
+  "title": "Projects · TeamTrack",
+  "headings": [
+    "Projects",
+    "New project"
+  ],
+  "alerts": [],
+  "dialog": "New project",
+  "modal": true,
+  "page_chrome": [
+    "TeamTrack DashboardProjectsReportsSettings Signed in as Alex (Project manager) · Switch account · Log out"
+  ],
+  "fields": [
+    {
+      "label": "Project name",
+      "label_source": "label",
+      "type": "text",
+      "value": "website redesign",
+      "required": false,
+      "disabled": false,
+      "readonly": false,
+      "min": null,
+      "max": null,
+      "step": null,
+      "minlength": null,
+      "maxlength": null,
+      "pattern": null,
+      "options": [],
+      "invalid": false,
+      "validation": "",
+      "in_dialog": true
+    },
+    {
+      "label": "Owner",
+      "label_source": "label",
+      "type": "select-one",
+      "value": "Select…",
+      "required": false,
+      "disabled": false,
+      "readonly": false,
+      "min": null,
+      "max": null,
+      "step": null,
+      "minlength": null,
+      "maxlength": null,
+      "pattern": null,
+      "options": [
+        "Select…",
+        "Priya",
+        "Marco",
+        "Dana"
+      ],
+      "invalid": false,
+      "validation": "",
+      "in_dialog": true
+    },
+    {
+      "label": "Due date",
+      "label_source": "label",
+      "type": "date",
+      "value": "",
+      "required": false,
+      "disabled": false,
+      "readonly": false,
+      "min": null,
+      "max": null,
+      "step": null,
+      "minlength": null,
+      "maxlength": null,
+      "pattern": null,
+      "options": [],
+      "invalid": false,
+      "validation": "",
+      "in_dialog": true
+    }
+  ],
+  "tables": [
+    {
+      "name": "Projects",
+      "columns": [
+        "Name",
+        "Owner",
+        "Due",
+        "Status"
+      ],
+      "row_count": 3,
+      "rows": [
+        [
+          "Website Redesign",
+          "Priya",
+          "2026-12-15",
+          "Active"
+        ],
+        [
+          "Mobile App Launch",
+          "Marco",
+          "2027-02-01",
+          "Active"
+        ],
+        [
+          "Data Warehouse Migration",
+          "Priya",
+          "2026-11-30",
+          "On hold"
+        ]
+      ]
+    }
+  ],
+  "elements": [
+    {
+      "ref": "e1",
+      "role": "link",
+      "name": "Dashboard",
+      "nth": 0,
+      "nth_role": 0,
+      "attrs": [],
+      "context": "banner > navigation Main",
+      "in_dialog": false,
+      "href": "/"
+    },
+    {
+      "ref": "e2",
+      "role": "link",
+      "name": "Projects",
+      "nth": 0,
+      "nth_role": 1,
+      "attrs": [],
+      "context": "banner > navigation Main",
+      "in_dialog": false,
+      "href": "/projects"
+    },
+    {
+      "ref": "e3",
+      "role": "link",
+      "name": "Reports",
+      "nth": 0,
+      "nth_role": 2,
+      "attrs": [],
+      "context": "banner > navigation Main",
+      "in_dialog": false,
+      "href": "/reports"
+    },
+    {
+      "ref": "e4",
+      "role": "link",
+      "name": "Settings",
+      "nth": 0,
+      "nth_role": 3,
+      "attrs": [],
+      "context": "banner > navigation Main",
+      "in_dialog": false,
+      "href": "/settings"
+    },
+    {
+      "ref": "e5",
+      "role": "link",
+      "name": "Switch account",
+      "nth": 0,
+      "nth_role": 4,
+      "attrs": [],
+      "context": "banner",
+      "in_dialog": false,
+      "href": "/login"
+    },
+    {
+      "ref": "e6",
+      "role": "link",
+      "name": "Log out",
+      "nth": 0,
+      "nth_role": 5,
+      "attrs": [],
+      "context": "banner",
+      "in_dialog": false,
+      "href": "/logout"
+    },
+    {
+      "ref": "e7",
+      "role": "button",
+      "name": "New project",
+      "nth": 0,
+      "nth_role": 0,
+      "attrs": [],
+      "context": "main",
+      "in_dialog": false
+    },
+    {
+      "ref": "e8",
+      "role": "link",
+      "name": "Website Redesign",
+      "nth": 0,
+      "nth_role": 6,
+      "attrs": [],
+      "context": "main > table Projects",
+      "in_dialog": false,
+      "href": "/projects/1"
+    },
+    {
+      "ref": "e9",
+      "role": "link",
+      "name": "Mobile App Launch",
+      "nth": 0,
+      "nth_role": 7,
+      "attrs": [],
+      "context": "main > table Projects",
+      "in_dialog": false,
+      "href": "/projects/2"
+    },
+    {
+      "ref": "e10",
+      "role": "link",
+      "name": "Data Warehouse Migration",
+      "nth": 0,
+      "nth_role": 8,
+      "attrs": [],
+      "context": "main > table Projects",
+      "in_dialog": false,
+      "href": "/projects/3"
+    },
+    {
+      "ref": "e11",
+      "role": "textbox",
+      "name": "Project name",
+      "nth": 0,
+      "nth_role": 0,
+      "attrs": [],
+      "context": "main > dialog New project",
+      "in_dialog": true,
+      "value": "website redesign"
+    },
+    {
+      "ref": "e12",
+      "role": "combobox",
+      "name": "Owner",
+      "nth": 0,
+      "nth_role": 0,
+      "attrs": [],
+      "context": "main > dialog New project",
+      "in_dialog": true
+    },
+    {
+      "ref": "e13",
+      "role": "textbox",
+      "name": "Due date",
+      "nth": 0,
+      "nth_role": 1,
+      "attrs": [],
+      "context": "main > dialog New project",
+      "in_dialog": true
+    },
+    {
+      "ref": "e14",
+      "role": "button",
+      "name": "Create project",
+      "nth": 0,
+      "nth_role": 1,
+      "attrs": [],
+      "context": "main > dialog New project",
+      "in_dialog": true
+    },
+    {
+      "ref": "e15",
+      "role": "button",
+      "name": "Cancel",
+      "nth": 0,
+      "nth_role": 2,
+      "attrs": [],
+      "context": "main > dialog New project",
+      "in_dialog": true
+    }
+  ],
+  "main_text": "Projects\nNew project\nName Owner Due Status\nWebsite Redesign Priya 2026-12-15 Active\nMobile App Launch Marco 2027-02-01 Active\nData Warehouse Migration Priya 2026-11-30 On hold\nNew project\nProject name\nOwner\nSelect…\nPriya\nMarco\nDana\nDue date\nCreate project Cancel",
+  "busy_indicators": 0,
+  "ready_state": "complete",
+  "native_dialogs": [],
+  "console_errors": [],
+  "http_errors": [],
+  "popups": [],
+  "screenshot": null,
+  "aria_snapshot": "- banner:\n  - strong: TeamTrack\n  - navigation \"Main\":\n    - link \"Dashboard\":\n      - /url: /\n    - link \"Projects\":\n      - /url: /projects\n    - link \"Reports\":\n      - /url: /reports\n    - link \"Settings\":\n      - /url: /settings\n  - text: Signed in as Alex (Project manager) ·\n  - link \"Switch account\":\n    - /url: /login\n  - text: ·\n  - link \"Log out\":\n    - /url: /logout\n- main:\n  - heading \"Projects\" [level=1]\n  - paragraph:\n    - button \"New project\"\n  - table \"Projects\":\n    - rowgroup:\n      - row \"Name Owner Due Status\":\n        - columnheader \"Name\"\n        - columnheader \"Owner\"\n        - columnheader \"Due\"\n        - columnheader \"Status\"\n    - rowgroup:\n      - row \"Website Redesign Priya 2026-12-15 Active\":\n        - cell \"Website Redesign\":\n          - link \"Website Redesign\":\n            - /url: /projects/1\n        - cell \"Priya\"\n        - cell \"2026-12-15\"\n        - cell \"Active\"\n      - row \"Mobile App Launch Marco 2027-02-01 Active\":\n        - cell \"Mobile App Launch\":\n          - link \"Mobile App Launch\":\n            - /url: /projects/2\n        - cell \"Marco\"\n        - cell \"2027-02-01\"\n        - cell \"Active\"\n      - row \"Data Warehouse Migration Priya 2026-11-30 On hold\":\n        - cell \"Data Warehouse Migration\":\n          - link \"Data Warehouse Migration\":\n            - /url: /projects/3\n        - cell \"Priya\"\n        - cell \"2026-11-30\"\n        - cell \"On hold\"\n  - dialog \"New project\":\n    - heading \"New project\" [level=2]\n    - text: Project name\n    - textbox \"Project name\": website redesign\n    - text: Owner\n    - combobox \"Owner\":\n      - option \"Select…\" [selected]\n      - option \"Priya\"\n      - option \"Marco\"\n      - option \"Dana\"\n    - text: Due date\n    - textbox \"Due date\"\n    - paragraph:\n      - button \"Create project\"\n      - button \"Cancel\""
+}

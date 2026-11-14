@@ -1,0 +1,47 @@
+{
+  "T-001": {
+    "id": "T-001",
+    "title": "Duplicate project name is rejected",
+    "area": "",
+    "priority": 2,
+    "why": "Only explicit uniqueness rule supplied; duplicates corrupt reporting by name",
+    "requirements": [
+      "R2"
+    ],
+    "role": "project manager",
+    "preconditions": "",
+    "data": "",
+    "retest_of": null,
+    "planned": "2026-11-15T00:28:38+08:00",
+    "expectation": {
+      "text": "Creating a project named 'website redesign' (existing: 'Website Redesign') is rejected with an explanation; the Projects list still has 3 rows",
+      "basis_type": "requirement",
+      "basis": "rules.md R2 (case-insensitive uniqueness)",
+      "uncertainty": "The investigator had read about this demo's defects in the qa-pipeline README beforehand, so this run is not blind; it serves the isolation check only",
+      "recorded": "2026-11-15T00:28:38+08:00"
+    },
+    "expectation_history": [],
+    "started": {
+      "t": "2026-11-15T00:28:38+08:00",
+      "action_index": 1,
+      "role": "project manager"
+    },
+    "result": {
+      "status": "fail",
+      "actual": "Accepted: 'Project “website redesign” created.'; Projects list now has 4 rows including both 'Website Redesign' and 'website redesign'.",
+      "steps": [
+        "Projects > New project: name 'website redesign', owner Priya; Create project"
+      ],
+      "evidence": [
+        "runs/run-20261115-002834/evidence/006-t001-duplicate-created.png"
+      ],
+      "downstream": "",
+      "uncertainty": "",
+      "role": "project manager",
+      "environment": "local",
+      "app_version": null,
+      "logged_actions": 5,
+      "recorded": "2026-11-15T00:29:01+08:00"
+    }
+  }
+}

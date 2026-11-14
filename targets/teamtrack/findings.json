@@ -1,0 +1,34 @@
+{
+  "F-001": {
+    "id": "F-001",
+    "title": "Duplicate project name accepted (differs only in case)",
+    "classification": "product-failure",
+    "severity": "medium",
+    "status": "open",
+    "tests": [
+      "T-001"
+    ],
+    "requirements": [
+      "R2"
+    ],
+    "expected": "Rejected with an explanation; no second project",
+    "actual": "Second project created; both names listed",
+    "steps": [],
+    "reproduction": "1/1; not repeated (isolation check only)",
+    "impact_observed": "Two projects with the same name in the list",
+    "impact_reasoned": "",
+    "uncertainty": "",
+    "duplicate_check": "First finding of this target",
+    "evidence": [
+      "runs/run-20261115-002834/evidence/006-t001-duplicate-created.png"
+    ],
+    "found": {
+      "run": "run-20261115-002834",
+      "role": "project manager",
+      "environment": "local",
+      "app_version": null,
+      "t": "2026-11-15T00:29:01+08:00"
+    },
+    "history": []
+  }
+}
