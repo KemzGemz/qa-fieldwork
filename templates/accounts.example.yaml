@@ -1,0 +1,7 @@
+# Copy to targets/<id>/.local/accounts.yaml (never committed) and fill in TEST accounts only.
+# Use them with:  tools/browser.ts act fill --target <id> --field "Password" --secret manager.password
+# Values of keys containing password/secret/token/otp/pin are never printed or saved by the tools.
+roles:
+  manager:
+    username: ""
+    password: ""

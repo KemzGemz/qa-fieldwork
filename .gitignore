@@ -1,0 +1,33 @@
+# --- dependencies and tool output (always transient) ---
+node_modules/
+*.tmp
+*.log
+test-results/
+playwright-report/
+*.trace.zip
+
+# --- authentication state and sensitive local artifacts: never committed ---
+# .local/ holds accounts.yaml, the browser endpoint, the active-run marker and the last observation.
+# The browser profile itself lives outside the repository.
+targets/*/.local/
+accounts.yaml
+!templates/accounts.example.yaml
+auth.json
+*.storage.json
+*.har
+.env
+.env.*
+
+# --- operating system and sync clutter ---
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- run artifacts are evidence, and are committed by default ---
+# runs/<run-id>/evidence/ (screenshots) and observations/ (page records) are what verdicts and
+# findings point to; without them a report cannot be assessed. Keep them for the acceptance targets.
+# For a real application whose screens show confidential data, keep that target's artifacts local by
+# adding its own lines here, for example:
+#   targets/<id>/runs/*/evidence/
+#   targets/<id>/runs/*/observations/
+# The reports will then carry broken evidence links for anyone without the local files.

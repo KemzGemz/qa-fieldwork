@@ -1,0 +1,27 @@
+# Configuration of one application under test. Created {{created}}.
+# Anything not set here falls back to tools/defaults.yaml.
+id: {{target}}
+name: "{{name}}"
+base_url: "{{base_url}}"          # the start URL; its origin defines what belongs to this target
+allowed_origins: []               # other origins that are part of the same application (e.g. an SSO host)
+environment: {{environment}}      # local | test | staging | production
+
+version_hint: ""                  # where the application shows its version/build (e.g. "footer"), if anywhere
+
+roles: {}
+#  manager:
+#    description: "approves requests, edits settings"
+#    sign_in: "sign-in form; credentials in .local/accounts.yaml as manager.username / manager.password"
+#    identity_shown: "header shows the user name and role"
+
+scope:
+  include: []                     # areas in scope, in words (empty = everything reachable)
+  exclude: []                     # regular expressions on URLs that must not be visited
+
+permissions:                      # what a run may do on this target
+  change_data: true
+  destructive: false              # deletes, resets, anything irreversible or affecting shared data
+  create_accounts: false
+
+# budget: {actions: 120, report_reserve: 0.15}
+# browser: {headless: false, dialogs: dismiss, direct_navigation: start-only}

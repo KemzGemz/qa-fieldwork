@@ -1,0 +1,24 @@
+# Defaults for every target. A target overrides any of these in targets/<id>/target.yaml.
+
+budget:
+  actions: 120          # browser actions per run when none is supplied (open/click/fill/... each count 1)
+  report_reserve: 0.15  # share of the budget kept for evidence organisation and reporting
+
+browser:
+  headless: false       # visible by default so the tester can watch and take over
+  viewport: [1280, 860]
+  one_tab: true         # work in one tab; popups are recorded, then closed
+  action_timeout_ms: 8000
+  load_timeout_ms: 15000
+  quiet_ms: 1200        # at most this long waiting for network quiet after an action
+  dialogs: dismiss      # native confirm()/alert(): dismiss | accept (override per action with --dialog)
+  direct_navigation: start-only   # start-only: typed addresses only for the start URL; any: allowed anywhere
+
+recovery:
+  max_attempts: 2       # recovery attempts per stall before saving progress and reporting a blocker
+  repeat_limit: 3       # identical action with no visible change this many times in a row is refused
+
+permissions:            # what a run may do unless target.yaml says otherwise
+  change_data: true
+  destructive: false    # deletes, resets, anything that cannot be undone or affects shared data
+  create_accounts: false

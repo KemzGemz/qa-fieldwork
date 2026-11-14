@@ -1,0 +1,29 @@
+{
+  "name": "qa-fieldwork",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "description": "Claude Code QA workspace: browser, evidence, record and report tools for the qa-investigation skill",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "tsx --test --test-reporter=spec tests/*.test.ts",
+    "check": "npm run typecheck && npm test",
+    "fixture:hiredesk": "tsx fixtures/acceptance-app/app.ts 8791",
+    "fixture:teamtrack": "tsx fixtures/teamtrack/app.ts 8767"
+  },
+  "dependencies": {
+    "commander": "^15.1.0",
+    "playwright": "1.65",
+    "unpdf": "^1.9.1",
+    "yaml": "^2.9.1",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
+  }
+}

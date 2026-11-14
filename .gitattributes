@@ -1,0 +1,5 @@
+# Keep line endings as written (LF) on every platform, so generated views and hashes are stable.
+* text=auto eol=lf
+*.png binary
+# Requirement documents are hashed to detect changes: never convert them.
+targets/*/requirements/source/** -text
