@@ -18,7 +18,7 @@ export interface RunContext {
 const activeRunMarker = (target: string): string => join(localDir(target), "active_run");
 const activeTestMarker = (target: string): string => join(localDir(target), "active_test");
 
-/** Directory of the given run, or of the run last started for this target. */
+/** Directory of the given run, or of the run last started for this target (the latest recorded one if unknown). */
 export function findRunDir(target: string, runId?: string): string | undefined {
   const root = targetDir(target);
   let id = runId;
@@ -26,7 +26,8 @@ export function findRunDir(target: string, runId?: string): string | undefined {
     const marker = activeRunMarker(target);
     id = existsSync(marker) ? readText(marker).trim() : "";
   }
-  if (!id) return undefined;
+  // No local marker (a fresh clone or worktree: .local/ is not committed): use the latest recorded run.
+  if (!id) return listRunDirs(target).at(-1);
   const dir = join(root, "runs", id);
   return existsSync(join(dir, "run.json")) ? dir : undefined;
 }
