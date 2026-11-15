@@ -22,6 +22,26 @@ export function currentBranch(): string | undefined {
   }
 }
 
+/** Shared files: the guidance and tools a run was made with. Target records are not part of it. */
+const FRAMEWORK_PATHS = ["tools", ".claude/skills", "templates", "CLAUDE.md"];
+
+/**
+ * Which version of the shared framework this checkout holds: the last commit that touched the shared
+ * files, and whether they have uncommitted changes. Recorded with each run, so a later reader can
+ * tell which guidance and tool behaviour an investigation was made with. Undefined outside Git.
+ */
+export function frameworkVersion(): { commit: string; dirty: boolean } | undefined {
+  const git = (args: string[]): string =>
+    execFileSync("git", ["-C", REPO, ...args], { encoding: "utf8", stdio: ["ignore", "pipe", "ignore"] }).trim();
+  try {
+    const commit = git(["log", "-1", "--format=%h", "--", ...FRAMEWORK_PATHS]);
+    if (!commit) return undefined;
+    return { commit, dirty: git(["status", "--porcelain", "--", ...FRAMEWORK_PATHS]) !== "" };
+  } catch {
+    return undefined;
+  }
+}
+
 /** Refuse to create a target on a base branch; say how to create the application's worktree instead. */
 export function requireTargetBranch(target: string, branch: string | undefined, allowBase = false): void {
   if (!branch || !BASE_BRANCHES.has(branch) || allowBase) return;

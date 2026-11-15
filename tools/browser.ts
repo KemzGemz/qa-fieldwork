@@ -8,13 +8,13 @@
  *   npx tsx tools/browser.ts <command> --help
  *
  * `open` and `act` each cost one action of the run budget and are logged to
- * runs/<run>/actions.jsonl. observe, text, shot, eval and diagnose are free.
+ * runs/<run>/actions.jsonl. observe, text, shot, eval, frame, viewport and diagnose are free.
  */
 import { Argument, Command, Option } from "commander";
-import { act, ACTION_KINDS, evaluate, observeNow, open, screenshot, type StepOutcome, visibleText } from "./lib/browser/actions.ts";
-import { attachBrowser, cdpAlive, closeBrowser, launchBrowser, readBrowserState, withSession } from "./lib/browser/session.ts";
+import { act, ACTION_KINDS, evaluate, observeNow, open, readFrame, screenshot, type StepOutcome, visibleText } from "./lib/browser/actions.ts";
+import { attachBrowser, cdpAlive, closeBrowser, launchBrowser, readBrowserState, setViewport, withSession } from "./lib/browser/session.ts";
 import { diagnoseStall } from "./lib/browser/stall.ts";
-import { runCli } from "./lib/core/errors.ts";
+import { fail, runCli } from "./lib/core/errors.ts";
 import { budgetLine, findRunDir } from "./lib/records/runs.ts";
 
 const program = new Command("browser").description("One Chromium, one tab, driven one observed step at a time");
@@ -52,6 +52,19 @@ command("status", "browser endpoint, current tab and budget").action(async (o) =
   }
 });
 
+command("viewport", "emulate a page size, e.g. a phone width, until reset (free; reload the page after changing it)")
+  .option("--width <px>", "page width", integer)
+  .option("--height <px>", "page height", integer, 812)
+  .option("--reset", "back to the window size")
+  .action((o) => {
+    if (!o.reset && !o.width) fail("give --width <px> [--height <px>] or --reset (phone: 375x812, tablet: 768x1024)");
+    print(setViewport(o.target, o.reset ? undefined : [o.width, o.height]));
+  });
+
+command("frame", "list embedded frames, or read one (free): its controls and text")
+  .option("--match <text>", "part of the frame's title, name or address")
+  .action(async (o) => print(await withSession(o.target, (s) => readFrame(s, o.match))));
+
 command("open", "open the start URL (default) or a justified typed address")
   .option("--url <url>", "absolute, or relative to the start URL without a leading slash")
   .option("--reason <text>", "why a typed address is needed (it is itself the test)")
@@ -79,6 +92,7 @@ command("act", "perform one step, then observe")
   .option("--text <text>", "visible text")
   .option("--nth <n>", "which match, 0-based", integer, 0)
   .option("--loose", "substring match instead of exact")
+  .option("--frame <text>", "look inside the embedded frame whose title, name or address contains this (with --role/--field/--text)")
   .option("--value <value>", "value for fill / select")
   .option("--secret <role.field>", "value from .local/accounts.yaml; never printed or logged")
   .option("--key <key>", "key for press", "Enter")
@@ -101,6 +115,7 @@ command("act", "perform one step, then observe")
           text: o.text,
           nth: o.nth,
           loose: o.loose,
+          frame: o.frame,
           value: o.value,
           secret: o.secret,
           key: o.key,

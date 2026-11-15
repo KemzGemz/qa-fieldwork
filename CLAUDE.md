@@ -25,7 +25,8 @@ its `references/` are loaded only when a step needs them.
    start of every session. A mismatch (exit code 3) is resolved before any browser action or record
    update.
 3. **One worktree per application.** `main` never holds `targets/<id>/`. Each application lives on its
-   own branch `sut/<id>`, checked out as a worktree (`git worktree add ../qa-fieldwork-<id> -b sut/<id> main`).
+   own branch `sut/<id>`, checked out as a worktree (`git worktree add ../qa-fieldwork-<id> -b sut/<id> main`,
+   then `npm install` in the new folder).
    Before creating or updating a target, check the branch (`git branch --show-current`): on `main`,
    stop and tell the user to open or create the worktree. Changes to shared files (`tools/`, the skill,
    `references/`, `templates/`) made while testing go back to `main` separately, without `targets/`.
@@ -42,9 +43,17 @@ its `references/` are loaded only when a step needs them.
    (git-ignored) and are entered with `--secret`. Never put them in knowledge files, notes, reports
    or command lines.
 9. **Destructive or shared-data actions need the user's approval**, recorded in the target's
-   `knowledge/scope.md` and `target.yaml`.
+   `knowledge/scope.md` and `target.yaml`. A harmless control that the word guard misreads is allowed
+   by name (`permissions.destructive_allow`) with the reason in `scope.md`; that is not an approval
+   to destroy anything.
 10. **Save as you go.** Knowledge files, coverage and `records.ts checkpoint` are updated during the
    run, and part of the budget is kept for reporting.
+11. **Look, then claim.** A screen is reviewed when its screenshot was read, a state is permanent
+   when it was rechecked later, and an area is covered when the coverage note says how. Do not report
+   UI/UX, mobile or accessibility as covered on measurements alone.
+12. **The shared framework has a version.** Each run records the commit of the shared files it was
+   made with (`run.json`, `framework`). Improvements to shared files are made on `main` and reach a
+   target by merging `main` into its `sut/<id>` branch.
 
 ## Selecting and resuming a target
 
@@ -63,12 +72,14 @@ file in `reports/`, check what changed (requirement hashes, application version,
 - `tools/`: `target.ts`, `browser.ts`, `records.ts`, `report.ts` (thin command-line entry points; `--help` on each),
   `defaults.yaml`, and `lib/` (the implementation: `core`, `schemas`, `records`, `browser`, `target`, `report`).
 - `tests/`: unit tests for the record rules and the browser-free parts (`npm test`; `npm run typecheck`).
-- `templates/target/`: what a new target starts with.
+- `templates/target/`: what a new target starts with. `templates/report/`: the stakeholder report's
+  stylesheet and an example `report-brief.yaml`.
 - `targets/<id>/` (only on that application's `sut/<id>` branch): authoritative records are `target.yaml`, `knowledge/` (reusable understanding),
   `requirements/`, `findings.json`, `coverage.json`, `handover.json` and `runs/<run-id>/` (actions,
   observations, evidence, tests: run-specific history). `README.md` (the target overview),
   `FINDINGS.md`, `COVERAGE.md`, `HANDOVER.md` and `reports/` are generated views: never edit them or
-  use them as a source; the tools rebuild them from the records.
+  use them as a source; the tools rebuild them from the records. `report-brief.yaml` (the tester's
+  wording for the stakeholder report) is yours to write; `stakeholder-report/` is generated from it.
 - `fixtures/`: local practice applications. Their code and sealed answer keys are off limits while
   investigating them.
 

@@ -21,4 +21,5 @@ recovery:
 permissions:            # what a run may do unless target.yaml says otherwise
   change_data: true
   destructive: false    # deletes, resets, anything that cannot be undone or affects shared data
+  destructive_allow: [] # control names the destructive-word guard misreads (e.g. an answer option); reason goes in scope.md
   create_accounts: false

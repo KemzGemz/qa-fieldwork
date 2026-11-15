@@ -43,7 +43,19 @@ export function nextId(prefix: string, existing: Iterable<string>): string {
 
 /** Resolve evidence paths, require them to exist inside the target, store them target-relative. */
 export function resolveEvidence(target: string, paths: readonly string[] | undefined): string[] {
-  return (paths ?? []).map((path) => {
+  // A shell that joins several paths into one argument (PowerShell does this with an array variable)
+  // would otherwise produce one path that does not exist: split it when every part is a path of its own.
+  const separate = (paths ?? []).flatMap((path) => {
+    const parts = path.trim().split(/\s+/);
+    if (parts.length < 2) return [path];
+    try {
+      if (isFile(inside(target, path))) return [path];
+      return parts.every((part) => isFile(inside(target, part))) ? parts : [path];
+    } catch {
+      return [path];
+    }
+  });
+  return separate.map((path) => {
     const resolved = inside(target, path);
     if (!isFile(resolved)) fail(`evidence file not found: ${path}`);
     return rel(target, resolved);

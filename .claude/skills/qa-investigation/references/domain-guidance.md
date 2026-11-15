@@ -40,12 +40,22 @@ standard itself if you can reach it; otherwise cite the practice in words and sa
 - Money moves only after the amount and purpose are shown and can be cancelled. (WCAG 2.2 SC 3.3.4 Error Prevention: Legal, Financial, Data)
 - After a payment, every screen showing the amount or balance agrees; totals equal the sum of their lines; rounding happens once. Compute the figure independently before comparing.
 - A refund or cancellation cannot return more than was paid, cannot be applied twice, and leaves item and balance in a consistent final state.
+- Handing over to a payment provider: the amount and purpose shown there equal what the application showed; success, failure, cancel and the provider's back link each return to the application's own address with a message that matches what happened; what the application records agrees with what the user was told.
 
 ## Dates and time
 
 - Impossible dates are refused; an end before its start is refused; behaviour is right at midnight, month end and year end.
 - One date format throughout. (ISO 8601 as the unambiguous reference)
 - At a time-window boundary, behaviour one minute before and one minute after matches the rule, in the application's time zone.
+- A time or slot that has already started cannot be chosen, judged in the business's time zone and not the server's.
+- What is offered fits: an appointment or booking is only offered where its whole duration fits before closing and before the next commitment.
+
+## Reservations and availability
+
+- Something limited (a slot, a seat, stock) held while a user completes a step is held for a short, stated time; the user is told; the same user can return to it; it is released at once on cancel or failure and by itself otherwise. Measure the hold before judging it.
+- A paid or confirmed item is unavailable to everyone else on every screen that offers it.
+- What cannot be chosen is recognisable before it is chosen (greyed out, marked, or absent with a reason), and a choice with nothing available says so next to the control and points to an alternative.
+- Days the business treats as closed (holidays, days off) are not offered by the normal route.
 
 ## Access control and sessions
 
@@ -66,6 +76,10 @@ lead to the application's own pages (CWE-601).
 - After an action completes, Back or reload does not repeat it.
 - Every page has a heading saying what it is for; controls have meaningful names; tables have header cells; fields have visible labels. (WCAG 2.2 SC 2.4.6, 4.1.2, 1.3.1, 3.3.2)
 - Everything works by keyboard alone with visible focus; status messages are announced. (WCAG 2.2 SC 2.1.1, 2.4.7, 4.1.3)
+- A customer-facing product says how to reach a person, and after a completed transaction says what happens next (a reference, a receipt, how to change or cancel).
+
+How a product looks and whether its screens agree with each other is a review of its own, with its
+own method: [design-review.md](design-review.md).
 
 The observation output already shows unlabelled fields (label source `placeholder`, `name` or
 `none`), missing headings and console or HTTP errors, so several of these can be noticed without

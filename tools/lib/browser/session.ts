@@ -27,6 +27,10 @@ export interface BrowserState {
   stalls: number;
   /** The last action and how many times in a row it changed nothing. */
   repeat?: { sig: string; unchanged: number };
+  /** Emulated page size (browser.ts viewport); re-applied on every attach because it does not survive a disconnect. */
+  viewport?: [width: number, height: number];
+  /** Set when a step failed or was refused and the page has not been read since: the next act is refused until `observe`. */
+  unread_failure?: string;
 }
 
 const statePath = (target: string): string => join(localDir(target), "browser.json");
@@ -166,6 +170,23 @@ export async function attachBrowser(target: string, cdp: string): Promise<string
   return [`attached target ${target} to the existing browser at ${cdp} (its tabs and sign-in are left alone on close)`];
 }
 
+/**
+ * Emulate a page size (a phone or tablet width) until reset. It changes the layout width only: no
+ * touch input, no device user agent. Kept in the browser state and re-applied on every attach.
+ */
+export function setViewport(target: string, size: [number, number] | undefined): string[] {
+  const state = loadBrowserState(target);
+  if (size && (size[0] < 240 || size[1] < 240 || size[0] > 4000 || size[1] > 4000)) {
+    fail("viewport width and height must be between 240 and 4000 pixels");
+  }
+  if (size) state.viewport = size;
+  else delete state.viewport;
+  saveBrowserState(target, state);
+  return size
+    ? [`viewport ${size[0]}x${size[1]} from the next step on (layout width only: no touch, no device user agent). Reset: viewport --reset`]
+    : ["viewport emulation off: the window size applies again after the next launch or reload"];
+}
+
 export async function closeBrowser(target: string): Promise<string[]> {
   const state = loadBrowserState(target);
   const lines: string[] = [];
@@ -235,6 +256,10 @@ export class Session {
     const pages = context.pages().filter((p) => !INTERNAL_PAGE.test(p.url()));
     const inTarget = pages.filter((p) => p.url().startsWith("http") && !scopeProblem(config, p.url()));
     const page = inTarget[0] ?? pages[0] ?? (await context.newPage());
+    if (state.viewport) {
+      const [width, height] = state.viewport;
+      await page.setViewportSize({ width, height }).catch(() => undefined);
+    }
     const session = new Session(target, config, ctx, browser, context, page, new Set(context.pages()));
     session.wire();
     return session;

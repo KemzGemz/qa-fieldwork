@@ -35,6 +35,8 @@ export const TargetConfig = z.looseObject({
   permissions: z.object({
     change_data: z.boolean(),
     destructive: z.boolean(),
+    /** Control names the destructive-word guard misreads (an answer option, a filter): allowed by name. */
+    destructive_allow: emptyWhenNull(z.string()),
     create_accounts: z.boolean(),
   }),
   budget: z.object({ actions: z.number().int().positive(), report_reserve: z.number().min(0).max(1) }),

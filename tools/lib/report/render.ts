@@ -52,7 +52,12 @@ export function findingMarkdown(f: Finding, fromReports: boolean): string {
   if (f.evidence.length > 0) lines.push(`- **Evidence:** ${f.evidence.map((e) => link(e, fromReports)).join(", ")}`);
   for (const h of f.history) {
     const evidence = h.evidence.length > 0 ? ` Evidence: ${h.evidence.map((e) => link(e, fromReports)).join(", ")}` : "";
-    lines.push(`- *${h.t.slice(0, 16)} (${h.run}, version ${h.app_version ?? "?"}): ${h.from} → ${h.to}. ${h.note}*${evidence}`);
+    const changes = Object.entries((h.changes ?? {}) as Record<string, { from: string; to: string }>)
+      .map(([field, change]) => ` ${field} revised: "${change.from}" → "${change.to}".`)
+      .join("");
+    lines.push(
+      `- *${h.t.slice(0, 16)} (${h.run}, version ${h.app_version ?? "?"}): ${h.from} → ${h.to}.${changes} ${h.note}*${evidence}`,
+    );
   }
   return `${lines.join("\n")}\n`;
 }
@@ -85,7 +90,8 @@ export function runReportMarkdown(data: ReportData): string {
   const active = touched.filter((f) => !INACTIVE_STATUSES.has(f.status));
   const confirmed = active.filter((f) => f.classification === "product-failure");
   const suspected = active.filter((f) => f.classification === "suspected-defect");
-  const other = touched.filter((f) => !confirmed.includes(f) && !suspected.includes(f));
+  const improvements = active.filter((f) => f.classification === "improvement");
+  const other = touched.filter((f) => !confirmed.includes(f) && !suspected.includes(f) && !improvements.includes(f));
   const section = (items: Finding[]): string[] =>
     items.length > 0 ? items.map((f) => findingMarkdown(f, true)) : ["None recorded.", ""];
 
@@ -96,6 +102,7 @@ export function runReportMarkdown(data: ReportData): string {
     `- **Run:** ${run.id} · mode ${run.mode} · ${run.status} · started ${run.started.slice(0, 16)}` +
       (run.ended ? ` · ended ${run.ended.slice(0, 16)}` : ""),
     `- **Budget:** ${actionsUsed(ctx.dir)} of ${run.budget} browser actions (${run.budget_source})`,
+    `- **Framework:** ${run.framework ? `${run.framework.commit}${run.framework.dirty ? " with uncommitted changes" : ""}` : "not recorded"}`,
     `- **Focus:** ${run.focus || "(none given)"}${run.scope_note ? ` · **Scope note:** ${run.scope_note}` : ""}`,
     `- **Tests:** ${Object.keys(tests).length} · ${formatCounts(testCounts(tests))}`,
     `- **Findings touched this run:** ${confirmed.length} confirmed product failures, ${suspected.length} suspected, ${other.length} other`,
@@ -109,6 +116,7 @@ export function runReportMarkdown(data: ReportData): string {
   }
   lines.push("## Confirmed product failures", "", ...section(confirmed));
   lines.push("## Suspected issues (expectation needs confirmation)", "", ...section(suspected));
+  if (improvements.length > 0) lines.push("## Improvement suggestions (nothing is wrong against an expectation)", "", ...section(improvements));
   if (other.length > 0) lines.push("## Automation, environment and other findings", "", ...section(other));
 
   lines.push(

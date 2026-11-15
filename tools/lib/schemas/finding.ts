@@ -3,6 +3,8 @@ import { z } from "zod";
 export const CLASSIFICATIONS = [
   "product-failure",
   "suspected-defect",
+  // Nothing is wrong against any expectation, but the tester proposes a better way (usability, design, clarity).
+  "improvement",
   "automation-failure",
   "environment",
   "inconclusive",

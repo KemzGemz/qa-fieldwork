@@ -21,6 +21,8 @@ export const Run = z.looseObject({
   report_reserve: z.number(),
   focus: z.string(),
   scope_note: z.string(),
+  /** Shared framework (tools, skill, references, templates) the run was made with. Absent in older runs. */
+  framework: z.object({ commit: z.string(), dirty: z.boolean() }).nullish(),
 });
 export type Run = z.infer<typeof Run>;
 

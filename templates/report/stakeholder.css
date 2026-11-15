@@ -1,0 +1,88 @@
+/* Stakeholder findings report (tools/report.ts --stakeholder). A4, printed from HTML.
+   Target-specific branding is one variable: --accent (set from report-brief.yaml `accent`). */
+@page { size: A4; margin: 16mm 15mm 18mm 15mm; }
+:root {
+  --ink: #1d1a22; --muted: #6a6572; --line: #e4e0e8; --paper: #ffffff; --wash: #f7f5f9;
+  --accent: #3d4a7a; --accent-soft: #eceef6;
+  --high: #b3261e; --high-soft: #fbe9e7;
+  --med: #9a5b00; --med-soft: #fdf1dc;
+  --low: #4a5568; --low-soft: #edf0f4;
+  --ok: #1f6b45; --ok-soft: #e4f3ea;
+}
+* { box-sizing: border-box; }
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body { margin: 0; font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif; color: var(--ink); font-size: 9.6pt; line-height: 1.5; background: var(--paper); }
+h1, h2, h3, p { margin: 0; }
+.num { font-variant-numeric: tabular-nums; }
+
+/* Cover */
+.cover { background: var(--ink); color: #fff; border-radius: 6mm; padding: 13mm 12mm 11mm; }
+.eyebrow { font-size: 8pt; letter-spacing: .16em; text-transform: uppercase; color: #cfc9d6; font-weight: 600; }
+.cover h1 { font-size: 27pt; line-height: 1.12; font-weight: 650; margin-top: 3mm; letter-spacing: -.01em; }
+.cover .sub { color: #cfc9d6; font-size: 10.5pt; margin-top: 3mm; max-width: 135mm; }
+.meta { display: grid; grid-template-columns: repeat(4, 1fr); gap: 5mm; margin-top: 9mm; padding-top: 5mm; border-top: 1px solid #45404d; }
+.meta div span { display: block; font-size: 7.4pt; letter-spacing: .1em; text-transform: uppercase; color: #a79fb0; }
+.meta div b { font-weight: 600; font-size: 9.4pt; overflow-wrap: anywhere; }
+
+/* Sections. A heading never ends a page and is never split from its small label. */
+h2 { font-size: 14.5pt; font-weight: 650; margin: 9mm 0 3mm; letter-spacing: -.005em; break-after: avoid; break-inside: avoid; }
+h2 small { display: block; font-size: 7.6pt; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); font-weight: 650; margin-bottom: 1mm; }
+.lead { font-size: 10.4pt; color: #2e2a35; max-width: 172mm; }
+.pagebreak { break-before: page; }
+
+.tiles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4mm; margin-top: 6mm; }
+.tile { border: 1px solid var(--line); border-radius: 3.5mm; padding: 4mm 4.5mm; background: var(--wash); }
+.tile b { display: block; font-size: 21pt; line-height: 1.05; font-weight: 650; }
+.tile span { font-size: 8.2pt; color: var(--muted); }
+.tile.alert { background: var(--high-soft); border-color: #f1c9c5; }
+.tile.alert b { color: var(--high); }
+
+.top { display: grid; gap: 4mm; margin-top: 3mm; }
+.top div { border: 1px solid #f1c9c5; background: var(--high-soft); border-radius: 3.5mm; padding: 4mm 4.5mm; break-inside: avoid; }
+.top b { display: block; color: var(--high); font-size: 8.4pt; letter-spacing: .06em; margin-bottom: 1mm; text-transform: uppercase; }
+.top p { font-size: 9.4pt; line-height: 1.45; }
+
+/* Tables: a row is never split; short tables stay whole. */
+table { width: 100%; border-collapse: collapse; margin-top: 3mm; font-size: 9pt; }
+th { text-align: left; font-size: 7.4pt; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); font-weight: 650; padding: 2mm 2.5mm; border-bottom: 1.5px solid var(--ink); }
+td { padding: 2.4mm 2.5mm; border-bottom: 1px solid var(--line); vertical-align: top; }
+tr { break-inside: avoid; }
+thead { display: table-header-group; }
+table.keep { break-inside: avoid; }
+td.id { font-weight: 650; white-space: nowrap; }
+
+.pill { display: inline-block; font-size: 7.4pt; font-weight: 650; letter-spacing: .06em; text-transform: uppercase; padding: .6mm 2.4mm; border-radius: 10mm; white-space: nowrap; }
+.pill.critical { background: var(--high); color: #fff; }
+.pill.high { background: var(--high-soft); color: var(--high); }
+.pill.medium { background: var(--med-soft); color: var(--med); }
+.pill.low { background: var(--low-soft); color: var(--low); }
+.pill.solid { background: var(--ink); color: #fff; }
+.pill.outline { background: #fff; color: var(--muted); border: 1px solid #cfc9d6; }
+.pill.ok { background: var(--ok-soft); color: var(--ok); }
+
+/* Finding cards: one card is never split across pages. */
+.finding { border: 1px solid var(--line); border-left: 4px solid var(--low); border-radius: 4mm; margin-top: 5mm; overflow: hidden; break-inside: avoid; }
+.finding.critical, .finding.high { border-left-color: var(--high); }
+.finding.medium { border-left-color: var(--med); }
+.finding header { display: flex; align-items: flex-start; gap: 4mm; padding: 4.5mm 5mm 3.5mm; }
+.finding .fid { font-size: 8.4pt; font-weight: 650; color: var(--muted); white-space: nowrap; padding-top: .8mm; }
+.finding h3 { font-size: 11.6pt; font-weight: 650; line-height: 1.3; flex: 1; }
+.finding .tags { display: flex; gap: 1.5mm; padding-top: .5mm; }
+.finding .body { padding: 0 5mm 4.5mm 5mm; display: grid; grid-template-columns: 1fr 1fr; gap: 3mm 7mm; }
+.k { font-size: 7.4pt; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); font-weight: 650; margin-bottom: .6mm; }
+.span2 { grid-column: 1 / -1; }
+.suggest { background: var(--wash); border-radius: 2.5mm; padding: 2.6mm 3.5mm; }
+
+/* Evidence images: drawn as backgrounds so a region can be enlarged without knowing the image size. */
+.shots { display: grid; gap: 4mm; }
+figure { margin: 0; }
+.shot { border: 1px solid var(--line); border-radius: 2.5mm; background-repeat: no-repeat; background-color: var(--wash); }
+figcaption { font-size: 7.8pt; color: var(--muted); margin-top: 1.2mm; }
+
+ul { margin: 1mm 0 0; padding-left: 4.5mm; }
+li { margin-bottom: 1.1mm; }
+.cols { display: grid; grid-template-columns: 1fr 1fr; gap: 7mm; }
+.box { border: 1px solid var(--line); border-radius: 3.5mm; padding: 4mm 5mm; break-inside: avoid; }
+.box h3 { font-size: 10.4pt; font-weight: 650; margin-bottom: 1.5mm; }
+.note { font-size: 8.4pt; color: var(--muted); margin-top: 3mm; }
+code { font-family: Consolas, "Courier New", monospace; font-size: 8.6pt; background: var(--wash); padding: 0 1mm; border-radius: 1mm; white-space: nowrap; }

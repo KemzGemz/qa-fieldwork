@@ -102,6 +102,10 @@ export interface FindingUpdateInput {
   id: string;
   status?: FindingStatus;
   classification?: Classification;
+  /** Revised when new evidence changes how serious the finding is; the earlier value stays in the history. */
+  severity?: Severity;
+  /** Revised when the first wording claimed more (or something else) than the evidence shows. */
+  title?: string;
   note: string;
   evidence?: string[];
   addTests?: string[];
@@ -113,6 +117,12 @@ export function updateFinding(input: FindingUpdateInput): string[] {
   const findings = readFindings(target);
   const finding = findings[id];
   if (!finding) fail(`no finding ${id} in target ${target}`);
+  const changes: Record<string, { from: string; to: string }> = {};
+  if (input.severity && input.severity !== finding.severity) changes.severity = { from: finding.severity, to: input.severity };
+  if (input.title && input.title !== finding.title) changes.title = { from: finding.title, to: input.title };
+  if (input.classification && input.classification !== finding.classification) {
+    changes.classification = { from: finding.classification, to: input.classification };
+  }
   finding.history.push({
     t: now(),
     run: run.id,
@@ -122,9 +132,12 @@ export function updateFinding(input: FindingUpdateInput): string[] {
     evidence: resolveEvidence(target, input.evidence),
     app_version: run.app_version,
     role: run.role,
+    ...(Object.keys(changes).length > 0 ? { changes } : {}),
   });
   if (input.status) finding.status = input.status;
   if (input.classification) finding.classification = input.classification;
+  if (input.severity) finding.severity = input.severity;
+  if (input.title) finding.title = input.title;
   if (input.addTests?.length) {
     anyFailing(target, input.addTests);
     for (const testId of input.addTests) {
@@ -132,5 +145,9 @@ export function updateFinding(input: FindingUpdateInput): string[] {
     }
   }
   writeJson(findingsPath(target), findings);
-  return [`${id}: status ${finding.status} (${finding.classification}); history entries: ${finding.history.length}`];
+  const revised = Object.entries(changes).map(([field, change]) => `${field} ${change.from} -> ${change.to}`);
+  return [
+    `${id}: status ${finding.status} (${finding.classification}, ${finding.severity}); history entries: ${finding.history.length}` +
+      (revised.length > 0 ? `; revised: ${revised.join("; ")} (the earlier values stay in the history)` : ""),
+  ];
 }

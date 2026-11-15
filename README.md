@@ -184,6 +184,7 @@ hand edit is overwritten at the next refresh.
 | `README.md` | `target.yaml`, runs, `findings.json`, `coverage.json`, `handover.json`, `knowledge/questions.md`, the requirements manifest | after every `records.ts` command, and by `target.ts init`, `status`, `add-requirements` and `report.ts` |
 | `FINDINGS.md`, `COVERAGE.md`, `HANDOVER.md` | `findings.json`, `coverage.json`, `handover.json` | same |
 | `reports/<run-id>.md` | that run's records plus findings, coverage and handover | `report.ts --target <id> [--run <run-id>]` |
+| `stakeholder-report/report.html` and a PDF | all open findings, test counts and coverage of the target, worded by the tester's `report-brief.yaml` | `report.ts --target <id> --stakeholder` |
 
 After editing `target.yaml` or a knowledge file by hand, run `npx tsx tools/target.ts status --target <id>`
 to bring the overview up to date. Open questions are read from the questions table in
@@ -225,9 +226,9 @@ option.
 | Tool | What it does |
 |---|---|
 | `tools/target.ts` | `list`, `init`, `status`, `check`, `add-requirements` |
-| `tools/browser.ts` | `launch` / `attach`, `open`, `observe`, `act` (click, fill, select, check, uncheck, press, hover, back, reload), `text`, `shot`, `eval` (read-only), `diagnose`, `close`. One Chromium, one tab, re-attached on every call; bounded waits; an observation and screenshot after every action; stall diagnosis |
+| `tools/browser.ts` | `launch` / `attach`, `open`, `observe`, `act` (click, fill, select, check, uncheck, press, hover, back, reload), `text`, `shot`, `eval` (read-only), `frame` (read and act inside embedded frames), `viewport` (phone and tablet widths), `diagnose`, `close`. One Chromium, one tab, re-attached on every call; bounded waits; an observation and screenshot after every action; stall diagnosis |
 | `tools/records.ts` | runs, role and version checks, notes, tests (`test-plan` → `test-start` → `test-result`, `test-revise`), findings, coverage, `checkpoint`, `lesson` |
-| `tools/report.ts` | renders the run report, refreshes the generated views, and checks the records |
+| `tools/report.ts` | renders the run report, refreshes the generated views, and checks the records; `--stakeholder` writes a findings report for people outside testing as HTML and PDF |
 
 Rules the tools enforce: a verdict needs an expectation recorded before it; `pass`/`fail`/`suspected`
 need logged browser activity and evidence files; `fail` needs a requirement, confirmed rule or
@@ -266,6 +267,7 @@ tools/
 tests/                                      node:test unit tests (record rules, isolation, generated views, parser, stall table)
 templates/target/                           what a new target starts with
 templates/accounts.example.yaml             template for a target's .local/accounts.yaml
+templates/report/                           stakeholder report: stylesheet and an example report-brief.yaml
 targets/                                    empty on main; one directory per application on its sut/<id> branch
 fixtures/                                   local practice applications (see below)
 ```

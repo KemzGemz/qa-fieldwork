@@ -1,0 +1,50 @@
+# The tester's wording for the stakeholder report (tools/report.ts --target <id> --stakeholder).
+# Copy to targets/<id>/report-brief.yaml. Every key is optional: what is left out comes from the
+# records as written. Counts, severities, statuses, expected results and evidence always come from
+# the records; change those with records.ts, not here. Guidance: references/reporting.md.
+# `code` and **bold** are understood in any text.
+
+title: "Example Bookings"                 # default: the target's name
+subtitle: "What testing of the customer site found, what it means, and what needs a decision."
+date: "3 March 2027"                      # default: the day of the latest run
+environment: "Staging, payment provider in test mode"
+tested_as: "Customer and manager, desktop and phone width"
+basis: "Requirements v1.2, and common practice where they are silent"
+accent: "#3d4a7a"                         # the one branding colour
+
+headline: "Booking works end to end, but refunds can be issued twice"   # the conclusion, not a count
+lead: "Two or three sentences a decision-maker can stop after."
+
+priorities_title: "Two things to fix before launch"
+priorities:
+  - finding: F-001
+    text: "One sentence: what the customer or the business experiences."
+
+findings:
+  F-001:
+    title: "A refund can be issued twice for the same booking"   # say what is wrong, not only what happens
+    area: "Payments"
+    what: "Plain account of the behaviour, with the numbers a reader needs."
+    why: "The consequence for a customer or the business."
+    how: "The shortest way for someone else to see it."
+    suggestion: "A direction, marked as the tester's suggestion. Leave out to stay neutral."
+    images:
+      - path: runs/run-20270303-101500/evidence/014-click-button-refund.png
+        caption: "What the reader should notice."
+        zoom: 2            # enlarge; 1 shows the full width
+        focus: [30, 60]    # which part of the image, in percent from the left and the top
+        height_mm: 45
+
+passed:
+  - title: "Booking"
+    items: ["What works, in the reader's terms."]
+
+observations: ["Small things seen that were not filed as findings."]
+
+# not_tested: default is every coverage area that is not 'covered', with its note
+not_tested:
+  - area: "Receipt email"
+    why: "The test address has no inbox."
+
+decisions: ["A question only the owner can answer."]
+test_data: ["Records the test left behind and who should remove them."]

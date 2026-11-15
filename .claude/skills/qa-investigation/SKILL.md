@@ -26,9 +26,9 @@ refuses paths outside that target. `npx tsx tools/<tool>.ts <command> --help` li
 | Tool | Purpose |
 |---|---|
 | `tools/target.ts` | `list`, `init`, `status` (what to load first), `check` (does this URL/environment belong to the target?), `add-requirements` |
-| `tools/browser.ts` | `launch`/`attach`, `open`, `observe`, `act`, `text`, `shot`, `eval` (read-only), `diagnose`, `close` |
-| `tools/records.ts` | `run-start`, `role`, `version`, `note`, `test-plan`, `test-start`, `test-revise`, `test-result`, `finding`, `finding-update`, `coverage`, `checkpoint`, `run-end`, `lesson` |
-| `tools/report.ts` | renders the run report, refreshes the generated views, and checks the records |
+| `tools/browser.ts` | `launch`/`attach`, `open`, `observe`, `act`, `text`, `shot`, `eval` (read-only), `frame` (embedded frames), `viewport` (phone width), `diagnose`, `close` |
+| `tools/records.ts` | `run-start`, `role`, `version`, `note`, `test-plan`, `test-start`, `test-revise`, `test-result`, `finding`, `finding-update` (status, severity, wording), `coverage`, `checkpoint`, `run-end`, `lesson` |
+| `tools/report.ts` | renders the run report, refreshes the generated views, and checks the records; `--stakeholder` writes the findings report for people outside testing (HTML and PDF) |
 
 Knowledge files (`targets/<id>/knowledge/*.md`) and `target.yaml` are yours to edit directly with the
 file tools. Edit only inside the selected target.
@@ -45,7 +45,9 @@ overview lists a question as open while its Answer cell is empty.
 - [references/investigation-heuristics.md](references/investigation-heuristics.md): the questions that drive exploration and test design, layered effect checks, prioritisation. Read before step 4 on a first run.
 - [references/expectations-and-verdicts.md](references/expectations-and-verdicts.md): bases for expected results, the verdict rule, classifying unexpected outcomes, with worked examples. Read before the first `test-plan`.
 - [references/domain-guidance.md](references/domain-guidance.md): expectations by area (money, access control, forms, dates, data, accessibility, security) with the standard each rests on. Read the relevant section when requirements are silent.
-- [references/browser-operation.md](references/browser-operation.md): locators, role changes, dialogs, stalls and recovery, attaching to a signed-in browser. Read on the first stall or when something about the browser is unclear.
+- [references/browser-operation.md](references/browser-operation.md): locators, role changes, dialogs, embedded frames, phone width, keyboard walks, what screenshots cannot show, stalls and recovery. Read on the first stall or refusal, before a payment or sign-in hand-off, and before any phone-width or keyboard work.
+- [references/design-review.md](references/design-review.md): how to review look, consistency and ease of use by looking at every screen and state. Read before any UI/UX or usability work, and before saying such work was or was not covered.
+- [references/reporting.md](references/reporting.md): the stakeholder report: what it must contain, how to word findings so they are not misread, what to check in the PDF. Read when the user asks for a report, summary or PDF to share.
 - [references/field-lessons.md](references/field-lessons.md): lessons from earlier work, with provenance. `lessons-proposed.md` holds unreviewed proposals.
 
 ## Modes
@@ -66,7 +68,8 @@ requirement; a failed test may change the model; a revised model produces new te
 0. Check where you are: `git branch --show-current`. Target records live on a branch `sut/<target-id>`
    in its own worktree, never on `main`. On `main`, do not create or update a target: tell the user
    the command (`git worktree add ../qa-fieldwork-<id> -b sut/<id> main`, or without `-b ... main` for an
-   existing branch) and continue once the session is in that worktree.
+   existing branch) and continue once the session is in that worktree. A new worktree has no
+   dependencies yet: run `npm install` in it once.
 1. Identify the target ID. If the user did not give one, list targets (`target.ts list`) and ask;
    never guess between targets. New application: `target.ts init --target <id> --url <url> --env <env>`.
 2. `target.ts status --target <id>`: read it fully. Then read `knowledge/scope.md` and, on resume,
@@ -90,6 +93,11 @@ requirement; a failed test may change the model; a revised model produces new te
 Use what the user already gave you. Ask only for something missing that blocks the next step (for
 example no account for a role that the focus area needs). Otherwise note the gap and continue.
 
+One question is worth asking at the start instead of halfway: when the application creates shared
+records or takes payment and the user has not said what is allowed, ask once whether this is a test
+environment, whether test records may be created, and whether payment is in test mode. Carry on
+with everything that needs no answer while you wait, and record the answer in `knowledge/scope.md`.
+
 ### 2. Read the requirements
 
 `target.ts add-requirements --target <id> <files>` copies the documents in and records their hashes
@@ -106,7 +114,9 @@ an explicit assumption in `knowledge/questions.md`.
 ### 3. Explore the application
 
 Explore to reinforce and to challenge what you read. One step at a time: `act`, read the observation
-it prints, then decide. Navigate through visible controls; the same URL in a meaningfully different
+it prints, then decide. Open the screenshots of new screens and read them as images: the text of an
+observation says what is on a page, not how it looks or where things sit. Content inside an
+embedded frame is not in the observation at all (`browser.ts frame`). Navigate through visible controls; the same URL in a meaningfully different
 state (dialog open, validation errors shown, another role, an empty list) is a separate observation.
 Note screens, forms and their constraints, messages, state changes, and what each role is offered.
 
@@ -132,17 +142,22 @@ Update the model whenever a test teaches you something.
 Choose by business impact, uncertainty, dependency reach and remaining budget; you cannot run
 everything, so say what you are leaving out. Consider main workflows, validation and boundaries,
 state transitions, role differences, cross-module effects, persistence, retries and duplicate
-actions, cancellation and recovery, and existing records after a configuration change. These are
+actions, cancellation and recovery, existing records after a configuration change, states meant to
+end by themselves (holds, reservations, lockouts), every way out to another system and back
+(payment, sign-in), and, for anything customers see, how it looks and reads on a desktop and on a
+phone. These are
 prompts, not a checklist: plan a test only when you can say why it applies to this application.
 
 Look at the same feature through more than one pair of eyes before finalising the list: the business
 owner (what would cost money or trust?), the end user in each role (what am I trying to get done?),
-the abuser or the careless user (what should I not be able to do?), and the maintainer of the data
-(what must stay consistent?).
+the abuser or the careless user (what should I not be able to do?), the maintainer of the data
+(what must stay consistent?), and someone seeing it for the first time (does it look finished and
+all of a piece, and can I tell what I can and cannot choose before I choose?).
 
 Register every area you identify with `records.ts coverage`, including those you will not reach
-(`not-covered`, `deferred`, `blocked`, `out-of-scope`). Concurrency (two users at the same moment) is
-deferred in this version: record it as `deferred` where it matters.
+(`not-covered`, `deferred`, `blocked`, `out-of-scope`), each with the real reason: "budget" only if
+the budget was in fact spent. Concurrency (two users at the same moment) is deferred in this
+version: record it as `deferred` where it matters.
 
 ### 6. Define the expectation, then 7. execute
 
@@ -180,10 +195,20 @@ safe and the action is repeatable, vary one thing to narrow the cause, and look 
 consequences. If an action cannot safely be repeated (it moves money, consumes a unique record, or
 affects shared data), say so instead of repeating it.
 
+Two more questions before filing. Is this a known pattern that exists on purpose (a hold during
+checkout, a lockout, a limit)? Then the pattern is not the finding: measure it and file what is
+wrong with it (too long, not shown to the user, no way back, never released). And does the state
+end by itself? Look again later, with the clock time of each look, before writing "permanent" or
+choosing a severity. Both are worked through in
+[expectations-and-verdicts.md](references/expectations-and-verdicts.md).
+
 Check existing findings for the same underlying cause before filing. Then
 `records.ts finding --title ... --classification ... --tests ... --expected ... --actual ... --repro ... --impact-observed ... --impact-reasoned ... --duplicate-check ... --evidence ...`.
-Keep observed consequences and reasoned impact separate. Withdraw a finding when new evidence removes
-it (`finding-update --status withdrawn --note why`); never delete one.
+Keep observed consequences and reasoned impact separate. Word the title so that it says what is
+wrong, not only what happens. When new evidence changes a finding, revise it in place
+(`finding-update --severity ... --title "..." --note why`); withdraw it when nothing remains
+(`--status withdrawn`); never delete one. A proposal where nothing is wrong against an expectation
+is filed as `--classification improvement`: suggestions are part of the job, kept apart from defects.
 
 ### 9. Save progress and report
 
@@ -203,6 +228,9 @@ At completion, at the budget reserve, or at a blocker:
 5. Tell the user: what was explored and tested, confirmed findings and suspected issues, the key
    evidence, remaining coverage, blocked and deferred scenarios, unresolved business questions, and
    the next useful action. Link the report and evidence paths.
+6. When the user wants something to share with people outside testing, write
+   `targets/<id>/report-brief.yaml`, run `tools/report.ts --target <id> --stakeholder`, and read
+   every page of the PDF before handing it over ([reporting.md](references/reporting.md)).
 
 ## Resume
 
@@ -228,7 +256,11 @@ with a note saying why.
 - One tab. Open the start URL, then navigate with visible controls. A typed address needs
   `open --url ... --reason ...` and is for cases where the address itself is the test.
 - Choose locators from the latest observation (`--ref eN`, or role and name). Waits are bounded; look
-  at the outcome before the next action.
+  at the outcome before the next action. After a failed or refused step the tool refuses the next
+  one until you `observe`: do not chain commands behind a step that can fail.
+- Inside an embedded frame (a payment form) use `frame` and `act --frame`; for a phone width use
+  `viewport`. Do not move to another browser for something the tool can reach; when it truly
+  cannot (a browser-drawn picker), record the step as taken outside the tool.
 - Changing role: sign out through the application, confirm the signed-out state, sign in as the next
   user, confirm the identity on the page, `records.ts role`. Never assume the role.
 - On a stall the tool captures URL, screenshot, last action and probes, and says whether the
@@ -237,7 +269,9 @@ with a note saying why.
   reports a blocker, record the affected test as `blocked`, `env-issue` or `automation-error`,
   checkpoint, and report. Details: [browser-operation.md](references/browser-operation.md).
 - The tools refuse destructive-looking controls unless `target.yaml` allows them. Destructive or
-  shared-data actions need the user's approval, recorded in `knowledge/scope.md`.
+  shared-data actions need the user's approval, recorded in `knowledge/scope.md`. A harmless control
+  the word guard misreads (an answer option containing "remove") is allowed by name in
+  `permissions.destructive_allow`, with the reason in `scope.md`.
 
 ## Target isolation
 

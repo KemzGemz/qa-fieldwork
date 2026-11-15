@@ -21,6 +21,7 @@ scope:
 permissions:                      # what a run may do on this target
   change_data: true
   destructive: false              # deletes, resets, anything irreversible or affecting shared data
+  # destructive_allow: ["Remove filter"]   # control names the word guard misreads; say why in knowledge/scope.md
   create_accounts: false
 
 # budget: {actions: 120, report_reserve: 0.15}

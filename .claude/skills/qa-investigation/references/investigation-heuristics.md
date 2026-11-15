@@ -16,6 +16,9 @@ factors of the earlier `qa-pipeline` helper.
 | What if the actions happen in a different order? | Sequence tests: approve before complete, pay before confirm |
 | What after cancel, interruption, retry, reversal? | Half-done states, double effects, restore to the exact prior state |
 | Which effects can I verify through the interface? | Feasible checks now; the rest becomes a recorded limitation |
+| Does this state end by itself, and when? | Timed rechecks for holds, reservations, lockouts, sessions, drafts (see "State that changes with time") |
+| Where does the user leave the application, and where do they come back? | Every exit to another system and each of its return paths (see "Hand-offs to other systems") |
+| What does a person see here, and is it what the rest of the product looks like? | A look at the screenshot of each state, not only its text ([design-review.md](design-review.md)) |
 
 ## Layered effect check (for any action that changes data)
 
@@ -47,6 +50,53 @@ forgets one consumer, or a reversal undoes the record but not its side effect.
 - **Calculations**: compute the expected figure yourself, independently, before looking. Check rounding once versus per line, and the same figure on every screen that shows it.
 - **Time**: boundaries of any time window, dates at month and year ends, ordering by time.
 
+## State that changes with time
+
+Applies when an action puts something into a state meant to be temporary: a slot or stock held
+during checkout, a reservation, a lock on a record being edited, a lockout after failed sign-ins, a
+one-time link, an unpaid order, a session, a draft.
+
+- Decide before acting what would be normal: such states usually exist on purpose and end after a
+  short, stated time. The state existing is rarely the defect. Its length, whether the user is told,
+  whether the user can get back to what they started, and whether it ends early when it should
+  (cancel, failure, sign-out) are where defects are.
+- Write down the wall-clock time when you create the state (read the clock; do not estimate it).
+- One look straight after proves nothing about how it ends. Plan rechecks at increasing intervals
+  (for example 5, 15, 30, 60 minutes), do other tests in between, and record each look with its
+  time. If the run ends first, the checkpoint names the record and the time of the next look.
+- Until a recheck has been made, a finding may say "still in this state after N minutes", never
+  "permanent", and its severity follows the part that was verified.
+- Each state you create is test data left behind: list it, and say when it should clear.
+
+Example. A course site holds a seat when a learner starts enrolling. Right after abandoning
+enrolment the seat is gone for everyone: expected. Looks at 5 and 15 minutes: still held. At 40
+minutes: free again. Findings that follow are about a 15 to 40 minute hold nobody is told about and
+that a cancel button does not end, not about "abandoning enrolment takes the seat".
+
+Does not apply: a state the user ends themselves and that is meant to last (a saved booking, a
+published post). There the reversal tests above are the right tool, not timed rechecks.
+
+## Hand-offs to other systems
+
+Applies when a flow leaves the application: a payment page, single sign-on, a map, an identity
+check, an emailed link.
+
+- List every exit and every way back: success, failure, cancel, the provider's own back link, the
+  browser's Back button, closing the tab and returning later.
+- For each way back, check the address the user lands on (is it this application's host, does it
+  load) before checking what the page says. A wrong return address is invisible until that path is
+  taken, and each path can be wrong separately.
+- Compare what the application believes afterwards with what the user was shown: a payment recorded
+  while the user saw an error, or the reverse.
+- The other system's page is often inside an embedded frame or on another origin: see
+  browser-operation.md ("Embedded frames"). Add its origin to `allowed_origins` only to read it.
+- Prefer the provider's test routes that need no card or bank details (a simulated bank page with
+  succeed and fail buttons). The session does not type payment credentials; if only a card form
+  exists, the user completes that step and the investigation continues after it.
+
+Does not apply: links that merely leave (a social media link, directions). Check that they open the
+right place, once, and move on.
+
 ## Reasoning perspectives
 
 Run the feature past each before closing the test list:
@@ -69,6 +119,12 @@ Score roughly, not arithmetically. Higher priority when:
 Order tests so that destructive or state-consuming ones come after the tests that need the same
 records intact. When the budget cannot cover an important area, record it as `not-covered` with the
 reason rather than running a thin test and calling it covered.
+
+The reason on a `not-covered` or `deferred` area must be the real one. "Budget" is only true when
+the budget was spent: if actions remain when the run ends, either use them on the highest-priority
+uncovered area or write what actually stopped you (needs approval, no account, tool cannot reach
+it, not asked for). A user who later asks "did you cover X?" should find the honest answer already
+in coverage.
 
 ## Dependency thinking: a short example
 

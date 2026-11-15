@@ -37,6 +37,12 @@ export interface Observation {
   popups: string[];
   /** Target-relative path of the screenshot, if one was taken. */
   screenshot: string | null;
+  /** A screenshot was wanted and could not be taken (the observation itself is still evidence). */
+  screenshot_failed?: boolean;
+  /** Visible embedded frames; their contents are not part of this observation (browser.ts frame). */
+  frames?: string[];
+  /** Emulated page size, when browser.ts viewport is in effect. */
+  viewport?: string | null;
   aria_snapshot: string;
   /** Target-relative path of this file. */
   path: string;
@@ -46,6 +52,32 @@ const lastObservationPath = (target: string): string => join(localDir(target), "
 
 export function readLastObservation(target: string): Observation | undefined {
   return readJson<Observation>(lastObservationPath(target));
+}
+
+export interface EmbeddedFrame {
+  label: string;
+  frame: ReturnType<Session["page"]["frames"]>[number];
+}
+
+/** Embedded frames worth telling the tester about: visible ones with an http(s) address. */
+export async function listFrames(session: Session): Promise<EmbeddedFrame[]> {
+  const { page } = session;
+  const out: EmbeddedFrame[] = [];
+  for (const frame of page.frames()) {
+    if (frame === page.mainFrame() || !/^https?:/.test(frame.url())) continue;
+    const element = await frame.frameElement().catch(() => undefined);
+    const box = element ? await element.boundingBox().catch(() => null) : null;
+    if (!box || box.width < 40 || box.height < 40) continue;
+    const title = element ? ((await element.getAttribute("title").catch(() => null)) ?? "") : "";
+    let origin = frame.url();
+    try {
+      origin = new URL(frame.url()).origin;
+    } catch {
+      // keep the raw address
+    }
+    out.push({ label: [title, frame.name(), origin].filter(Boolean).join(" | "), frame });
+  }
+  return out;
 }
 
 export interface ObserveOptions {
@@ -68,6 +100,8 @@ export async function observe(session: Session, options: ObserveOptions = {}): P
 
   const n = readdirSync(join(ctx.dir, "observations")).filter((f) => f.endsWith(".json")).length + 1;
   const number = String(n).padStart(3, "0");
+  const frames = (await listFrames(session).catch(() => [])).map(({ label }) => label).slice(0, 8);
+  const size = page.viewportSize();
   let screenshot: string | null = null;
   if (options.screenshot !== false) {
     const name = slug(label);
@@ -108,6 +142,9 @@ export async function observe(session: Session, options: ObserveOptions = {}): P
     http_errors: [...session.httpErrors],
     popups: [...session.popups],
     screenshot,
+    screenshot_failed: options.screenshot !== false && screenshot === null,
+    frames,
+    viewport: size ? `${size.width}x${size.height}` : null,
     aria_snapshot: snapshot.slice(0, 30000),
     path: rel(target, path),
   };
@@ -199,7 +236,14 @@ export function renderObservation(session: Session, observation: Observation, op
   lines.push(...o.popups.map((p) => `POPUP opened and closed (one-tab mode): ${p}`));
   const outOfScope = scopeProblem(config, o.url);
   if (outOfScope) lines.push(`!! OUT OF SCOPE: ${outOfScope}. Go back before continuing.`);
+  for (const frame of o.frames ?? []) {
+    lines.push(`EMBEDDED FRAME "${frame}": contents not listed above. Read: browser.ts frame --match "..."; act inside: act ... --frame "..."`);
+  }
+  if (o.viewport) lines.push(`viewport: ${o.viewport} (emulated; browser.ts viewport --reset to end)`);
   if (o.screenshot) lines.push(`screenshot: ${prefix}${o.screenshot}`);
+  else if (o.screenshot_failed) {
+    lines.push("screenshot: FAILED (the observation file below is still evidence; if it keeps failing, close and launch --headless)");
+  }
   lines.push(`observation: ${prefix}${o.path}`);
   return lines;
 }

@@ -69,7 +69,44 @@ the record and the report shows both. Do not revise merely because the applicati
 
 Before calling it a product failure, rule out yourself: was the right record edited? was the value
 actually in the field when submitted (read it back from the observation)? were you signed in as the
-role you thought? is the "before" value one you recorded, or one you remember?
+role you thought? is the "before" value one you recorded, or one you remember? is a time you are
+about to write down one you read from the clock?
+
+Record a verdict only after reading the output it rests on. Do not put the check and the
+`test-result` that depends on it in one shell command: if the check fails, the verdict is recorded
+anyway.
+
+## Defect or known pattern
+
+Before filing, ask whether the behaviour is a recognised design that exists on purpose: holding a
+slot or stock during checkout, locking an account after failed attempts, rate limits, soft delete,
+a confirmation step, a cooling-off delay. If it is, the pattern is not the finding. Ask what a
+proper version of the pattern has, and test for those parts:
+
+- Is it bounded (how long, how many)? Measure it; do not assume.
+- Is the user told, at the moment it affects them?
+- Can the user who triggered it recover (resume, undo, wait a stated time)?
+- Does it end when it should (on cancel, on failure, on completion)?
+- Can someone else abuse it against other users?
+
+File what fails, with what you measured. If you have not measured, say so in the title's terms
+("still held after 16 minutes"), keep the severity to what was verified, and plan the recheck
+(investigation-heuristics.md, "State that changes with time").
+
+## Wording and severity of a finding
+
+- The title states what departs from the expectation, so that a reader cannot take it for normal
+  behaviour. Test it: could a sensible person answer "isn't that standard?" If so, rename it or
+  re-examine it.
+- Severity follows consequences that were observed or follow directly, not the worst case of
+  something untested. Put the untested worst case in `--impact-reasoned`, labelled as reasoning.
+- When evidence changes a finding, revise it in place:
+  `finding-update --id F-nnn --severity ... --title "..." --note "what changed and why"`. The earlier
+  values stay in its history. Withdraw (`--status withdrawn`) only when nothing of it remains.
+- A proposal where nothing is wrong against any expectation (a clearer control, availability shown
+  earlier) is `--classification improvement`. It needs evidence but not a failing test, and reports
+  list it apart from defects. Do not dress a suggestion as a suspected defect, or drop it because it
+  is "not a bug".
 
 ## Reproduction
 

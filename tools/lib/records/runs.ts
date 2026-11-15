@@ -3,6 +3,7 @@ import { existsSync, mkdirSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import { loadConfig } from "../core/config.ts";
 import { fail } from "../core/errors.ts";
+import { frameworkVersion } from "../core/git.ts";
 import { localDir, targetDir } from "../core/paths.ts";
 import { appendJsonl, countBy, formatCounts, now, readJson, readJsonl, readText, stamp, writeJson, writeText } from "../core/store.ts";
 import type { Handover } from "../schemas/handover.ts";
@@ -160,6 +161,7 @@ export function runStart(input: RunStartInput): string[] {
     report_reserve: config.budget.report_reserve,
     focus: input.focus ?? "",
     scope_note: input.scope ?? "",
+    framework: frameworkVersion() ?? null,
   };
   saveRun({ dir, run });
   writeTests(dir, {});

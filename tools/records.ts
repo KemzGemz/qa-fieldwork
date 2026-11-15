@@ -196,10 +196,12 @@ command("finding", "file a finding after investigating an unexpected result")
     ),
   );
 
-command("finding-update", "change a finding's status or add evidence; appended to its history")
+command("finding-update", "change a finding's status, severity or wording, or add evidence; appended to its history")
   .requiredOption("--id <id>")
   .addOption(new Option("--status <status>").choices(FINDING_STATUSES))
   .addOption(new Option("--classification <class>").choices(CLASSIFICATIONS))
+  .addOption(new Option("--severity <severity>", "revise the severity when evidence changes it").choices(SEVERITIES))
+  .option("--title <text>", "revise the title when it claimed more than the evidence shows")
   .requiredOption("--note <text>")
   .option("--evidence <paths...>")
   .option("--add-tests <ids>", "further test ids to link, comma-separated")
@@ -210,6 +212,8 @@ command("finding-update", "change a finding's status or add evidence; appended t
         id: o.id,
         status: o.status,
         classification: o.classification,
+        severity: o.severity,
+        title: o.title,
         note: o.note,
         evidence: o.evidence,
         addTests: csv(o.addTests),
